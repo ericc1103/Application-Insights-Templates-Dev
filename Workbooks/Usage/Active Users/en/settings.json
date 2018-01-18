@@ -1,6 +1,6 @@
 {
     "name":"Active Users",
     "description": "description goes here",
-    "icon": "icon.svg",
+    "icon": "workbook.svg",
     "tags": ["foo", "bar"]
 }
