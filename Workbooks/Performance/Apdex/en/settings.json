@@ -1,6 +1,6 @@
 {
     "name":"Apdex",
     "description": "",
-    "icon": "",
+    "icon": "default.icon",
     "tags": []
 }
