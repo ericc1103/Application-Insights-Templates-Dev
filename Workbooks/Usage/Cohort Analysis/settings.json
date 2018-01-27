@@ -1,5 +1,6 @@
 {
-    "name":"Retention - N Period",
+    "id":"Cohort Analysis",
+    "name":"Cohort Analysis",
     "description": "",
     "icon": "default.svg",
     "tags": []

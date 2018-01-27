@@ -1,5 +1,6 @@
 {
-    "name":"Operations with failed requests",
+    "id":"Events Picker",
+    "name":"Events Picker",
     "description": "description goes here",
     "icon": "icon.svg",
     "tags": []

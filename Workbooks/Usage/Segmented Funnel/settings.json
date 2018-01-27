@@ -1,5 +1,6 @@
 {
-    "name":"Retention - Bracket",
+    "id":"Segmented Funnel",
+    "name":"Segmented Funnel",
     "description": "",
     "icon": "default.svg",
     "tags": []

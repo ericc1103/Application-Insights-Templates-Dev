@@ -1,5 +1,6 @@
 {
-    "name":"Engaged Users -- by Days Used",
+    "id":"Long sessions",
+    "name":"Long sessions",
     "description": "description goes here",
     "icon": "icon.svg",
     "tags": []
