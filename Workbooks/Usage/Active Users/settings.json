@@ -1,7 +1,4 @@
 {
     "id":"Active Users",
-    "name":"Active Users",
-    "description": "",
-    "icon": "default.svg",
-    "tags": []
+    "name":"Active Users"
 }
