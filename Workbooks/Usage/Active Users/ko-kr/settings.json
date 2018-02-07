@@ -2,5 +2,8 @@
     "name":"액티브 사용자",
     "description": "",
     "icon": "default.svg",
-    "tags": []
+    "tags": [],
+    "author": "Microsoft",
+    "order": 1,
+    "visibleInGallery": true
 }

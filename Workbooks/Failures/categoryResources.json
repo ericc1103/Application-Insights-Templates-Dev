@@ -1,3 +1,4 @@
 {
-    "en-us": {"name":"Failure", "description": ""}
+    "en-us": {"name":"Failure", "description": ""},
+    "order": 2
 }

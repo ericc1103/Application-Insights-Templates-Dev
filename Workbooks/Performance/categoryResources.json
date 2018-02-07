@@ -1,3 +1,4 @@
 {
-    "en-us": {"name":"Performance", "description": ""}
+    "en-us": {"name":"Performance", "description": ""},
+    "order": 3
 }

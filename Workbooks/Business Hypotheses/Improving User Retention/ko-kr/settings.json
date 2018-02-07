@@ -1,5 +1,8 @@
 {
     "name":"향상된 리텐션",
     "description": "테스트",
-    "tags": ["푸", "바"]
+    "tags": ["푸", "바"],
+    "author": "Microsoft",
+    "order": 1,
+    "visibleInGallery": true
 }
