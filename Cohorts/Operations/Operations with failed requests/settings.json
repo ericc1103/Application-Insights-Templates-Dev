@@ -1,9 +1,0 @@
-{
-    "name":"Operations with failed requests",
-    "description": "description goes here",
-    "icon": "icon.svg",
-    "tags": [],
-    "author": "Microsoft",
-    "order": 1,
-    "visibleInGallery": true
-}

@@ -2,8 +2,5 @@
     "name":"Engaged Users -- by Days Used",
     "description": "description goes here",
     "icon": "icon.svg",
-    "tags": [],
-    "author": "Microsoft",
-    "order": 1,
-    "visibleInGallery": true
+    "tags": []
 }
