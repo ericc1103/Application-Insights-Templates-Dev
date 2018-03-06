@@ -1,0 +1,9 @@
+{
+    "name":"Long sessions",
+    "description": "description goes here",
+    "icon": "",
+    "tags": [],
+    "author": "Microsoft",
+    "order": 100,
+    "visibleInGallery": true
+}
