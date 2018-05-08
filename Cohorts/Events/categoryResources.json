@@ -1,4 +1,3 @@
 {
-    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/categoryResources.json",
     "en-us": {"name":"Events", "description": "Events Description", "order": 2}
 }
