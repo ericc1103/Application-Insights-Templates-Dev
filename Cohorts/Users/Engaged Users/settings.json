@@ -2,9 +2,9 @@
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
     "name":"Engaged Users -- by Days Used",
     "description": "description goes here",
-    "icon": "icon.svg",
+    "icon": "",
     "tags": [],
     "author": "Microsoft",
-    "order": 1,
+    "order": 100,
     "visibleInGallery": true
 }

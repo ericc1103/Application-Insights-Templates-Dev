@@ -2,9 +2,9 @@
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
     "name":"Operations with failed requests",
     "description": "description goes here",
-    "icon": "icon.svg",
+    "icon": "",
     "tags": [],
     "author": "Microsoft",
-    "order": 1,
+    "order": 200,
     "visibleInGallery": true
 }

@@ -1,3 +1,3 @@
-{
-    "en-us": {"name":"Business Hypotheses", "description": " ", "order": 1}
+{    
+    "en-us": {"$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/categoryResources.json","name":"Business Hypotheses", "description": " ", "order": 1}
 }
