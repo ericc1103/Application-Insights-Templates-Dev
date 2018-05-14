@@ -1,6 +1,5 @@
 {
     "name":"New Failures Analysis",
     "author": "Microsoft",
-    "order": 1,
-    "visibleInGallery": true
+    "galleries": { "type": "workbook", "resourceType": "microsoft.insights/components", "order": 100 }
 }

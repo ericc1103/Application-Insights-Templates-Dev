@@ -1,6 +1,5 @@
 {
     "name":"Performance Counter Analysis",
     "author": "Microsoft",
-    "order": 2,
-    "visibleInGallery": true
+    "galleries": { "type": "workbook", "resourceType": "microsoft.insights/components", "order": 100 }
 }

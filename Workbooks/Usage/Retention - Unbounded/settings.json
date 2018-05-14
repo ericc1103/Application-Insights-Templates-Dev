@@ -1,6 +1,5 @@
 {
     "name":"Retention - Unbounded",
     "author": "Microsoft",
-    "order": 8,
-    "visibleInGallery": true
+    "galleries": { "type": "workbook", "resourceType": "microsoft.insights/components", "order": 800 }
 }

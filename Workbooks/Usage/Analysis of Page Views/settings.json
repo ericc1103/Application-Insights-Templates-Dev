@@ -1,6 +1,5 @@
 {
     "name":"Analysis of Page Views",
     "author": "Microsoft",
-    "order": 2,
-    "visibleInGallery": true
+    "galleries": { "type": "workbook", "resourceType": "microsoft.insights/components", "order": 200 }
 }

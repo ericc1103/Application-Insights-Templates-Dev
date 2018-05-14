@@ -1,6 +1,5 @@
 {
     "name":"Engaged Users",
     "author": "Microsoft",
-    "order": 4,
-    "visibleInGallery": true
+    "galleries": { "type": "workbook", "resourceType": "microsoft.insights/components", "order": 400 }
 }
