@@ -3,5 +3,5 @@
     "description": "테스트",
     "tags": ["푸", "바"],
     "author": "Microsoft",
-    "galleries": { "type": "workbook", "resourceType": "microsoft.insights/components", "order": 100 }
+    "galleries": [{ "type": "workbook", "resourceType": "microsoft.insights/components", "order": 100 }]
 }

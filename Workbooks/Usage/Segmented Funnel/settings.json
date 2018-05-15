@@ -1,5 +1,5 @@
 {
     "id":"Segmented Funnel",
     "name":"Segmented Funnel",
-    "galleries": { "type": "workbook", "resourceType": "microsoft.insights/components", "order": 900 }
+    "galleries": [{ "type": "workbook", "resourceType": "microsoft.insights/components", "order": 900 }]
 }

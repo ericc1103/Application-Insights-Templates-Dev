@@ -1,5 +1,5 @@
 {
     "name":"New, Returning and Churned Users",
     "author": "Microsoft",
-    "galleries": { "type": "workbook", "resourceType": "microsoft.insights/components", "order": 600 }
+    "galleries": [{ "type": "workbook", "resourceType": "microsoft.insights/components", "order": 600 }]
 }

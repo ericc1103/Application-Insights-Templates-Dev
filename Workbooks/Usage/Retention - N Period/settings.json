@@ -1,5 +1,5 @@
 {
     "name":"Retention - N Period",
     "author": "Microsoft",
-    "galleries": { "type": "workbook", "resourceType": "microsoft.insights/components", "order": 700 }
+    "galleries": [{ "type": "workbook", "resourceType": "microsoft.insights/components", "order": 700 }]
 }

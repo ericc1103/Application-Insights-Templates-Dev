@@ -4,5 +4,5 @@
     "icon": "default.svg",
     "tags": [],
     "author": "Microsoft",
-    "galleries": { "type": "workbook", "resourceType": "microsoft.insights/components", "order": 100 }
+    "galleries": [{ "type": "workbook", "resourceType": "microsoft.insights/components", "order": 100 }]
 }
