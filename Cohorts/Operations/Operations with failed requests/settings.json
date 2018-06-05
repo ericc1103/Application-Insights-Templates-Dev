@@ -5,5 +5,5 @@
     "icon": "",
     "tags": [],
     "author": "Microsoft",
-    "galleries": [{ "type": "workbook", "resourceType": "microsoft.insights/components", "order": 200 }]
+    "order": 100
 }
