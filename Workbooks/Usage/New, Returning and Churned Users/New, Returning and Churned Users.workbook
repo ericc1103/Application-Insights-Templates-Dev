@@ -1,4 +1,5 @@
 {
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
   "version": "Notebook/1.0",
   "items": [
     {
@@ -102,7 +103,7 @@
     {
       "type": 1,
       "content": {
-        "json": "## Retention Rate\nYour app's retention rate, defined as lost users as percentage of total users."
+        "json": "## Retention Rate\nYour app's retention rate, defined as returning users as percentage of total users."
       }
     },
     {

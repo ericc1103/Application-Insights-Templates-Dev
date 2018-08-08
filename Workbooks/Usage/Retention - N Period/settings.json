@@ -1,5 +1,6 @@
 {
-    "name":"Retention - N Period",
+    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
+    "name":"N-Period Retention",
     "author": "Microsoft",
-    "galleries": [{ "type": "workbook", "resourceType": "microsoft.insights/components", "order": 700 }]
+    "order": 1200
 }

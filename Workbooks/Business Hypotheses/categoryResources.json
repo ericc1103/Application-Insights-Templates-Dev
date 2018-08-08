@@ -1,7 +1,3 @@
 {
-    "en-us": {
-        "name": "Business Hypotheses",
-        "description": " ",
-        "order": 1
-    }
+    "en-us": {"name":"Business Hypotheses", "description": " ", "order": 100}
 }
