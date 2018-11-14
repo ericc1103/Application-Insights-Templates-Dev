@@ -1,8 +1,8 @@
 {
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name":"Failure Metrics",
+    "name":"Virtual Machine Performance",
     "author": "Microsoft",
     "galleries": [
-        { "type": "failure-websites", "resourceType": "microsoft.resources/subscriptions/resourcegroups", "order": 200 },
+        { "type": "performance-vm", "resourceType": "microsoft.compute/virtualmachines", "order": 200 }
     ]
 }

@@ -1,5 +1,0 @@
-{
-    "name":"Cohort Analysis",
-    "author": "Microsoft",
-    "galleries": [{ "type": "workbook", "resourceType": "microsoft.insights/components", "order": 300 }]
-}
