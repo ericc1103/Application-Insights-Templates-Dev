@@ -1,0 +1,8 @@
+{
+    "virtualCategoryKey-Test1": {
+        "en-us": {"name":"VirtualCategoryTest1", "description": "Test1", "order": 200}
+    },
+    "virtualCategoryKey-Test2": {
+        "en-us": {"name":"VirtualCategoryTest2", "description": "Test2", "order": 200}
+    }
+}
