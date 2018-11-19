@@ -3,7 +3,7 @@
     "name":"App Performance Index (Apdex)",
     "author": "Microsoft",
     "galleries": [
-        { "type": "workbook", "resourceType": "microsoft.insights/components", "vCategoryKey": "bbb", "order": 150 },
-        { "type": "workbook", "resourceType": "microsoft.insights/foo123", "vCategoryKey": "xyz-Test123",  "order": 1000 }
+        { "type": "workbook", "resourceType": "microsoft.insights/components", "virtualKey": "bbb", "order": 150 },
+        { "type": "workbook", "resourceType": "microsoft.insights/foo123", "virtualKey": "xyz-Test123",  "order": 1000 }
     ]
 }
