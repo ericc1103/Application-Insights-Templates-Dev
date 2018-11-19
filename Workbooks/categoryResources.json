@@ -3,7 +3,13 @@
         { 
             "key": "virtualCategoryKey-Test123",
             "settings": { 
-                "en-us": { "name":"category name", "description": "Test1", "order": 200} 
+                "en-us": { "name":"virtual category name 1", "description": "Test1", "order": 200} 
+            }
+        },
+        { 
+            "key": "virtualCategoryKey-Test234",
+            "settings": { 
+                "en-us": { "name":"virtual category name 2", "description": "Test2", "order": 1000} 
             }
         }
     ]
