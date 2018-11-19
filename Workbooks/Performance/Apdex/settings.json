@@ -4,6 +4,6 @@
     "author": "Microsoft",
     "galleries": [
         { "type": "workbook", "resourceType": "microsoft.insights/components", "order": 150 },
-        { "virtualCategoryKey": "virtualCategoryKey-Test123", "type": "workbook", "resourceType": "microsoft.insights/components", "order": 150 }
+        { "type": "workbook", "resourceType": "microsoft.insights/foo", "virtualCategoryKey": "virtualCategoryKey-Test123", "order": 1000 }
     ]
 }
