@@ -15,7 +15,9 @@
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [],
+        "crossComponentResources": [
+          "{Workspace}"
+        ],
         "parameters": [
           {
             "id": "664c228f-a5c0-4d8a-9c6a-c1f08e05c943",
@@ -150,12 +152,15 @@
             "quote": "'",
             "delimiter": ",",
             "query": "SigninLogs\r\n| summarize by AppDisplayName\r\n| order by AppDisplayName asc\r\n| project Value = AppDisplayName, Label = AppDisplayName, Selected = false\r\n| union (datatable(Value:string, Label:string, Selected:boolean)[\r\n'*', 'All Apps', true\r\n])",
+            "crossComponentResources": [
+              "{Workspace}"
+            ],
             "isHiddenWhenLocked": false,
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
           }
         ],
-        "resourceType": "microsoft.insights/components"
+        "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null
     },
@@ -173,16 +178,13 @@
         "timeContext": {
           "durationMs": 0,
           "endTime": null,
-          "createdTime": "2018-11-17T01:14:57.629Z",
+          "createdTime": "2018-11-21T23:20:11.678Z",
           "isInitialTime": false,
           "grain": 1,
           "useDashboardTimeRange": false
         },
         "timeContextFromParameter": "TimeRange",
         "resourceType": "microsoft.operationalinsights/workspaces",
-        "crossComponentResources": [
-          "{Workspace}"
-        ],
         "visualization": "piechart"
       },
       "conditionalVisibility": null,
@@ -202,16 +204,13 @@
         "timeContext": {
           "durationMs": 0,
           "endTime": null,
-          "createdTime": "2018-11-17T01:14:57.642Z",
+          "createdTime": "2018-11-21T23:20:11.694Z",
           "isInitialTime": false,
           "grain": 1,
           "useDashboardTimeRange": false
         },
         "timeContextFromParameter": "TimeRange",
         "resourceType": "microsoft.operationalinsights/workspaces",
-        "crossComponentResources": [
-          "{Workspace}"
-        ],
         "visualization": "piechart"
       },
       "conditionalVisibility": null,
@@ -231,16 +230,13 @@
         "timeContext": {
           "durationMs": 0,
           "endTime": null,
-          "createdTime": "2018-11-17T01:14:57.654Z",
+          "createdTime": "2018-11-21T23:20:11.717Z",
           "isInitialTime": false,
           "grain": 1,
           "useDashboardTimeRange": false
         },
         "timeContextFromParameter": "TimeRange",
         "resourceType": "microsoft.operationalinsights/workspaces",
-        "crossComponentResources": [
-          "{Workspace}"
-        ],
         "visualization": "piechart"
       },
       "conditionalVisibility": null,
@@ -260,16 +256,13 @@
         "timeContext": {
           "durationMs": 0,
           "endTime": null,
-          "createdTime": "2018-11-17T01:14:57.665Z",
+          "createdTime": "2018-11-21T23:20:11.731Z",
           "isInitialTime": false,
           "grain": 1,
           "useDashboardTimeRange": false
         },
         "timeContextFromParameter": "TimeRange",
         "resourceType": "microsoft.operationalinsights/workspaces",
-        "crossComponentResources": [
-          "{Workspace}"
-        ],
         "visualization": "piechart"
       },
       "conditionalVisibility": null,
