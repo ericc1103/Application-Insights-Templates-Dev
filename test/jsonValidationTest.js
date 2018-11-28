@@ -114,8 +114,6 @@ var browseDirectory = function(dir, done) {
     });
   };
 
-
-
 function isJsonString(str) {
     try {
         JSON.parse(str);
