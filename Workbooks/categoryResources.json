@@ -1,22 +1,12 @@
 {
     "categories": [
         {
-            "key": "virtualCategoryKey-Test123",
+            "key": "usage",
             "settings": {
                 "en-us": {
-                    "name": "virtual category name 1",
-                    "description": "Test1",
+                    "name": "virtual category for Usage",
+                    "description": "virtual category for Usage",
                     "order": 200
-                }
-            }
-        },
-        {
-            "key": "virtualCategoryKey-Test234",
-            "settings": {
-                "en-us": {
-                    "name": "virtual category name 2",
-                    "description": "Test2",
-                    "order": 1000
                 }
             }
         }
