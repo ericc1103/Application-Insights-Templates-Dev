@@ -1,7 +1,7 @@
 {
     "categories": [
         {
-            "key": "usage",
+            "key": "usage-test",
             "settings": {
                 "en-us": {
                     "name": "virtual category for Usage",
