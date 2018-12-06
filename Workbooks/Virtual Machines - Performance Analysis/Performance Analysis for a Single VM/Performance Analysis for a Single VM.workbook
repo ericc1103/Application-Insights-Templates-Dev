@@ -1,0 +1,652 @@
+{
+  "version": "Notebook/1.0",
+  "isLocked": true,
+  "items": [
+    {
+      "type": 1,
+      "content": {
+        "json": "# Single VM Performance Analysis\nAnalyze the performance counters (processor, memory, disk, etc.) of a single VM. You can also customize this workbook by clicking on the `Edit` button in the toolbar."
+      }
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [],
+        "parameters": [
+          {
+            "id": "0f7b5485-e076-4a5d-ac13-57ed4141fe05",
+            "version": "KqlParameterItem/1.0",
+            "name": "Computer",
+            "type": 5,
+            "description": null,
+            "isRequired": true,
+            "multiSelect": false,
+            "isHiddenWhenLocked": true,
+            "typeSettings": {
+              "resourceTypeFilter": {
+                "microsoft.compute/virtualmachines": true
+              },
+              "additionalResourceOptions": [
+                "value::1"
+              ]
+            },
+            "value": "value::1"
+          },
+          {
+            "id": "764356de-cf43-4be7-a9f2-f582e5f2ffc2",
+            "version": "KqlParameterItem/1.0",
+            "name": "TimeRange",
+            "type": 4,
+            "isRequired": true,
+            "value": {
+              "durationMs": 86400000,
+              "createdTime": "2018-11-14T21:26:35.440Z",
+              "isInitialTime": false,
+              "grain": 1,
+              "useDashboardTimeRange": false
+            },
+            "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "selectableValues": [
+                {
+                  "durationMs": 300000,
+                  "createdTime": "2018-11-14T21:26:35.438Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 900000,
+                  "createdTime": "2018-11-14T21:26:35.438Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 1800000,
+                  "createdTime": "2018-11-14T21:26:35.439Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 3600000,
+                  "createdTime": "2018-11-14T21:26:35.440Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 14400000,
+                  "createdTime": "2018-11-14T21:26:35.440Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 43200000,
+                  "createdTime": "2018-11-14T21:26:35.440Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 86400000,
+                  "createdTime": "2018-11-14T21:26:35.440Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 172800000,
+                  "createdTime": "2018-11-14T21:26:35.440Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 259200000,
+                  "createdTime": "2018-11-14T21:26:35.440Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 604800000,
+                  "createdTime": "2018-11-14T21:26:35.440Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 1209600000,
+                  "createdTime": "2018-11-14T21:26:35.440Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 2592000000,
+                  "createdTime": "2018-11-14T21:26:35.441Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 5184000000,
+                  "createdTime": "2018-11-14T21:26:35.441Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 7776000000,
+                  "createdTime": "2018-11-14T21:26:35.442Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                }
+              ],
+              "allowCustom": true
+            },
+            "timeContextFromParameter": null
+          },
+          {
+            "id": "d495f8c1-c6b2-490e-8eb6-43d151bc20c0",
+            "version": "KqlParameterItem/1.0",
+            "name": "Counter",
+            "type": 2,
+            "isRequired": true,
+            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = strcat(ObjectName, ' > ', CounterName)\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText",
+            "value": "{\"counter\":\"% Processor Time\",\"object\":\"Processor\"}",
+            "isHiddenWhenLocked": false,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.compute/virtualmachines"
+          },
+          {
+            "id": "31b68fb4-3740-406d-b8eb-ac29cb461c3f",
+            "version": "KqlParameterItem/1.0",
+            "name": "CounterText",
+            "type": 1,
+            "isRequired": false,
+            "query": "let metric = dynamic({Counter});\r\nrange Steps from 1 to 1 step 1\r\n| project strcat(metric.object, \" > \", metric.counter)",
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.compute/virtualmachines"
+          },
+          {
+            "id": "28991f51-2685-417c-8737-afb1d6e8d166",
+            "version": "KqlParameterItem/1.0",
+            "name": "Metrics",
+            "type": 2,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "",
+            "delimiter": ",",
+            "value": [
+              "Average = round(avg(CounterValue), 2)"
+            ],
+            "isHiddenWhenLocked": false,
+            "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\", \"selected\":true },\r\n    { \"value\":\"P1st = round(percentile(CounterValue, 1), 2)\", \"label\":\"P1st\", \"selected\":false},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\", \"selected\":false},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\", \"selected\":false},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\", \"selected\":false},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\", \"selected\":false},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\", \"selected\":true},\r\n    { \"value\":\"P99th = round(percentile(CounterValue, 99), 2)\", \"label\":\"P99th\", \"selected\":false},\r\n    { \"value\":\"Min = round(min(CounterValue), 2)\", \"label\":\"Min\", \"selected\":false},\r\n    { \"value\":\"Max = round(max(CounterValue), 2)\", \"label\":\"Max\", \"selected\":false}    \r\n]"
+          },
+          {
+            "id": "4bf4bd96-531d-4d30-b1ba-1aef067fbc6e",
+            "version": "KqlParameterItem/1.0",
+            "name": "grain",
+            "type": 1,
+            "isRequired": true,
+            "query": "print ({TimeRange:end} - {TimeRange:start})/100",
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.compute/virtualmachines"
+          }
+        ],
+        "resourceType": "microsoft.operationalinsights/resources"
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## Trend ({CounterText})"
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let metric = dynamic({Counter});\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| where Computer == Computer\r\n| where ObjectName == metric.object and CounterName == metric.counter\r\n| summarize {Metrics} by bin(TimeGenerated, totimespan('{grain}'))",
+        "showQuery": false,
+        "size": 0,
+        "aggregation": 3,
+        "showAnnotations": false,
+        "showAnalytics": false,
+        "timeContextFromParameter": null,
+        "resourceType": "microsoft.compute/virtualmachines",
+        "crossComponentResources": [
+          "{Computer}"
+        ],
+        "visualization": "timechart"
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "💡 *Customize or add your own charts below in edit mode or by using the advanced editor*\n## Single VM Performance Charts"
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### CPU Utilization %"
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Available Memory MB"
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [],
+        "parameters": [
+          {
+            "id": "f4ab7159-2f3a-4720-96b2-2365a3e93617",
+            "version": "KqlParameterItem/1.0",
+            "name": "Metrics",
+            "type": 2,
+            "isRequired": false,
+            "multiSelect": true,
+            "quote": "",
+            "delimiter": ",",
+            "isHiddenWhenLocked": false,
+            "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\", \"selected\":true },\r\n    { \"value\":\"P1st = round(percentile(CounterValue, 1), 2)\", \"label\":\"P1st\", \"selected\":false},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\", \"selected\":false},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\", \"selected\":false},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\", \"selected\":false},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\", \"selected\":false},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\", \"selected\":true},\r\n    { \"value\":\"P99th = round(percentile(CounterValue, 99), 2)\", \"label\":\"P99th\", \"selected\":false},\r\n    { \"value\":\"Min = round(min(CounterValue), 2)\", \"label\":\"Min\", \"selected\":false},\r\n    { \"value\":\"Max = round(max(CounterValue), 2)\", \"label\":\"Max\", \"selected\":false}    \r\n]"
+          },
+          {
+            "id": "069034ca-ed62-48e7-b6ae-d90d1d6d7aaf",
+            "version": "KqlParameterItem/1.0",
+            "name": "MetricsLeft",
+            "type": 1,
+            "isRequired": false,
+            "query": "print \"{Metrics}\"",
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.compute/virtualmachines"
+          }
+        ]
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [],
+        "parameters": [
+          {
+            "id": "a1d2a8b9-9c5b-4d1f-b709-49dbd0fe94bd",
+            "version": "KqlParameterItem/1.0",
+            "name": "Metrics",
+            "type": 2,
+            "isRequired": false,
+            "multiSelect": true,
+            "quote": "",
+            "delimiter": ",",
+            "isHiddenWhenLocked": false,
+            "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\", \"selected\":true },\r\n    { \"value\":\"P1st = round(percentile(CounterValue, 1), 2)\", \"label\":\"P1st\", \"selected\":false},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\", \"selected\":true},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\", \"selected\":true},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\", \"selected\":false},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\", \"selected\":false},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\", \"selected\":false},\r\n    { \"value\":\"P99th = round(percentile(CounterValue, 99), 2)\", \"label\":\"P99th\", \"selected\":false},\r\n    { \"value\":\"Min = round(min(CounterValue), 2)\", \"label\":\"Min\", \"selected\":false},\r\n    { \"value\":\"Max = round(max(CounterValue), 2)\", \"label\":\"Max\", \"selected\":false}    \r\n]"
+          },
+          {
+            "id": "1f360103-df10-41c7-8f82-13edd11461aa",
+            "version": "KqlParameterItem/1.0",
+            "name": "MetricsRight",
+            "type": 1,
+            "isRequired": false,
+            "query": "print \"{Metrics}\"",
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.compute/virtualmachines"
+          }
+        ]
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let metric = dynamic({\"counter\": \"% Processor Time\", \"object\": \"Processor\"});\nPerf\n| where TimeGenerated {TimeRange}\n| where Computer == Computer\n| where (ObjectName == 'Processor' and InstanceName == '_Total' and CounterName == '% Processor Time')\n| where InstanceName == '_Total'\n| summarize {MetricsLeft} by bin(TimeGenerated, totimespan('{grain}'))",
+        "showQuery": false,
+        "size": 0,
+        "aggregation": 3,
+        "showAnnotations": true,
+        "showAnalytics": false,
+        "timeContextFromParameter": null,
+        "resourceType": "microsoft.compute/virtualmachines",
+        "crossComponentResources": [
+          "{Computer}"
+        ],
+        "visualization": "timechart"
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| where Computer == Computer\r\n| where (ObjectName == 'Memory' and CounterName in ('Available MBytes', 'Available MBytes Memory'))\r\n| summarize {MetricsRight} by bin(TimeGenerated, totimespan('{grain}'))",
+        "showQuery": false,
+        "size": 0,
+        "aggregation": 3,
+        "showAnnotations": true,
+        "showAnalytics": false,
+        "timeContextFromParameter": null,
+        "resourceType": "microsoft.compute/virtualmachines",
+        "crossComponentResources": [
+          "{Computer}"
+        ],
+        "visualization": "linechart"
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Logical Disk IOPS"
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Logical Disk MB/s"
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [],
+        "parameters": [
+          {
+            "id": "547dae05-22bf-47a5-ad44-043a23995759",
+            "version": "KqlParameterItem/1.0",
+            "name": "Metrics",
+            "type": 2,
+            "isRequired": false,
+            "multiSelect": true,
+            "quote": "",
+            "delimiter": ",",
+            "isHiddenWhenLocked": false,
+            "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\", \"selected\":true },\r\n    { \"value\":\"P1st = round(percentile(CounterValue, 1), 2)\", \"label\":\"P1st\", \"selected\":false},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\", \"selected\":false},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\", \"selected\":false},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\", \"selected\":false},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\", \"selected\":false},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\", \"selected\":true},\r\n    { \"value\":\"P99th = round(percentile(CounterValue, 99), 2)\", \"label\":\"P99th\", \"selected\":false},\r\n    { \"value\":\"Min = round(min(CounterValue), 2)\", \"label\":\"Min\", \"selected\":false},\r\n    { \"value\":\"Max = round(max(CounterValue), 2)\", \"label\":\"Max\", \"selected\":false}    \r\n]"
+          },
+          {
+            "id": "1af979b2-3131-4771-bf02-30193138c565",
+            "version": "KqlParameterItem/1.0",
+            "name": "MetricsLeft",
+            "type": 1,
+            "isRequired": false,
+            "query": "print \"{Metrics}\"",
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.compute/virtualmachines"
+          }
+        ]
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [],
+        "parameters": [
+          {
+            "id": "8aaa181d-7182-4d9d-b74e-22f37e3acbce",
+            "version": "KqlParameterItem/1.0",
+            "name": "Metrics",
+            "type": 2,
+            "isRequired": false,
+            "multiSelect": true,
+            "quote": "",
+            "delimiter": ",",
+            "isHiddenWhenLocked": false,
+            "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\", \"selected\":true },\r\n    { \"value\":\"P1st = round(percentile(CounterValue, 1), 2)\", \"label\":\"P1st\", \"selected\":false},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\", \"selected\":false},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\", \"selected\":false},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\", \"selected\":false},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\", \"selected\":false},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\", \"selected\":true},\r\n    { \"value\":\"P99th = round(percentile(CounterValue, 99), 2)\", \"label\":\"P99th\", \"selected\":false},\r\n    { \"value\":\"Min = round(min(CounterValue), 2)\", \"label\":\"Min\", \"selected\":false},\r\n    { \"value\":\"Max = round(max(CounterValue), 2)\", \"label\":\"Max\", \"selected\":false}    \r\n]"
+          },
+          {
+            "id": "c021b342-6bc8-4870-a88b-8ddf0b8b9cfa",
+            "version": "KqlParameterItem/1.0",
+            "name": "MetricsRight",
+            "type": 1,
+            "isRequired": false,
+            "query": "print \"{Metrics}\"",
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.compute/virtualmachines"
+          }
+        ]
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| where Computer == Computer\r\n| where (ObjectName == 'Logical Disk' and InstanceName != '_Total' and CounterName == 'Disk Transfers/sec')\r\n| summarize {MetricsLeft} by bin(TimeGenerated, totimespan('{grain}'))",
+        "showQuery": false,
+        "size": 0,
+        "aggregation": 3,
+        "showAnnotations": true,
+        "showAnalytics": false,
+        "timeContextFromParameter": null,
+        "resourceType": "microsoft.compute/virtualmachines",
+        "crossComponentResources": [
+          "{Computer}"
+        ],
+        "visualization": "timechart"
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| where Computer == Computer\r\n| where (ObjectName == 'Logical Disk' and InstanceName != '_Total' and CounterName == 'Logical Disk Bytes/sec')\r\n| summarize {MetricsRight} by bin(TimeGenerated, totimespan('{grain}'))",
+        "showQuery": false,
+        "size": 0,
+        "aggregation": 3,
+        "showAnnotations": true,
+        "showAnalytics": false,
+        "timeContextFromParameter": null,
+        "resourceType": "microsoft.compute/virtualmachines",
+        "crossComponentResources": [
+          "{Computer}"
+        ],
+        "visualization": "linechart"
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Max Logical Disk Used %"
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Bytes Sent Rate B/s"
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [],
+        "parameters": []
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [],
+        "parameters": [
+          {
+            "id": "f963e52a-2099-4cd3-a3ad-0fdf78f38238",
+            "version": "KqlParameterItem/1.0",
+            "name": "Metrics",
+            "type": 2,
+            "isRequired": false,
+            "multiSelect": true,
+            "quote": "",
+            "delimiter": ",",
+            "isHiddenWhenLocked": false,
+            "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\", \"selected\":true },\r\n    { \"value\":\"P1st = round(percentile(CounterValue, 1), 2)\", \"label\":\"P1st\", \"selected\":false},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\", \"selected\":false},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\", \"selected\":false},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\", \"selected\":false},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\", \"selected\":false},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\", \"selected\":false},\r\n    { \"value\":\"P99th = round(percentile(CounterValue, 99), 2)\", \"label\":\"P99th\", \"selected\":false},\r\n    { \"value\":\"Min = round(min(CounterValue), 2)\", \"label\":\"Min\", \"selected\":false},\r\n    { \"value\":\"Max = round(max(CounterValue), 2)\", \"label\":\"Max\", \"selected\":false}    \r\n]"
+          },
+          {
+            "id": "6c5d9373-5403-44e5-b496-7155c338f958",
+            "version": "KqlParameterItem/1.0",
+            "name": "MetricsRight",
+            "type": 1,
+            "isRequired": false,
+            "query": "print \"{Metrics}\"",
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.compute/virtualmachines"
+          }
+        ]
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let trendBinSize = totimespan('{grain}');\r\nlet MaxListSize = 1000;\r\nlet rawDataCached = materialize(Perf\r\n\t| where TimeGenerated {TimeRange}\r\n    | where Computer == Computer\r\n    | where\r\n\t\t(ObjectName == 'Logical Disk' and InstanceName != '_Total' and CounterName == '% Used Space') or\r\n        (ObjectName == 'LogicalDisk'  and InstanceName != '_Total' and CounterName == '% Free Space')\r\n\t| project TimeGenerated,\r\n\t\tInstanceName,\r\n\t\tcValue = case(CounterName == '% Free Space', 100 - CounterValue, CounterValue < 0, real(0), CounterValue));\r\n\t\trawDataCached\r\n\t\t\t| summarize max(cValue) by InstanceName\r\n\t\t\t| top 8 by max_cValue\r\n\t\t\t| join (rawDataCached) on InstanceName\r\n\t\t\t| summarize max(cValue), global_Max=any(max_cValue) by bin(TimeGenerated, trendBinSize), InstanceName\r\n\t\t\t| sort by TimeGenerated asc\r\n\t\t\t| summarize makelist(TimeGenerated, MaxListSize), list_max_cValue=makelist(max_cValue, MaxListSize), max_cValue=any(global_Max) by InstanceName",
+        "showQuery": false,
+        "size": 0,
+        "aggregation": 2,
+        "showAnnotations": true,
+        "showAnalytics": false,
+        "timeContextFromParameter": null,
+        "resourceType": "microsoft.compute/virtualmachines",
+        "crossComponentResources": [
+          "{Computer}"
+        ],
+        "visualization": "timechart"
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let grain = totimespan('{grain}');\r\nlet windowsNetwork=Perf\r\n| where TimeGenerated {TimeRange}\r\n| where Computer == Computer\r\n| where ObjectName == 'Network Adapter' and CounterName == 'Bytes Sent/sec'\r\n| summarize CounterValue = sum(CounterValue) by bin(TimeGenerated, 2s);\r\nlet linuxNetwork=Perf\r\n| where TimeGenerated {TimeRange}\r\n| where Computer == Computer\r\n| where ObjectName == 'Network' and CounterName == 'Total Bytes Transmitted'\r\n| order by InstanceName, TimeGenerated asc\r\n| extend prev_Value=prev(CounterValue), prev_t=prev(TimeGenerated), prev_instance=prev(InstanceName)\r\n| project TimeGenerated, CounterValue=iff(prev_instance == InstanceName and CounterValue >= prev_Value and TimeGenerated > prev_t, (CounterValue - prev_Value) / ((TimeGenerated - prev_t) / 1s), real(0))\r\n| summarize CounterValue = sum(CounterValue) by bin(TimeGenerated, 2s);\r\nlet networkDataSend = union windowsNetwork, linuxNetwork;\r\nnetworkDataSend\r\n| summarize {MetricsRight} by bin(TimeGenerated, grain)",
+        "showQuery": false,
+        "size": 0,
+        "aggregation": 3,
+        "showAnnotations": true,
+        "showAnalytics": false,
+        "timeContextFromParameter": null,
+        "resourceType": "microsoft.compute/virtualmachines",
+        "crossComponentResources": [
+          "{Computer}"
+        ],
+        "visualization": "timechart"
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Bytes Received Rate B/s"
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 1,
+      "content": {},
+      "customWidth": "50"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [],
+        "parameters": [
+          {
+            "id": "c0592d9a-edd4-4a69-86c0-098ac0c72cf2",
+            "version": "KqlParameterItem/1.0",
+            "name": "Metrics",
+            "type": 2,
+            "isRequired": false,
+            "multiSelect": true,
+            "quote": "",
+            "delimiter": ",",
+            "isHiddenWhenLocked": false,
+            "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\", \"selected\":true },\r\n    { \"value\":\"P1st = round(percentile(CounterValue, 1), 2)\", \"label\":\"P1st\", \"selected\":false},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\", \"selected\":false},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\", \"selected\":false},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\", \"selected\":false},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\", \"selected\":false},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\", \"selected\":false},\r\n    { \"value\":\"P99th = round(percentile(CounterValue, 99), 2)\", \"label\":\"P99th\", \"selected\":false},\r\n    { \"value\":\"Min = round(min(CounterValue), 2)\", \"label\":\"Min\", \"selected\":false},\r\n    { \"value\":\"Max = round(max(CounterValue), 2)\", \"label\":\"Max\", \"selected\":false}    \r\n]"
+          },
+          {
+            "id": "d4795fc0-c995-4975-8bc6-e515dbad00be",
+            "version": "KqlParameterItem/1.0",
+            "name": "MetricsLeft",
+            "type": 1,
+            "isRequired": false,
+            "query": "print \"{Metrics}\"",
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.compute/virtualmachines"
+          }
+        ]
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 9,
+      "content": {},
+      "customWidth": "50"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let grain = totimespan('{grain}');\r\nlet windowsNetwork=Perf\r\n| where TimeGenerated {TimeRange}\r\n| where Computer == Computer\r\n| where ObjectName == 'Network Adapter' and CounterName == 'Bytes Received/sec'\r\n| summarize CounterValue = sum(CounterValue) by bin(TimeGenerated, 2s);\r\nlet linuxNetwork=Perf\r\n| where TimeGenerated {TimeRange}\r\n| where Computer == Computer\r\n| where ObjectName == 'Network' and CounterName == 'Total Bytes Received'\r\n| order by InstanceName, TimeGenerated asc\r\n| extend prev_Value = prev(CounterValue), prev_t = prev(TimeGenerated), prev_instance = prev(InstanceName)\r\n| project TimeGenerated, CounterValue = iff(prev_instance == InstanceName and CounterValue >= prev_Value and TimeGenerated > prev_t, (CounterValue - prev_Value) / ((TimeGenerated - prev_t) / 1s), real(0))\r\n| summarize CounterValue = sum(CounterValue) by bin(TimeGenerated, 2s);\r\nlet networkDataReceive = union windowsNetwork, linuxNetwork;\r\nnetworkDataReceive\r\n| summarize {Metrics} by bin(TimeGenerated, grain)",
+        "showQuery": false,
+        "size": 0,
+        "aggregation": 3,
+        "showAnnotations": true,
+        "showAnalytics": false,
+        "timeContextFromParameter": null,
+        "resourceType": "microsoft.compute/virtualmachines",
+        "crossComponentResources": [
+          "{Computer}"
+        ],
+        "visualization": "timechart"
+      },
+      "customWidth": "50"
+    },
+    {
+      "type": 3,
+      "content": {},
+      "customWidth": "50"
+    }
+  ],
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
