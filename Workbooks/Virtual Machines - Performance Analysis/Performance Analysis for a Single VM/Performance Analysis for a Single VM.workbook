@@ -580,11 +580,6 @@
       "customWidth": "50"
     },
     {
-      "type": 1,
-      "content": {},
-      "customWidth": "50"
-    },
-    {
       "type": 9,
       "content": {
         "version": "KqlParameterItem/1.0",
@@ -619,11 +614,6 @@
       "customWidth": "50"
     },
     {
-      "type": 9,
-      "content": {},
-      "customWidth": "50"
-    },
-    {
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
@@ -640,11 +630,6 @@
         ],
         "visualization": "timechart"
       },
-      "customWidth": "50"
-    },
-    {
-      "type": 3,
-      "content": {},
       "customWidth": "50"
     }
   ],
