@@ -216,7 +216,7 @@
             "name": "CustomCounterText",
             "type": 1,
             "isRequired": false,
-            "isHiddenWhenLocked": false,
+            "isHiddenWhenLocked": true,
             "timeContextFromParameter": null
           }
         ],
