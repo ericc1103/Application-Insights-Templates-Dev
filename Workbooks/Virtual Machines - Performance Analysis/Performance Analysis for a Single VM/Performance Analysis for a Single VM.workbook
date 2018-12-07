@@ -237,6 +237,30 @@
           "{Computer}"
         ],
         "visualization": "timechart"
+      },
+      "conditionalVisibility": {
+        "parameterName": "CustomQuery",
+        "comparison": "isEqualTo",
+        "value": null
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "{CustomQuery}\r\n| render timechart",
+        "showQuery": false,
+        "size": 0,
+        "aggregation": 0,
+        "showAnnotations": false,
+        "showAnalytics": false,
+        "timeContextFromParameter": null,
+        "resourceType": "microsoft.compute/virtualmachines"
+      },
+      "conditionalVisibility": {
+        "parameterName": "CustomQuery",
+        "comparison": "isNotEqualTo",
+        "value": null
       }
     },
     {
