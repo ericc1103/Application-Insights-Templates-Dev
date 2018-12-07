@@ -201,6 +201,15 @@
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
             "resourceType": "microsoft.compute/virtualmachines"
+          },
+          {
+            "id": "bbf25e25-6f57-44ee-a26a-045f33538cc9",
+            "version": "KqlParameterItem/1.0",
+            "name": "CustomQuery",
+            "type": 1,
+            "isRequired": false,
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null
           }
         ],
         "resourceType": "microsoft.operationalinsights/resources"
