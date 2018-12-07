@@ -158,9 +158,8 @@
             "version": "KqlParameterItem/1.0",
             "name": "Counter",
             "type": 2,
-            "isRequired": true,
+            "isRequired": false,
             "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = strcat(ObjectName, ' > ', CounterName)\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText",
-            "value": "{\"counter\":\"% Processor Time\",\"object\":\"Processor\"}",
             "isHiddenWhenLocked": false,
             "timeContextFromParameter": null,
             "resourceType": "microsoft.compute/virtualmachines"
@@ -239,8 +238,8 @@
         "visualization": "timechart"
       },
       "conditionalVisibility": {
-        "parameterName": "CustomQuery",
-        "comparison": "isEqualTo",
+        "parameterName": "Counter",
+        "comparison": "isNotEqualTo",
         "value": null
       }
     },
@@ -258,8 +257,8 @@
         "resourceType": "microsoft.compute/virtualmachines"
       },
       "conditionalVisibility": {
-        "parameterName": "CustomQuery",
-        "comparison": "isNotEqualTo",
+        "parameterName": "Counter",
+        "comparison": "isEqualTo",
         "value": null
       }
     },
