@@ -209,6 +209,15 @@
             "isRequired": false,
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null
+          },
+          {
+            "id": "f3b88dab-9ea9-4cae-a6d7-a2104d6c9125",
+            "version": "KqlParameterItem/1.0",
+            "name": "CustomCounterText",
+            "type": 1,
+            "isRequired": false,
+            "isHiddenWhenLocked": false,
+            "timeContextFromParameter": null
           }
         ],
         "resourceType": "microsoft.operationalinsights/resources"
@@ -218,6 +227,11 @@
       "type": 1,
       "content": {
         "json": "## Trend ({CounterText})"
+      },
+      "conditionalVisibility": {
+        "parameterName": "Counter",
+        "comparison": "isNotEqualTo",
+        "value": null
       }
     },
     {
@@ -240,6 +254,17 @@
       "conditionalVisibility": {
         "parameterName": "Counter",
         "comparison": "isNotEqualTo",
+        "value": null
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## Trend ({CustomCounterText})"
+      },
+      "conditionalVisibility": {
+        "parameterName": "Counter",
+        "comparison": "isEqualTo",
         "value": null
       }
     },
