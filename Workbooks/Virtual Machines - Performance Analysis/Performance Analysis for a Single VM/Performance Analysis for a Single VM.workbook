@@ -16,6 +16,122 @@
         "crossComponentResources": [],
         "parameters": [
           {
+            "id": "481dad1d-44e6-40f8-acc6-8e96ad00c8eb",
+            "version": "KqlParameterItem/1.0",
+            "name": "TimeRange",
+            "type": 4,
+            "isRequired": true,
+            "value": {
+              "durationMs": 86400000,
+              "isInitialTime": false,
+              "grain": 1,
+              "useDashboardTimeRange": false
+            },
+            "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "selectableValues": [
+                {
+                  "durationMs": 300000,
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 900000,
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 1800000,
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 3600000,
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 14400000,
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 43200000,
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 86400000,
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 172800000,
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 259200000,
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 604800000,
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 1209600000,
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 2592000000,
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 5184000000,
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 7776000000,
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                }
+              ],
+              "allowCustom": true
+            },
+            "timeContextFromParameter": null
+          }
+        ],
+        "resourceType": "microsoft.compute/virtualmachines"
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [],
+        "parameters": [
+          {
             "id": "0f7b5485-e076-4a5d-ac13-57ed4141fe05",
             "version": "KqlParameterItem/1.0",
             "name": "Computer",
@@ -33,125 +149,6 @@
               ]
             },
             "value": "value::1"
-          },
-          {
-            "id": "764356de-cf43-4be7-a9f2-f582e5f2ffc2",
-            "version": "KqlParameterItem/1.0",
-            "name": "TimeRange",
-            "type": 4,
-            "isRequired": true,
-            "value": {
-              "durationMs": 86400000,
-              "createdTime": "2018-11-14T21:26:35.440Z",
-              "isInitialTime": false,
-              "grain": 1,
-              "useDashboardTimeRange": false
-            },
-            "isHiddenWhenLocked": false,
-            "typeSettings": {
-              "selectableValues": [
-                {
-                  "durationMs": 300000,
-                  "createdTime": "2018-11-14T21:26:35.438Z",
-                  "isInitialTime": false,
-                  "grain": 1,
-                  "useDashboardTimeRange": false
-                },
-                {
-                  "durationMs": 900000,
-                  "createdTime": "2018-11-14T21:26:35.438Z",
-                  "isInitialTime": false,
-                  "grain": 1,
-                  "useDashboardTimeRange": false
-                },
-                {
-                  "durationMs": 1800000,
-                  "createdTime": "2018-11-14T21:26:35.439Z",
-                  "isInitialTime": false,
-                  "grain": 1,
-                  "useDashboardTimeRange": false
-                },
-                {
-                  "durationMs": 3600000,
-                  "createdTime": "2018-11-14T21:26:35.440Z",
-                  "isInitialTime": false,
-                  "grain": 1,
-                  "useDashboardTimeRange": false
-                },
-                {
-                  "durationMs": 14400000,
-                  "createdTime": "2018-11-14T21:26:35.440Z",
-                  "isInitialTime": false,
-                  "grain": 1,
-                  "useDashboardTimeRange": false
-                },
-                {
-                  "durationMs": 43200000,
-                  "createdTime": "2018-11-14T21:26:35.440Z",
-                  "isInitialTime": false,
-                  "grain": 1,
-                  "useDashboardTimeRange": false
-                },
-                {
-                  "durationMs": 86400000,
-                  "createdTime": "2018-11-14T21:26:35.440Z",
-                  "isInitialTime": false,
-                  "grain": 1,
-                  "useDashboardTimeRange": false
-                },
-                {
-                  "durationMs": 172800000,
-                  "createdTime": "2018-11-14T21:26:35.440Z",
-                  "isInitialTime": false,
-                  "grain": 1,
-                  "useDashboardTimeRange": false
-                },
-                {
-                  "durationMs": 259200000,
-                  "createdTime": "2018-11-14T21:26:35.440Z",
-                  "isInitialTime": false,
-                  "grain": 1,
-                  "useDashboardTimeRange": false
-                },
-                {
-                  "durationMs": 604800000,
-                  "createdTime": "2018-11-14T21:26:35.440Z",
-                  "isInitialTime": false,
-                  "grain": 1,
-                  "useDashboardTimeRange": false
-                },
-                {
-                  "durationMs": 1209600000,
-                  "createdTime": "2018-11-14T21:26:35.440Z",
-                  "isInitialTime": false,
-                  "grain": 1,
-                  "useDashboardTimeRange": false
-                },
-                {
-                  "durationMs": 2592000000,
-                  "createdTime": "2018-11-14T21:26:35.441Z",
-                  "isInitialTime": false,
-                  "grain": 1,
-                  "useDashboardTimeRange": false
-                },
-                {
-                  "durationMs": 5184000000,
-                  "createdTime": "2018-11-14T21:26:35.441Z",
-                  "isInitialTime": false,
-                  "grain": 1,
-                  "useDashboardTimeRange": false
-                },
-                {
-                  "durationMs": 7776000000,
-                  "createdTime": "2018-11-14T21:26:35.442Z",
-                  "isInitialTime": false,
-                  "grain": 1,
-                  "useDashboardTimeRange": false
-                }
-              ],
-              "allowCustom": true
-            },
-            "timeContextFromParameter": null
           },
           {
             "id": "d495f8c1-c6b2-490e-8eb6-43d151bc20c0",
@@ -174,21 +171,6 @@
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
             "resourceType": "microsoft.compute/virtualmachines"
-          },
-          {
-            "id": "28991f51-2685-417c-8737-afb1d6e8d166",
-            "version": "KqlParameterItem/1.0",
-            "name": "ChartMetrics",
-            "type": 2,
-            "isRequired": true,
-            "multiSelect": true,
-            "quote": "",
-            "delimiter": ",",
-            "value": [
-              "Average = round(avg(CounterValue), 2)"
-            ],
-            "isHiddenWhenLocked": false,
-            "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\", \"selected\":true },\r\n    { \"value\":\"P1st = round(percentile(CounterValue, 1), 2)\", \"label\":\"P1st\", \"selected\":false},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\", \"selected\":false},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\", \"selected\":false},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\", \"selected\":false},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\", \"selected\":false},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\", \"selected\":true},\r\n    { \"value\":\"P99th = round(percentile(CounterValue, 99), 2)\", \"label\":\"P99th\", \"selected\":false},\r\n    { \"value\":\"Min = round(min(CounterValue), 2)\", \"label\":\"Min\", \"selected\":false},\r\n    { \"value\":\"Max = round(max(CounterValue), 2)\", \"label\":\"Max\", \"selected\":false}    \r\n]"
           },
           {
             "id": "4bf4bd96-531d-4d30-b1ba-1aef067fbc6e",
@@ -221,6 +203,38 @@
           }
         ],
         "resourceType": "microsoft.operationalinsights/resources"
+      }
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [],
+        "parameters": [
+          {
+            "id": "dff91367-8a90-4d46-8a43-8595972eacc8",
+            "version": "KqlParameterItem/1.0",
+            "name": "ChartMetrics",
+            "type": 2,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "",
+            "delimiter": ",",
+            "value": [
+              "Average = round(avg(CounterValue), 2)"
+            ],
+            "isHiddenWhenLocked": false,
+            "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\", \"selected\":true },\r\n    { \"value\":\"P1st = round(percentile(CounterValue, 1), 2)\", \"label\":\"P1st\", \"selected\":false},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\", \"selected\":false},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\", \"selected\":false},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\", \"selected\":false},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\", \"selected\":false},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\", \"selected\":false},\r\n    { \"value\":\"P99th = round(percentile(CounterValue, 99), 2)\", \"label\":\"P99th\", \"selected\":false},\r\n    { \"value\":\"Min = round(min(CounterValue), 2)\", \"label\":\"Min\", \"selected\":false},\r\n    { \"value\":\"Max = round(max(CounterValue), 2)\", \"label\":\"Max\", \"selected\":false}    \r\n]",
+            "timeContextFromParameter": null
+          }
+        ],
+        "resourceType": "microsoft.compute/virtualmachines"
+      },
+      "conditionalVisibility": {
+        "parameterName": "Counter",
+        "comparison": "isNotEqualTo",
+        "value": ""
       }
     },
     {
