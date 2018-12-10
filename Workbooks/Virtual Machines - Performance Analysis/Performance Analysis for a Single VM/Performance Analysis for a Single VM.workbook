@@ -240,6 +240,17 @@
     {
       "type": 1,
       "content": {
+        "json": "💡 *Custom query is being used to display this chart, individual metric selection is currently disabled. Select a Counter to enable metric selection.*"
+      },
+      "conditionalVisibility": {
+        "parameterName": "Counter",
+        "comparison": "isEqualTo",
+        "value": null
+      }
+    },
+    {
+      "type": 1,
+      "content": {
         "json": "## Trend ({CounterText})"
       },
       "conditionalVisibility": {
