@@ -163,7 +163,7 @@
             "name": "Counter",
             "type": 2,
             "isRequired": false,
-            "query": "let NetworkCounters = datatable(Counter: dynamic, CounterText: string)\r\n[\r\n    dynamic({\r\n        'object': 'Network Adapter',\r\n        'counter': 'Bytes Received/sec'\r\n    }),\r\n    'Network > Bytes Received/sec',\r\n    dynamic({\r\n        'object': 'Network Adapter',\r\n        'counter': 'Bytes Sent/sec'\r\n    }),\r\n    'Network > Bytes Sent/sec'\r\n];\r\nlet PerfCounters = Perf\r\n| where TimeGenerated > ago(24h)\r\n| summarize by CounterName, ObjectName, CounterText = strcat(ObjectName, ' > ', CounterName)\r\n| order by ObjectName asc, CounterText asc\r\n| where ObjectName != 'Network' and ObjectName != 'Network Adapter' and ObjectName != 'Network Interface'\r\n| extend Counter = pack('counter', CounterName, 'object', ObjectName)\r\n| project Counter, CounterText;\r\nunion PerfCounters, NetworkCounters\r\n| order by CounterText asc",
+            "query": "Perf\r\n| summarize by CounterName, ObjectName, CounterText = strcat(ObjectName, ' > ', CounterName)\r\n| order by ObjectName asc, CounterText asc\r\n| where ObjectName != 'Network' and ObjectName != 'Network Interface'\r\n| extend Counter = pack('counter', CounterName, 'object', ObjectName)\r\n| project Counter, CounterText\r\n| order by CounterText asc",
             "crossComponentResources": [
               "{Workspaces}"
             ],
