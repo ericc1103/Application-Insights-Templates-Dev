@@ -245,7 +245,7 @@
             "name": "GridRefresh",
             "type": 2,
             "isRequired": true,
-            "value": "pause",
+            "value": "run",
             "isHiddenWhenLocked": false,
             "jsonData": "[\r\n    { \"value\":\"pause\", \"label\":\"Pause\" },\r\n    { \"value\":\"run\", \"label\":\"Run\" }\r\n]",
             "timeContextFromParameter": null
