@@ -348,6 +348,7 @@
         "aggregation": 3,
         "showAnnotations": true,
         "showAnalytics": false,
+        "noDataMessage": "Current machine is not emitting data for this performance counter.",
         "timeContextFromParameter": null,
         "resourceType": "microsoft.compute/virtualmachines",
         "crossComponentResources": [
@@ -368,6 +369,7 @@
         "aggregation": 3,
         "showAnnotations": true,
         "showAnalytics": false,
+        "noDataMessage": "Current machine is not emitting data for this performance counter.",
         "timeContextFromParameter": null,
         "resourceType": "microsoft.compute/virtualmachines",
         "crossComponentResources": [
@@ -478,6 +480,7 @@
         "aggregation": 3,
         "showAnnotations": true,
         "showAnalytics": false,
+        "noDataMessage": "Current machine is not emitting data for this performance counter.",
         "timeContextFromParameter": null,
         "resourceType": "microsoft.compute/virtualmachines",
         "crossComponentResources": [
@@ -498,6 +501,7 @@
         "aggregation": 3,
         "showAnnotations": true,
         "showAnalytics": false,
+        "noDataMessage": "Current machine is not emitting data for this performance counter.",
         "timeContextFromParameter": null,
         "resourceType": "microsoft.compute/virtualmachines",
         "crossComponentResources": [
@@ -584,6 +588,7 @@
         "aggregation": 2,
         "showAnnotations": true,
         "showAnalytics": false,
+        "noDataMessage": "Current machine is not emitting data for this performance counter.",
         "timeContextFromParameter": null,
         "resourceType": "microsoft.compute/virtualmachines",
         "crossComponentResources": [
@@ -604,6 +609,7 @@
         "aggregation": 3,
         "showAnnotations": true,
         "showAnalytics": false,
+        "noDataMessage": "Current machine is not emitting data for this performance counter.",
         "timeContextFromParameter": null,
         "resourceType": "microsoft.compute/virtualmachines",
         "crossComponentResources": [
@@ -690,6 +696,7 @@
         "aggregation": 3,
         "showAnnotations": true,
         "showAnalytics": false,
+        "noDataMessage": "Current machine is not emitting data for this performance counter.",
         "timeContextFromParameter": null,
         "resourceType": "microsoft.compute/virtualmachines",
         "crossComponentResources": [
