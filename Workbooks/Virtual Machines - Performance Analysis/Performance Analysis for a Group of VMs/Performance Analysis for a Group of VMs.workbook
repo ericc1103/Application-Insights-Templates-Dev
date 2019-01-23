@@ -5,7 +5,7 @@
     {
       "type": 1,
       "content": {
-        "json": "# VM Performance Analysis\n\n"
+        "json": "# Performance Analysis\n"
       },
       "conditionalVisibility": null
     },
@@ -28,7 +28,7 @@
             "value": [
               "value::1"
             ],
-            "isHiddenWhenLocked": false,
+            "isHiddenWhenLocked": true,
             "typeSettings": {
               "resourceTypeFilter": {
                 "microsoft.operationalinsights/workspaces": true
@@ -187,63 +187,6 @@
             "resourceType": "microsoft.operationalinsights/workspaces"
           },
           {
-            "id": "9ad8858d-8ef3-4144-94b1-66a8bf9fa9c9",
-            "version": "KqlParameterItem/1.0",
-            "name": "Aggregators",
-            "type": 2,
-            "isRequired": true,
-            "multiSelect": true,
-            "quote": "",
-            "delimiter": ",",
-            "value": [
-              "P95th",
-              "Average",
-              "P10th",
-              "P50th"
-            ],
-            "isHiddenWhenLocked": false,
-            "jsonData": "[\r\n    { \"value\":\"Average\", \"label\":\"Average\", \"selected\":true },\r\n    { \"value\":\"P5th\", \"label\":\"P5th\", \"selected\":false},\r\n    { \"value\":\"P10th\", \"label\":\"P10th\", \"selected\":false},\r\n    { \"value\":\"P50th\", \"label\":\"P50th\", \"selected\":false},\r\n    { \"value\":\"P80th\", \"label\":\"P80th\", \"selected\":false},\r\n    { \"value\":\"P90th\", \"label\":\"P90th\", \"selected\":false},\r\n    { \"value\":\"P95th\", \"label\":\"P95th\", \"selected\":true},\r\n    { \"value\":\"Min\", \"label\":\"Min\", \"selected\":false},\r\n    { \"value\":\"Max\", \"label\":\"Max\", \"selected\":true}    \r\n]",
-            "timeContextFromParameter": null
-          },
-          {
-            "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
-            "version": "KqlParameterItem/1.0",
-            "name": "TrendAggregator",
-            "type": 2,
-            "isRequired": true,
-            "isHiddenWhenLocked": false,
-            "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\", \"selected\":false},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\", \"selected\":false},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\", \"selected\":false},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\", \"selected\":false},\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\", \"selected\":false},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\", \"selected\":false},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\", \"selected\":true}    \r\n]",
-            "timeContextFromParameter": null
-          },
-          {
-            "id": "0327f26e-cdde-4b48-b512-6c35f06ad1d0",
-            "version": "KqlParameterItem/1.0",
-            "name": "TrendAggregatorOrder",
-            "type": 1,
-            "isRequired": false,
-            "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{TrendAggregator}' contains 'P5th'  or '{TrendAggregator}' contains 'P10th', 'asc', 'desc')",
-            "crossComponentResources": [
-              "{Workspaces}"
-            ],
-            "isHiddenWhenLocked": true,
-            "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
-          },
-          {
-            "id": "c2f05b6d-970d-4fde-88b0-868387c02250",
-            "version": "KqlParameterItem/1.0",
-            "name": "MergedAggregators",
-            "type": 1,
-            "isRequired": false,
-            "query": "let aggregators = iff('{Aggregators}' contains '{TrendAggregator:label}', '{Aggregators}', '{Aggregators},{TrendAggregator:label}');\r\nrange Steps from 1 to 1 step 1\r\n| project aggregators",
-            "crossComponentResources": [
-              "{Workspaces}"
-            ],
-            "isHiddenWhenLocked": true,
-            "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
-          },
-          {
             "id": "ce228deb-88eb-4438-9dce-6c6d1972ff09",
             "version": "KqlParameterItem/1.0",
             "name": "IsNetworkCounter",
@@ -266,6 +209,7 @@
             "resourceType": "microsoft.operationalinsights/workspaces"
           }
         ],
+        "style": "above",
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null
@@ -284,7 +228,7 @@
     {
       "type": 1,
       "content": {
-        "json": "## Top 100 Machines based on ({CounterText}) ({TrendAggregator:label} {TrendAggregatorOrder})"
+        "json": "## Top 100 Machines based on {CounterText}"
       },
       "conditionalVisibility": null,
       "customWidth": "50"
@@ -292,7 +236,124 @@
     {
       "type": 1,
       "content": {
-        "json": "## Top 5 Machines based on ({CounterText}) ({TrendAggregator:label} {TrendAggregatorOrder})"
+        "json": "## Top 5 Machines based on {CounterText}"
+      },
+      "conditionalVisibility": null,
+      "customWidth": "50"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [],
+        "parameters": [
+          {
+            "id": "9ad8858d-8ef3-4144-94b1-66a8bf9fa9c9",
+            "version": "KqlParameterItem/1.0",
+            "name": "Aggregators",
+            "type": 2,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "",
+            "delimiter": ",",
+            "value": [
+              "P95th",
+              "Average",
+              "P10th",
+              "P50th"
+            ],
+            "isHiddenWhenLocked": false,
+            "jsonData": "[\r\n    { \"value\":\"Average\", \"label\":\"Average\", \"selected\":true },\r\n    { \"value\":\"P5th\", \"label\":\"P5th\", \"selected\":false},\r\n    { \"value\":\"P10th\", \"label\":\"P10th\", \"selected\":false},\r\n    { \"value\":\"P50th\", \"label\":\"P50th\", \"selected\":false},\r\n    { \"value\":\"P80th\", \"label\":\"P80th\", \"selected\":false},\r\n    { \"value\":\"P90th\", \"label\":\"P90th\", \"selected\":false},\r\n    { \"value\":\"P95th\", \"label\":\"P95th\", \"selected\":true},\r\n    { \"value\":\"Min\", \"label\":\"Min\", \"selected\":false},\r\n    { \"value\":\"Max\", \"label\":\"Max\", \"selected\":true}    \r\n]",
+            "timeContextFromParameter": null
+          },
+          {
+            "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
+            "version": "KqlParameterItem/1.0",
+            "name": "TableTrend",
+            "type": 2,
+            "isRequired": true,
+            "value": "P95th = round(percentile(CounterValue, 95), 2)",
+            "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
+            "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\"},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\"},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\"},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\"},\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\"},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\"},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\"}\r\n]",
+            "timeContextFromParameter": null
+          },
+          {
+            "id": "0327f26e-cdde-4b48-b512-6c35f06ad1d0",
+            "version": "KqlParameterItem/1.0",
+            "name": "tableTrendOrder",
+            "type": 1,
+            "isRequired": false,
+            "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{TableTrend}' contains 'P5th'  or '{TableTrend}' contains 'P10th', 'asc', 'desc')",
+            "crossComponentResources": [
+              "{Workspaces}"
+            ],
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          },
+          {
+            "id": "c2f05b6d-970d-4fde-88b0-868387c02250",
+            "version": "KqlParameterItem/1.0",
+            "name": "mergedAggregators",
+            "type": 1,
+            "isRequired": false,
+            "query": "let aggregators = iff('{Aggregators}' contains '{TableTrend:label}', '{Aggregators}', '{Aggregators},{TableTrend:label}');\r\nrange Steps from 1 to 1 step 1\r\n| project aggregators",
+            "crossComponentResources": [
+              "{Workspaces}"
+            ],
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          }
+        ],
+        "style": "above",
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "conditionalVisibility": null,
+      "customWidth": "50"
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [],
+        "parameters": [
+          {
+            "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
+            "version": "KqlParameterItem/1.0",
+            "name": "TrendAggregator",
+            "type": 2,
+            "isRequired": true,
+            "value": "P95th = round(percentile(CounterValue, 95), 2)",
+            "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
+            "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\"},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\"},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\"},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\"},\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\"},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\"},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\"}\r\n]",
+            "timeContextFromParameter": null
+          },
+          {
+            "id": "541f295c-8426-410a-be40-5a858a0261c1",
+            "version": "KqlParameterItem/1.0",
+            "name": "TrendAggregatorOrder",
+            "type": 1,
+            "isRequired": false,
+            "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{TrendAggregator}' contains 'P5th'  or '{TrendAggregator}' contains 'P10th', 'asc', 'desc')",
+            "crossComponentResources": [
+              "{Workspaces}"
+            ],
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          }
+        ],
+        "style": "above",
+        "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null,
       "customWidth": "50"
@@ -301,7 +362,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "let maxResultCount = 100;  \r\nlet metric = dynamic({Counter});\r\nlet summaryPerComputer = totable(Perf \r\n    | where TimeGenerated {TimeRange}  \r\n    | where ObjectName == metric.object and CounterName == metric.counter\r\n    | summarize hint.shufflekey = Computer Average = avg(CounterValue), Max = max(CounterValue), Min = min(CounterValue), percentiles(CounterValue, 5, 10, 50, 80, 90, 95) by Computer \r\n    | project Computer, Average, Max, Min, P5th = percentile_CounterValue_5, P10th = percentile_CounterValue_10, P50th = percentile_CounterValue_50, P80th = percentile_CounterValue_80, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95 \r\n    | order by {TrendAggregator:label} {TrendAggregatorOrder}, Computer \r\n    | limit maxResultCount); \r\nlet computerList = summaryPerComputer \r\n    | project Computer; \r\nlet MachineSummary = ServiceMapComputer_CL\r\n    | where TimeGenerated {TimeRange}\r\n    | where Computer in (computerList)\r\n    | summarize arg_max(TimeGenerated, *) by Computer\r\n    | project Computer, MachineSummary = pack(\"Fully Qualified Domain Name\", Computer, \"OS Type\", OperatingSystemFamily_s, \"Operating System\", OperatingSystemFullName_s, \"Ipv4 Addresses\", Ipv4Addresses_s,\r\n        \"Ipv6 Addresses\", Ipv6Addresses_s, \"Mac Addresses\", MacAddresses_s, \"DNS Names\", DnsNames_s, \"CPUs\", strcat(Cpus_d, \" @ \", CpuSpeed_d, \" MHz\"), \"Bitness\", Bitness_s,\r\n        \"Physcial Memory\", strcat(PhysicalMemory_d, \" MB\"), \"Virtualization State\", VirtualizationState_s, \"VM Type\", VirtualMachineType_s, \"OMS Agent\", split(ResourceName_s, \"m-\")[1]);\r\nlet EmptyNodeIdentityAndProps = datatable(Computer:string, NodeId:string, NodeProps:dynamic, Priority: long) [];\r\nlet OmsNodeIdentityAndProps = computerList\r\n    | extend NodeId = Computer\r\n    | extend Priority = 1\r\n    | extend NodeProps = pack('type', 'StandAloneNode', 'name', Computer);\r\nlet ServiceMapNodeIdentityAndProps = ServiceMapComputer_CL\r\n    | where TimeGenerated {TimeRange}\r\n    | where Computer in (computerList)\r\n    | summarize arg_max(TimeGenerated, *) by Computer\r\n    | extend Computer = ComputerName_s, AzureCloudServiceNodeIdentity = iif(isnotempty(columnifexists('AzureCloudServiceName_s', '')), strcat(columnifexists('AzureCloudServiceInstanceId_s', ''), '|',                     columnifexists('AzureCloudServiceDeployment_g', '')), ''),          AzureScaleSetNodeIdentity = iif(isnotempty(columnifexists('AzureVmScaleSetName_s', '')),              strcat(columnifexists('AzureVmScaleSetInstanceId_s', ''), '|',                     columnifexists('AzureVmScaleSetDeployment_g', '')), ''),          ComputerProps =              pack('type', 'StandAloneNode',                   'name', ComputerName_s,                   'mappingResourceId', ResourceId,                   'subscriptionId', AzureSubscriptionId_g,                   'resourceGroup', AzureResourceGroup_s,                   'azureResourceId', columnifexists('AzureResourceId_s', '')),          AzureCloudServiceNodeProps =              pack('type', 'AzureCloudServiceNode',                   'cloudServiceInstanceId', columnifexists('AzureCloudServiceInstanceId_s', ''),                   'cloudServiceRoleName', columnifexists('AzureCloudServiceRoleName_s', ''),                   'cloudServiceDeploymentId', columnifexists('AzureCloudServiceDeployment_g', ''),                   'cloudServiceName', columnifexists('AzureCloudServiceName_s', ''),                   'mappingResourceId', ResourceId),          AzureScaleSetNodeProps =               pack('type', 'AzureScaleSetNode',                   'scaleSetInstanceId', columnifexists('AzureName_s', ''),                   'vmScaleSetDeploymentId', columnifexists('AzureVmScaleSetDeployment_g', ''),                   'vmScaleSetName', columnifexists('AzureVmScaleSetName_s', ''),                   'serviceFabricClusterName', columnifexists('AzureServiceFabricClusterName_s', ''),                   'vmScaleSetResourceId', columnifexists('AzureVmScaleSetResourceId_s', ''),                   'resourceGroupName', columnifexists('AzureResourceGroup_s', ''),                   'subscriptionId', columnifexists('AzureSubscriptionId_g', ''),                   'mappingResourceId', ResourceId)| project   Computer,            NodeId = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeIdentity,                       isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeIdentity, Computer),            NodeProps = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeProps,                          isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeProps, ComputerProps),            Priority = 2;\r\nlet NodeIdentityAndProps = union kind=inner isfuzzy = true                                  EmptyNodeIdentityAndProps, OmsNodeIdentityAndProps, ServiceMapNodeIdentityAndProps                            \r\n    | summarize arg_max(Priority, *) by Computer; \r\nlet NodeIdentityAndPropsMin = NodeIdentityAndProps\r\n    | extend Type = iff(NodeProps.type == \"StandAloneNode\", iff(NodeProps.azureResourceId == \"\", \"Non-Azure Virtual Machine\", \"Azure Virtual Machine\"), NodeProps.type), \r\n    ResourceId = iff(NodeProps.type == \"AzureScaleSetNode\", NodeProps.vmScaleSetResourceId, \r\n        iff(NodeProps.type == \"AzureCloudServiceNode\", NodeProps.cloudServiceDeploymentId, Computer)),\r\n    ResourceName = iff(NodeProps.type == \"AzureScaleSetNode\", strcat(NodeProps.vmScaleSetName, \" | \", NodeProps.scaleSetInstanceId), \r\n        iff(NodeProps.type == \"AzureCloudServiceNode\", strcat(NodeProps.cloudServiceRoleName, \" | \", NodeProps.cloudServiceInstanceId), Computer))\r\n    | project Computer, Type, ResourceId, ResourceName;\r\nlet trend = Perf     \r\n    | where TimeGenerated {TimeRange}    \r\n    | where Computer in (computerList)     \r\n    | where ObjectName == metric.object and CounterName == metric.counter   \r\n    | make-series {TrendAggregator} default = 0 on TimeGenerated in range({TimeRange:start}, {TimeRange:end}, {TimeRange:grain}) by Computer\r\n    | project Computer, ['Trend ({TrendAggregator:label})'] = {TrendAggregator:label};\r\nsummaryPerComputer\r\n    | join kind=leftouter (trend) on Computer\r\n    | join kind=leftouter (NodeIdentityAndProps) on Computer\r\n    | join kind=leftouter (NodeIdentityAndPropsMin) on Computer\r\n    | join kind=leftouter (MachineSummary) on Computer\r\n    | project ResourceName, Type, {MergedAggregators}, ['Trend ({TrendAggregator:label})'], Properties = MachineSummary\r\n    | sort by {TrendAggregator:label} {TrendAggregatorOrder}",
+        "query": "let maxResultCount = 100;  \r\nlet metric = dynamic({Counter});\r\nlet summaryPerComputer = totable(Perf \r\n    | where TimeGenerated {TimeRange}  \r\n    | where ObjectName == metric.object and CounterName == metric.counter\r\n    | summarize hint.shufflekey = Computer Average = avg(CounterValue), Max = max(CounterValue), Min = min(CounterValue), percentiles(CounterValue, 5, 10, 50, 80, 90, 95) by Computer \r\n    | project Computer, Average, Max, Min, P5th = percentile_CounterValue_5, P10th = percentile_CounterValue_10, P50th = percentile_CounterValue_50, P80th = percentile_CounterValue_80, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95 \r\n    | order by {TableTrend:label} {tableTrendOrder}, Computer \r\n    | limit maxResultCount); \r\nlet computerList = summaryPerComputer \r\n    | project Computer; \r\nlet MachineSummary = ServiceMapComputer_CL\r\n    | where TimeGenerated {TimeRange}\r\n    | where Computer in (computerList)\r\n    | summarize arg_max(TimeGenerated, *) by Computer\r\n    | project Computer, MachineSummary = pack(\"Fully Qualified Domain Name\", Computer, \"OS Type\", OperatingSystemFamily_s, \"Operating System\", OperatingSystemFullName_s, \"Ipv4 Addresses\", Ipv4Addresses_s,\r\n        \"Ipv6 Addresses\", Ipv6Addresses_s, \"Mac Addresses\", MacAddresses_s, \"DNS Names\", DnsNames_s, \"CPUs\", strcat(Cpus_d, \" @ \", CpuSpeed_d, \" MHz\"), \"Bitness\", Bitness_s,\r\n        \"Physcial Memory\", strcat(PhysicalMemory_d, \" MB\"), \"Virtualization State\", VirtualizationState_s, \"VM Type\", VirtualMachineType_s, \"OMS Agent\", split(ResourceName_s, \"m-\")[1]);\r\nlet EmptyNodeIdentityAndProps = datatable(Computer:string, NodeId:string, NodeProps:dynamic, Priority: long) [];\r\nlet OmsNodeIdentityAndProps = computerList\r\n    | extend NodeId = Computer\r\n    | extend Priority = 1\r\n    | extend NodeProps = pack('type', 'StandAloneNode', 'name', Computer);\r\nlet ServiceMapNodeIdentityAndProps = ServiceMapComputer_CL\r\n    | where TimeGenerated {TimeRange}\r\n    | where Computer in (computerList)\r\n    | summarize arg_max(TimeGenerated, *) by Computer\r\n    | extend Computer = ComputerName_s, AzureCloudServiceNodeIdentity = iif(isnotempty(columnifexists('AzureCloudServiceName_s', '')), strcat(columnifexists('AzureCloudServiceInstanceId_s', ''), '|',                     columnifexists('AzureCloudServiceDeployment_g', '')), ''),          AzureScaleSetNodeIdentity = iif(isnotempty(columnifexists('AzureVmScaleSetName_s', '')),              strcat(columnifexists('AzureVmScaleSetInstanceId_s', ''), '|',                     columnifexists('AzureVmScaleSetDeployment_g', '')), ''),          ComputerProps =              pack('type', 'StandAloneNode',                   'name', ComputerName_s,                   'mappingResourceId', ResourceId,                   'subscriptionId', AzureSubscriptionId_g,                   'resourceGroup', AzureResourceGroup_s,                   'azureResourceId', columnifexists('AzureResourceId_s', '')),          AzureCloudServiceNodeProps =              pack('type', 'AzureCloudServiceNode',                   'cloudServiceInstanceId', columnifexists('AzureCloudServiceInstanceId_s', ''),                   'cloudServiceRoleName', columnifexists('AzureCloudServiceRoleName_s', ''),                   'cloudServiceDeploymentId', columnifexists('AzureCloudServiceDeployment_g', ''),                   'cloudServiceName', columnifexists('AzureCloudServiceName_s', ''),                   'mappingResourceId', ResourceId),          AzureScaleSetNodeProps =               pack('type', 'AzureScaleSetNode',                   'scaleSetInstanceId', columnifexists('AzureName_s', ''),                   'vmScaleSetDeploymentId', columnifexists('AzureVmScaleSetDeployment_g', ''),                   'vmScaleSetName', columnifexists('AzureVmScaleSetName_s', ''),                   'serviceFabricClusterName', columnifexists('AzureServiceFabricClusterName_s', ''),                   'vmScaleSetResourceId', columnifexists('AzureVmScaleSetResourceId_s', ''),                   'resourceGroupName', columnifexists('AzureResourceGroup_s', ''),                   'subscriptionId', columnifexists('AzureSubscriptionId_g', ''),                   'mappingResourceId', ResourceId)| project   Computer,            NodeId = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeIdentity,                       isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeIdentity, Computer),            NodeProps = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeProps,                          isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeProps, ComputerProps),            Priority = 2;\r\nlet NodeIdentityAndProps = union kind=inner isfuzzy = true                                  EmptyNodeIdentityAndProps, OmsNodeIdentityAndProps, ServiceMapNodeIdentityAndProps                            \r\n    | summarize arg_max(Priority, *) by Computer; \r\nlet NodeIdentityAndPropsMin = NodeIdentityAndProps\r\n    | extend Type = iff(NodeProps.type == \"StandAloneNode\", iff(NodeProps.azureResourceId == \"\", \"Non-Azure Virtual Machine\", \"Azure Virtual Machine\"), NodeProps.type), \r\n    ResourceId = iff(NodeProps.type == \"AzureScaleSetNode\", NodeProps.vmScaleSetResourceId, \r\n        iff(NodeProps.type == \"AzureCloudServiceNode\", NodeProps.cloudServiceDeploymentId, Computer)),\r\n    ResourceName = iff(NodeProps.type == \"AzureScaleSetNode\", strcat(NodeProps.vmScaleSetName, \" | \", NodeProps.scaleSetInstanceId), \r\n        iff(NodeProps.type == \"AzureCloudServiceNode\", strcat(NodeProps.cloudServiceRoleName, \" | \", NodeProps.cloudServiceInstanceId), Computer))\r\n    | project Computer, Type, ResourceId, ResourceName;\r\nlet trend = Perf     \r\n    | where TimeGenerated {TimeRange}    \r\n    | where Computer in (computerList)     \r\n    | where ObjectName == metric.object and CounterName == metric.counter   \r\n    | make-series {TableTrend} default = 0 on TimeGenerated in range({TimeRange:start}, {TimeRange:end}, {TimeRange:grain}) by Computer\r\n    | project Computer, ['Trend ({TableTrend:label})'] = {TableTrend:label};\r\nsummaryPerComputer\r\n    | join kind=leftouter (trend) on Computer\r\n    | join kind=leftouter (NodeIdentityAndProps) on Computer\r\n    | join kind=leftouter (NodeIdentityAndPropsMin) on Computer\r\n    | join kind=leftouter (MachineSummary) on Computer\r\n    | project ResourceName, Type, {mergedAggregators}, ['Trend ({TableTrend:label})'], Properties = MachineSummary\r\n    | sort by {TableTrend:label} {tableTrendOrder}",
         "showQuery": false,
         "size": 0,
         "aggregation": 0,
@@ -504,7 +565,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "let metric = dynamic({Counter});\r\nlet linux = iff(metric.counter == 'Bytes Received/sec', dynamic({'object': 'Network', 'counter': 'Total Bytes Received'}), dynamic({'object': 'Network', 'counter': 'Total Bytes Transmitted'}));\r\nlet maxResultCount = 100;\r\nlet windowsNetworkRaw = Perf\r\n| where TimeGenerated {TimeRange}\r\n| where ObjectName == metric.object and CounterName == metric.couter;\r\nlet windowsNetworkSum = windowsNetworkRaw\r\n| summarize hint.shufflekey=Computer CounterValue=sum(CounterValue) by Computer, TimeGenerated;\r\nlet windowsNetworkPctl = windowsNetworkRaw\r\n| summarize hint.shufflekey=Computer Average = avg(CounterValue), Max = max(CounterValue), Min = min(CounterValue), percentiles(CounterValue, 5, 10, 50, 80, 90, 95) by Computer, TimeGenerated\r\n| project TimeGenerated, Computer, Average, Max, Min, P5th = percentile_CounterValue_5, P10th = percentile_CounterValue_10, P50th = percentile_CounterValue_50, P80th = percentile_CounterValue_80, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95;\r\nlet linuxNetworkRaw = Perf\r\n| where TimeGenerated {TimeRange}\r\n| where ObjectName == linux.object and CounterName == linux.counter\r\n| order by InstanceName, TimeGenerated asc\r\n| extend prev_Value = prev(CounterValue), prev_t = prev(TimeGenerated), prev_instance = prev(InstanceName)\r\n| project TimeGenerated, Computer, CounterValue = iff(prev_instance == InstanceName and CounterValue >= prev_Value and TimeGenerated > prev_t, (CounterValue - prev_Value) / ((TimeGenerated - prev_t) / 1s), real(0));\r\nlet linuxNetworkSum = linuxNetworkRaw\r\n| summarize hint.shufflekey=Computer CounterValue=sum(CounterValue) by Computer, TimeGenerated;\r\nlet linuxNetworkPctl = linuxNetworkRaw\r\n| summarize hint.shufflekey=Computer Average = avg(CounterValue), Max = max(CounterValue), Min = min(CounterValue), percentiles(CounterValue, 5, 10, 50, 80, 90, 95) by Computer, TimeGenerated\r\n| project TimeGenerated, Computer, Average, Max, Min, P5th = percentile_CounterValue_5, P10th = percentile_CounterValue_10, P50th = percentile_CounterValue_50, P80th = percentile_CounterValue_80, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95;\r\nlet networkDataSum = union windowsNetworkSum, linuxNetworkSum;\r\nlet networkDataPctl = union windowsNetworkPctl, linuxNetworkPctl;\r\nlet computerList = Perf \r\n| project Computer;\r\nlet EmptyNodeIdentityAndProps = datatable(Computer:string, NodeId:string, NodeProps:dynamic, Priority: long) [];\r\nlet OmsNodeIdentityAndProps = computerList\r\n| extend NodeId = Computer\r\n| extend Priority = 1\r\n| extend NodeProps = pack('type', 'StandAloneNode', 'name', Computer);\r\nlet ServiceMapNodeIdentityAndProps = ServiceMapComputer_CL\r\n| where TimeGenerated {TimeRange}\r\n| where Computer in (computerList)\r\n| summarize hint.shufflekey=Computer arg_max(TimeGenerated, *) by Computer\r\n| extend Computer = ComputerName_s, AzureCloudServiceNodeIdentity = iif(isnotempty(columnifexists('AzureCloudServiceName_s', '')), strcat(columnifexists('AzureCloudServiceInstanceId_s', ''), '|', columnifexists('AzureCloudServiceDeployment_g', '')), ''), AzureScaleSetNodeIdentity = iif(isnotempty(columnifexists('AzureVmScaleSetName_s', '')), strcat(columnifexists('AzureVmScaleSetInstanceId_s', ''), '|', columnifexists('AzureVmScaleSetDeployment_g', '')), ''), ComputerProps = pack('type', 'StandAloneNode', 'name', ComputerName_s, 'mappingResourceId', ResourceId, 'subscriptionId', AzureSubscriptionId_g, 'resourceGroup', AzureResourceGroup_s, 'azureResourceId', columnifexists('AzureResourceId_s', '')), AzureCloudServiceNodeProps = pack('type', 'AzureCloudServiceNode', 'cloudServiceInstanceId', columnifexists('AzureCloudServiceInstanceId_s', ''), 'cloudServiceRoleName', columnifexists('AzureCloudServiceRoleName_s', ''), 'cloudServiceDeploymentId', columnifexists('AzureCloudServiceDeployment_g', ''), 'cloudServiceName', columnifexists('AzureCloudServiceName_s', ''), 'mappingResourceId', ResourceId), AzureScaleSetNodeProps = pack('type', 'AzureScaleSetNode', 'scaleSetInstanceId', columnifexists('AzureName_s', ''), 'vmScaleSetDeploymentId', columnifexists('AzureVmScaleSetDeployment_g', ''), 'vmScaleSetName', columnifexists('AzureVmScaleSetName_s', ''), 'serviceFabricClusterName', columnifexists('AzureServiceFabricClusterName_s', ''), 'vmScaleSetResourceId', columnifexists('AzureVmScaleSetResourceId_s', ''), 'resourceGroupName', columnifexists('AzureResourceGroup_s', ''), 'subscriptionId', columnifexists('AzureSubscriptionId_g', ''), 'mappingResourceId', ResourceId)| project   Computer, NodeId = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeIdentity, isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeIdentity, Computer), NodeProps = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeProps, isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeProps, ComputerProps), Priority = 2;\r\nlet NodeIdentityAndProps = union kind=inner isfuzzy = true EmptyNodeIdentityAndProps, OmsNodeIdentityAndProps, ServiceMapNodeIdentityAndProps\r\n| summarize hint.shufflekey=Computer arg_max(Priority, *) by Computer;\r\nlet NodeIdentityAndPropsMin = NodeIdentityAndProps\r\n| extend Type = iff(NodeProps.type == \"StandAloneNode\", iff(NodeProps.azureResourceId == \"\", \"Non-Azure Virtual Machine\", \"Azure Virtual Machine\"), NodeProps.type), ResourceId = iff(NodeProps.type == \"AzureScaleSetNode\", NodeProps.vmScaleSetResourceId, iff(NodeProps.type == \"AzureCloudServiceNode\", NodeProps.cloudServiceDeploymentId, Computer)), ResourceName = iff(NodeProps.type == \"AzureScaleSetNode\", strcat(NodeProps.vmScaleSetName, \" | \", NodeProps.scaleSetInstanceId), iff(NodeProps.type == \"AzureCloudServiceNode\", strcat(NodeProps.cloudServiceRoleName, \" | \", NodeProps.cloudServiceInstanceId), Computer))\r\n| project Computer, Type, ResourceId, ResourceName;\r\nlet MachineSummary = ServiceMapComputer_CL\r\n| where TimeGenerated {TimeRange}\r\n| where Computer in (computerList)\r\n| summarize hint.shufflekey=Computer arg_max(TimeGenerated, *) by Computer\r\n| project Computer, MachineSummary = pack(\"Fully Qualified Domain Name\", Computer, \"OS Type\", OperatingSystemFamily_s, \"Operating System\", OperatingSystemFullName_s, \"Ipv4 Addresses\", Ipv4Addresses_s, \"Ipv6 Addresses\", Ipv6Addresses_s, \"Mac Addresses\", MacAddresses_s, \"DNS Names\", DnsNames_s, \"CPUs\", strcat(Cpus_d, \" @ \", CpuSpeed_d, \" MHz\"), \"Bitness\", Bitness_s, \"Physcial Memory\", strcat(PhysicalMemory_d, \" MB\"), \"Virtualization State\", VirtualizationState_s, \"VM Type\", VirtualMachineType_s, \"OMS Agent\", split(ResourceName_s, \"m-\")[1]);\r\nlet trend = networkDataSum\r\n| make-series {TrendAggregator} default=0 on TimeGenerated in range({TimeRange:start}, {TimeRange:end}, {TimeRange:grain}) by Computer\r\n| project Computer, ['Trend ({TrendAggregator:label})'] = {TrendAggregator:label};\r\nnetworkDataPctl\r\n| join kind=leftouter hint.shufflekey=Computer (trend) on Computer\r\n| join kind=leftouter hint.shufflekey=Computer (NodeIdentityAndPropsMin) on Computer\r\n| join kind=leftouter hint.shufflekey=Computer (MachineSummary) on Computer\r\n| project ResourceName, Type, {MergedAggregators}, ['Trend ({TrendAggregator:label})'], Properties = MachineSummary\r\n| sort by {TrendAggregator:label} {TrendAggregatorOrder}\r\n| limit maxResultCount",
+        "query": "let metric = dynamic({Counter});\r\nlet linux = iff(metric.counter == 'Bytes Received/sec', dynamic({'object': 'Network', 'counter': 'Total Bytes Received'}), dynamic({'object': 'Network', 'counter': 'Total Bytes Transmitted'}));\r\nlet maxResultCount = 100;\r\nlet windowsNetworkRaw = Perf\r\n| where TimeGenerated {TimeRange}\r\n| where ObjectName == metric.object and CounterName == metric.couter;\r\nlet windowsNetworkSum = windowsNetworkRaw\r\n| summarize hint.shufflekey=Computer CounterValue=sum(CounterValue) by Computer, TimeGenerated;\r\nlet windowsNetworkPctl = windowsNetworkRaw\r\n| summarize hint.shufflekey=Computer Average = avg(CounterValue), Max = max(CounterValue), Min = min(CounterValue), percentiles(CounterValue, 5, 10, 50, 80, 90, 95) by Computer, TimeGenerated\r\n| project TimeGenerated, Computer, Average, Max, Min, P5th = percentile_CounterValue_5, P10th = percentile_CounterValue_10, P50th = percentile_CounterValue_50, P80th = percentile_CounterValue_80, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95;\r\nlet linuxNetworkRaw = Perf\r\n| where TimeGenerated {TimeRange}\r\n| where ObjectName == linux.object and CounterName == linux.counter\r\n| order by InstanceName, TimeGenerated asc\r\n| extend prev_Value = prev(CounterValue), prev_t = prev(TimeGenerated), prev_instance = prev(InstanceName)\r\n| project TimeGenerated, Computer, CounterValue = iff(prev_instance == InstanceName and CounterValue >= prev_Value and TimeGenerated > prev_t, (CounterValue - prev_Value) / ((TimeGenerated - prev_t) / 1s), real(0));\r\nlet linuxNetworkSum = linuxNetworkRaw\r\n| summarize hint.shufflekey=Computer CounterValue=sum(CounterValue) by Computer, TimeGenerated;\r\nlet linuxNetworkPctl = linuxNetworkRaw\r\n| summarize hint.shufflekey=Computer Average = avg(CounterValue), Max = max(CounterValue), Min = min(CounterValue), percentiles(CounterValue, 5, 10, 50, 80, 90, 95) by Computer, TimeGenerated\r\n| project TimeGenerated, Computer, Average, Max, Min, P5th = percentile_CounterValue_5, P10th = percentile_CounterValue_10, P50th = percentile_CounterValue_50, P80th = percentile_CounterValue_80, P90th = percentile_CounterValue_90, P95th = percentile_CounterValue_95;\r\nlet networkDataSum = union windowsNetworkSum, linuxNetworkSum;\r\nlet networkDataPctl = union windowsNetworkPctl, linuxNetworkPctl;\r\nlet computerList = Perf \r\n| project Computer;\r\nlet EmptyNodeIdentityAndProps = datatable(Computer:string, NodeId:string, NodeProps:dynamic, Priority: long) [];\r\nlet OmsNodeIdentityAndProps = computerList\r\n| extend NodeId = Computer\r\n| extend Priority = 1\r\n| extend NodeProps = pack('type', 'StandAloneNode', 'name', Computer);\r\nlet ServiceMapNodeIdentityAndProps = ServiceMapComputer_CL\r\n| where TimeGenerated {TimeRange}\r\n| where Computer in (computerList)\r\n| summarize hint.shufflekey=Computer arg_max(TimeGenerated, *) by Computer\r\n| extend Computer = ComputerName_s, AzureCloudServiceNodeIdentity = iif(isnotempty(columnifexists('AzureCloudServiceName_s', '')), strcat(columnifexists('AzureCloudServiceInstanceId_s', ''), '|', columnifexists('AzureCloudServiceDeployment_g', '')), ''), AzureScaleSetNodeIdentity = iif(isnotempty(columnifexists('AzureVmScaleSetName_s', '')), strcat(columnifexists('AzureVmScaleSetInstanceId_s', ''), '|', columnifexists('AzureVmScaleSetDeployment_g', '')), ''), ComputerProps = pack('type', 'StandAloneNode', 'name', ComputerName_s, 'mappingResourceId', ResourceId, 'subscriptionId', AzureSubscriptionId_g, 'resourceGroup', AzureResourceGroup_s, 'azureResourceId', columnifexists('AzureResourceId_s', '')), AzureCloudServiceNodeProps = pack('type', 'AzureCloudServiceNode', 'cloudServiceInstanceId', columnifexists('AzureCloudServiceInstanceId_s', ''), 'cloudServiceRoleName', columnifexists('AzureCloudServiceRoleName_s', ''), 'cloudServiceDeploymentId', columnifexists('AzureCloudServiceDeployment_g', ''), 'cloudServiceName', columnifexists('AzureCloudServiceName_s', ''), 'mappingResourceId', ResourceId), AzureScaleSetNodeProps = pack('type', 'AzureScaleSetNode', 'scaleSetInstanceId', columnifexists('AzureName_s', ''), 'vmScaleSetDeploymentId', columnifexists('AzureVmScaleSetDeployment_g', ''), 'vmScaleSetName', columnifexists('AzureVmScaleSetName_s', ''), 'serviceFabricClusterName', columnifexists('AzureServiceFabricClusterName_s', ''), 'vmScaleSetResourceId', columnifexists('AzureVmScaleSetResourceId_s', ''), 'resourceGroupName', columnifexists('AzureResourceGroup_s', ''), 'subscriptionId', columnifexists('AzureSubscriptionId_g', ''), 'mappingResourceId', ResourceId)| project   Computer, NodeId = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeIdentity, isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeIdentity, Computer), NodeProps = case(isnotempty(AzureCloudServiceNodeIdentity), AzureCloudServiceNodeProps, isnotempty(AzureScaleSetNodeIdentity), AzureScaleSetNodeProps, ComputerProps), Priority = 2;\r\nlet NodeIdentityAndProps = union kind=inner isfuzzy = true EmptyNodeIdentityAndProps, OmsNodeIdentityAndProps, ServiceMapNodeIdentityAndProps\r\n| summarize hint.shufflekey=Computer arg_max(Priority, *) by Computer;\r\nlet NodeIdentityAndPropsMin = NodeIdentityAndProps\r\n| extend Type = iff(NodeProps.type == \"StandAloneNode\", iff(NodeProps.azureResourceId == \"\", \"Non-Azure Virtual Machine\", \"Azure Virtual Machine\"), NodeProps.type), ResourceId = iff(NodeProps.type == \"AzureScaleSetNode\", NodeProps.vmScaleSetResourceId, iff(NodeProps.type == \"AzureCloudServiceNode\", NodeProps.cloudServiceDeploymentId, Computer)), ResourceName = iff(NodeProps.type == \"AzureScaleSetNode\", strcat(NodeProps.vmScaleSetName, \" | \", NodeProps.scaleSetInstanceId), iff(NodeProps.type == \"AzureCloudServiceNode\", strcat(NodeProps.cloudServiceRoleName, \" | \", NodeProps.cloudServiceInstanceId), Computer))\r\n| project Computer, Type, ResourceId, ResourceName;\r\nlet MachineSummary = ServiceMapComputer_CL\r\n| where TimeGenerated {TimeRange}\r\n| where Computer in (computerList)\r\n| summarize hint.shufflekey=Computer arg_max(TimeGenerated, *) by Computer\r\n| project Computer, MachineSummary = pack(\"Fully Qualified Domain Name\", Computer, \"OS Type\", OperatingSystemFamily_s, \"Operating System\", OperatingSystemFullName_s, \"Ipv4 Addresses\", Ipv4Addresses_s, \"Ipv6 Addresses\", Ipv6Addresses_s, \"Mac Addresses\", MacAddresses_s, \"DNS Names\", DnsNames_s, \"CPUs\", strcat(Cpus_d, \" @ \", CpuSpeed_d, \" MHz\"), \"Bitness\", Bitness_s, \"Physcial Memory\", strcat(PhysicalMemory_d, \" MB\"), \"Virtualization State\", VirtualizationState_s, \"VM Type\", VirtualMachineType_s, \"OMS Agent\", split(ResourceName_s, \"m-\")[1]);\r\nlet trend = networkDataSum\r\n| make-series {TableTrend} default=0 on TimeGenerated in range({TimeRange:start}, {TimeRange:end}, {TimeRange:grain}) by Computer\r\n| project Computer, ['Trend ({TableTrend:label})'] = {TableTrend:label};\r\nnetworkDataPctl\r\n| join kind=leftouter hint.shufflekey=Computer (trend) on Computer\r\n| join kind=leftouter hint.shufflekey=Computer (NodeIdentityAndPropsMin) on Computer\r\n| join kind=leftouter hint.shufflekey=Computer (MachineSummary) on Computer\r\n| project ResourceName, Type, {mergedAggregators}, ['Trend ({TableTrend:label})'], Properties = MachineSummary\r\n| sort by {TableTrend:label} {tableTrendOrder}\r\n| limit maxResultCount",
         "showQuery": false,
         "size": 0,
         "aggregation": 0,
