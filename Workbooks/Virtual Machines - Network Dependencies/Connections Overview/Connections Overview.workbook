@@ -143,7 +143,7 @@
     {
       "type": 1,
       "content": {
-        "json": "<h1 style=\"{_A_HeaderStyle}\">Connection Overview</h1>{_A_ComputerName}\r\n{_A_HeaderTextPrefix} {_A_HeaderTextSuffix}"
+        "json": "<h1 style=\"{_A_HeaderStyle}\">Connections Overview</h1>{_A_ComputerName}\r\n{_A_HeaderTextPrefix} {_A_HeaderTextSuffix}"
       },
       "conditionalVisibility": null
     },
