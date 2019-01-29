@@ -1,6 +1,6 @@
 {
   "version": "Notebook/1.0",
-  "isLocked": true,
+  "isLocked": false,
   "items": [
     {
       "type": 9,
@@ -544,7 +544,7 @@
     {
       "type": 1,
       "content": {
-        "json": "💡 <em>Select a computer from the table above to view connection details for that machine.</em>"
+        "json": "💡 <em>Select a computer from the table below to view connection details for that machine.</em>"
       },
       "conditionalVisibility": null
     },
