@@ -3,20 +3,11 @@
   "isLocked": true,
   "items": [
     {
-      "type": 1,
-      "content": {
-        "json": "# Connection Overview\nThis workbook requires [Azure Monitor for VMs (preview)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview) enabled in your workspace\n\n---\n\n## Connection Records\n\nEach <strong>record</strong> from [VMConnections](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/service-map) represents a connection from one machine to another over a 1-minute interval.\n\nEach <strong>record</strong> aggregates the following properties over a 1-minute interval: the total number of bytes sent and received, the number of links (port connections) that are established, currently active, and terminated, and the number of responses received.\n\n<hr style=\"height: 2px;\" />"
-      },
-      "conditionalVisibility": null
-    },
-    {
       "type": 9,
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [
-          "{Workspace}"
-        ],
+        "crossComponentResources": [],
         "parameters": [
           {
             "id": "e41c2177-932a-4c58-ba24-03ef070eb197",
@@ -54,6 +45,124 @@
             },
             "timeContextFromParameter": null
           },
+          {
+            "id": "68692e38-3c2c-4fd2-8e03-2357f2275142",
+            "version": "KqlParameterItem/1.0",
+            "name": "ComputerName",
+            "type": 1,
+            "isRequired": true,
+            "query": "print '{Computer:label}'",
+            "crossComponentResources": [
+              "{Workspace}"
+            ],
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          }
+        ],
+        "style": "above",
+        "resourceType": "microsoft.compute/virtualmachines"
+      },
+      "conditionalVisibility": {
+        "parameterName": "_",
+        "comparison": "isNotEqualTo",
+        "value": null
+      }
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [
+          "{Workspace}"
+        ],
+        "parameters": [
+          {
+            "id": "2debcfba-e410-4300-9886-78069cef42e0",
+            "version": "KqlParameterItem/1.0",
+            "name": "_A_ComputerName",
+            "type": 1,
+            "isRequired": false,
+            "query": "print(iff(\"{ComputerName}\" == \"undefined\", \"\", \"<h2 style='color:#777;font-weight:normal;margin-top:0;padding-top:0;font-size:1rem;'>{ComputerName}</h2>\"));",
+            "crossComponentResources": [
+              "{Workspace}"
+            ],
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          },
+          {
+            "id": "648ac90d-4be5-4c08-ac13-bcff7f8ddbf9",
+            "version": "KqlParameterItem/1.0",
+            "name": "_A_HeaderTextPrefix",
+            "type": 1,
+            "isRequired": false,
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "value": "This workbook requires [Azure Monitor for VMs (preview)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview) enabled"
+          },
+          {
+            "id": "b902566a-20d1-4137-9944-24fcd5f2fe1b",
+            "version": "KqlParameterItem/1.0",
+            "name": "_A_HeaderTextSuffix",
+            "type": 1,
+            "isRequired": false,
+            "query": "print(iff(\"{ComputerName}\" == \"undefined\", \"in your workspace\", \"for your machine `{ComputerName}`\"));",
+            "crossComponentResources": [
+              "{Workspace}"
+            ],
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          },
+          {
+            "id": "fccd76d3-382b-4c2b-a39b-2653503c504b",
+            "version": "KqlParameterItem/1.0",
+            "name": "_A_HeaderStyle",
+            "type": 1,
+            "isRequired": false,
+            "query": "print(iff(\"{ComputerName}\" == \"undefined\", \"\", \"margin:0;padding:0;\"));",
+            "crossComponentResources": [
+              "{Workspace}"
+            ],
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          }
+        ],
+        "style": "above",
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "conditionalVisibility": {
+        "parameterName": "_",
+        "comparison": "isNotEqualTo",
+        "value": null
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "<h1 style=\"{_A_HeaderStyle}\">Connection Overview</h1>{_A_ComputerName}\r\n{_A_HeaderTextPrefix} {_A_HeaderTextSuffix}"
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "---\n\n## Connection Records\n\nEach <strong>record</strong> aggregates the following properties over a 1-minute interval: the total number of bytes sent and received, the number of links (port connections) that are established, currently active, and terminated, and the number of responses received.\n\n<hr style=\"height: 2px;\" />"
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [
+          "{Workspace}"
+        ],
+        "parameters": [
           {
             "id": "5f8cce4b-9c4c-47da-8683-7e5ccc9faed3",
             "version": "KqlParameterItem/1.0",
@@ -171,20 +280,6 @@
               ],
               "allowCustom": true
             }
-          },
-          {
-            "id": "68692e38-3c2c-4fd2-8e03-2357f2275142",
-            "version": "KqlParameterItem/1.0",
-            "name": "ComputerName",
-            "type": 1,
-            "isRequired": true,
-            "query": "print '{Computer:label}'",
-            "crossComponentResources": [
-              "{Workspace}"
-            ],
-            "isHiddenWhenLocked": true,
-            "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
           }
         ],
         "style": "above",
@@ -323,9 +418,7 @@
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [
-          "{Workspace}"
-        ],
+        "crossComponentResources": [],
         "parameters": [
           {
             "id": "306614b4-14f2-4777-a044-8c1121f04d6d",
@@ -349,7 +442,7 @@
             "isRequired": true,
             "value": {
               "durationMs": 3600000,
-              "createdTime": "2019-01-25T00:48:38.343Z",
+              "createdTime": "2019-01-28T23:37:45.024Z",
               "isInitialTime": false,
               "grain": 1,
               "useDashboardTimeRange": false
@@ -359,98 +452,98 @@
               "selectableValues": [
                 {
                   "durationMs": 300000,
-                  "createdTime": "2019-01-25T00:48:38.343Z",
+                  "createdTime": "2019-01-28T23:37:45.024Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 900000,
-                  "createdTime": "2019-01-25T00:48:38.343Z",
+                  "createdTime": "2019-01-28T23:37:45.024Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 1800000,
-                  "createdTime": "2019-01-25T00:48:38.343Z",
+                  "createdTime": "2019-01-28T23:37:45.024Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 3600000,
-                  "createdTime": "2019-01-25T00:48:38.343Z",
+                  "createdTime": "2019-01-28T23:37:45.024Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 14400000,
-                  "createdTime": "2019-01-25T00:48:38.343Z",
+                  "createdTime": "2019-01-28T23:37:45.024Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 43200000,
-                  "createdTime": "2019-01-25T00:48:38.343Z",
+                  "createdTime": "2019-01-28T23:37:45.024Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 86400000,
-                  "createdTime": "2019-01-25T00:48:38.343Z",
+                  "createdTime": "2019-01-28T23:37:45.025Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 172800000,
-                  "createdTime": "2019-01-25T00:48:38.343Z",
+                  "createdTime": "2019-01-28T23:37:45.025Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 259200000,
-                  "createdTime": "2019-01-25T00:48:38.343Z",
+                  "createdTime": "2019-01-28T23:37:45.025Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 604800000,
-                  "createdTime": "2019-01-25T00:48:38.343Z",
+                  "createdTime": "2019-01-28T23:37:45.025Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 1209600000,
-                  "createdTime": "2019-01-25T00:48:38.343Z",
+                  "createdTime": "2019-01-28T23:37:45.025Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 2592000000,
-                  "createdTime": "2019-01-25T00:48:38.343Z",
+                  "createdTime": "2019-01-28T23:37:45.026Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 5184000000,
-                  "createdTime": "2019-01-25T00:48:38.343Z",
+                  "createdTime": "2019-01-28T23:37:45.026Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 7776000000,
-                  "createdTime": "2019-01-25T00:48:38.344Z",
+                  "createdTime": "2019-01-28T23:37:45.026Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
