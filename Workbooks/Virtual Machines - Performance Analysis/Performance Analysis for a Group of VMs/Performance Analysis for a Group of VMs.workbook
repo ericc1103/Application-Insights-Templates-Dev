@@ -767,18 +767,27 @@
         ],
         "parameters": [
           {
-            "id": "64a43610-bf5d-4e13-817e-c32770838689",
+            "id": "fe57c085-e029-4b37-9cd3-34c39c8734da",
             "version": "KqlParameterItem/1.0",
             "name": "Workspaces",
-            "type": 1,
+            "type": 5,
             "isRequired": true,
-            "query": "print {Workspaces:value}",
-            "crossComponentResources": [
-              "{Workspaces}"
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "value": [
+              "value::1"
             ],
             "isHiddenWhenLocked": true,
-            "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "typeSettings": {
+              "resourceTypeFilter": {
+                "microsoft.operationalinsights/workspaces": true
+              },
+              "additionalResourceOptions": [
+                "value::1"
+              ]
+            },
+            "timeContextFromParameter": null
           }
         ],
         "style": "above",
