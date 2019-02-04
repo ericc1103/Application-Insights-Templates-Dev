@@ -143,14 +143,7 @@
     {
       "type": 1,
       "content": {
-        "json": "<h1 style=\"{_A_HeaderStyle}\">Connections Overview</h1>{_A_ComputerName}\r\n{_A_HeaderTextPrefix} {_A_HeaderTextSuffix}"
-      },
-      "conditionalVisibility": null
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "---\r\n\r\n## Connection Statistics\r\n\r\nThe following table presents the connection statistics for computers in your workspace (max `10,000` rows).\r\n\r\nUse the <em>Hierarchy</em> dropdown for more detailed information for each computer but fewer computers will be shown if the total number of rows rendered exceeds `10,000`.\r\n\r\n<hr style=\"border: none;height: 2px;color: grey;\" />"
+        "json": "<h1 style=\"{_A_HeaderStyle}\">Connections Overview</h1>\r\nThe following table presents the connection statistics for computers in your workspace (max `10,000` rows). Use the <em>Hierarchy</em> dropdown for more detailed information for each computer but fewer computers will be shown if the total number of rows rendered exceeds `10,000`.\r\n\r\n<hr style=\"border: none;height: 2px;color: grey;\" />"
       },
       "conditionalVisibility": null
     },
@@ -299,9 +292,13 @@
             "version": "KqlParameterItem/1.0",
             "name": "Direction",
             "type": 2,
+            "description": "Direction of the network connection from the VMs",
             "isRequired": true,
             "value": "outbound",
             "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
             "jsonData": "[\r\n    { \"value\":\"inbound\", \"label\":\"Inbound\" },\r\n    { \"value\":\"outbound\", \"label\":\"Outbound\" }\r\n]",
             "timeContextFromParameter": null
           },
@@ -353,24 +350,20 @@
             "version": "KqlParameterItem/1.0",
             "name": "Hierarchy",
             "type": 2,
+            "description": "Select the level of detail to be shown in the table below",
             "isRequired": true,
             "query": "datatable (value:string, Display:string)\r\n    [\"0\", \"Computer -> Process -> IP -> Port\",\r\n     \"1\", \"Computer -> Process -> IP\",\r\n     \"2\", \"Computer -> Process\",\r\n     \"3\", \"Computer\"]",
-            "crossComponentResources": [],
             "value": "2",
             "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
           }
         ],
         "style": "above",
         "resourceType": "microsoft.operationalinsights/workspaces"
-      },
-      "conditionalVisibility": null
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "<p><strong>TimeRange</strong> specifies how far back in time to gather connection statistics. Selecting a large time range will result in a long query processing time.</p>\r\n<p><strong>Direction</strong> either shows <em>Inbound</em> or <em>Outbound</em> network connections.</p>\r\n<p><strong>Hierarchy</strong> specifies the level of detail for each computer. Selecting a larger hierarchy will cause fewer computers to be displayed but more information for each computer in the table below.</p>\r\n\r\n<p><strong>ComputerNameContains</strong> by default will show <em>any</em> computers. Specify a string to narrow down the computers you are interested in so more data can be shown in the table below.</p>\r\n<p><strong>Computers</strong> by default all computers in the current workspace will be selected. Select one or more computers to further narrow down the table below.</p>\r\n\r\n<hr style=\"height: 1px;\" />"
       },
       "conditionalVisibility": null
     },
@@ -577,7 +570,7 @@
         "version": "KqlItem/1.0",
         "query": "{FinalQuery:value}",
         "showQuery": false,
-        "size": 2,
+        "size": 0,
         "aggregation": 0,
         "showAnnotations": false,
         "exportParameterName": "ConnectionGrid",
