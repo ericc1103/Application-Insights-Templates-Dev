@@ -267,11 +267,10 @@
             "name": "Visualization",
             "type": 2,
             "isRequired": true,
-            "query": "datatable (value:long, Display:string)\r\n    [0, \"Line Chart\",\r\n     1, \"Grid\"]",
+            "query": "datatable (value:long, Display:string, isSelected:boolean)\r\n    [0, \"Line Chart\", true,\r\n     1, \"Grid\", false]",
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "0",
             "isHiddenWhenLocked": false,
             "typeSettings": {
               "additionalResourceOptions": []
@@ -379,7 +378,6 @@
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "{\"counter\":\"Available MBytes Memory\",\"object\":\"Memory\"}",
             "isHiddenWhenLocked": false,
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
@@ -415,12 +413,14 @@
             "name": "Visualization2",
             "type": 2,
             "isRequired": true,
-            "query": "datatable (value:long, Display:string)\r\n    [0, \"Line Chart\",\r\n     1, \"Grid\"]",
+            "query": "datatable (value:long, Display:string, isSelected:boolean)\r\n    [0, \"Line Chart\", true,\r\n     1, \"Grid\", false]",
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "0",
             "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
           },
@@ -468,7 +468,6 @@
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "{\"counter\":\"Disk Reads/sec\",\"object\":\"LogicalDisk\"}",
             "isHiddenWhenLocked": false,
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
@@ -503,12 +502,14 @@
             "name": "Visualization3",
             "type": 2,
             "isRequired": true,
-            "query": "datatable (value:long, Display:string)\r\n    [0, \"Line Chart\",\r\n     1, \"Grid\"]",
+            "query": "datatable (value:long, Display:string, isSelected:boolean)\r\n    [0, \"Line Chart\", true,\r\n     1, \"Grid\", false]",
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "0",
             "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
           },
@@ -556,7 +557,6 @@
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "{\"counter\":\"Disk Writes/sec\",\"object\":\"LogicalDisk\"}",
             "isHiddenWhenLocked": false,
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
@@ -591,12 +591,14 @@
             "name": "Visualization4",
             "type": 2,
             "isRequired": true,
-            "query": "datatable (value:long, Display:string)\r\n    [0, \"Line Chart\",\r\n     1, \"Grid\"]",
+            "query": "datatable (value:long, Display:string, isSelected:boolean)\r\n    [0, \"Line Chart\", true,\r\n     1, \"Grid\", false]",
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "0",
             "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
           },
@@ -840,7 +842,6 @@
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "{\"counter\":\"% IO Wait Time\",\"object\":\"Processor\"}",
             "isHiddenWhenLocked": false,
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
@@ -875,12 +876,14 @@
             "name": "Visualization5",
             "type": 2,
             "isRequired": true,
-            "query": "datatable (value:long, Display:string)\r\n    [0, \"Line Chart\",\r\n     1, \"Grid\"]",
+            "query": "datatable (value:long, Display:string, isSelected:boolean)\r\n    [0, \"Line Chart\", true,\r\n     1, \"Grid\", false]",
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "0",
             "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
           },
@@ -928,7 +931,6 @@
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "{\"counter\":\"Pages/sec\",\"object\":\"Memory\"}",
             "isHiddenWhenLocked": false,
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
@@ -963,12 +965,14 @@
             "name": "Visualization6",
             "type": 2,
             "isRequired": true,
-            "query": "datatable (value:long, Display:string)\r\n    [0, \"Line Chart\",\r\n     1, \"Grid\"]",
+            "query": "datatable (value:long, Display:string, isSelected:boolean)\r\n    [0, \"Line Chart\", true,\r\n     1, \"Grid\", false]",
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "0",
             "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
           },
@@ -1016,7 +1020,6 @@
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "{\"counter\":\"Processes\",\"object\":\"System\"}",
             "isHiddenWhenLocked": false,
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
@@ -1051,12 +1054,14 @@
             "name": "Visualization7",
             "type": 2,
             "isRequired": true,
-            "query": "datatable (value:long, Display:string)\r\n    [0, \"Line Chart\",\r\n     1, \"Grid\"]",
+            "query": "datatable (value:long, Display:string, isSelected:boolean)\r\n    [0, \"Line Chart\", true,\r\n     1, \"Grid\", false]",
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "0",
             "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
           },
@@ -1104,7 +1109,6 @@
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "{\"counter\":\"Processor Queue Length\",\"object\":\"System\"}",
             "isHiddenWhenLocked": false,
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
@@ -1139,12 +1143,14 @@
             "name": "Visualization8",
             "type": 2,
             "isRequired": true,
-            "query": "datatable (value:long, Display:string)\r\n    [0, \"Line Chart\",\r\n     1, \"Grid\"]",
+            "query": "datatable (value:long, Display:string, isSelected:boolean)\r\n    [0, \"Line Chart\", true,\r\n     1, \"Grid\", false]",
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "0",
             "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
           },
