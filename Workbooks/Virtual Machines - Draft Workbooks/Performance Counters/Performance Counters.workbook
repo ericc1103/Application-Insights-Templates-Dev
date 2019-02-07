@@ -332,7 +332,7 @@
             "name": "Counter",
             "type": 2,
             "isRequired": true,
-            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
+            "query": "// {Workspaces}\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
             "crossComponentResources": [
               "{Workspaces}"
             ],
@@ -341,7 +341,8 @@
               "additionalResourceOptions": []
             },
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": "{\"counter\":\"% Processor Time\",\"object\":\"Process\"}"
           },
           {
             "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
@@ -483,7 +484,7 @@
             "name": "Counter2",
             "type": 2,
             "isRequired": true,
-            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
+            "query": "// {Workspaces}\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
             "crossComponentResources": [
               "{Workspaces}"
             ],
@@ -492,7 +493,8 @@
               "additionalResourceOptions": []
             },
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": "{\"counter\":\"% Available Memory\",\"object\":\"Memory\"}"
           },
           {
             "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
@@ -575,7 +577,7 @@
             "name": "Counter3",
             "type": 2,
             "isRequired": true,
-            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
+            "query": "// {Workspaces}\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
             "crossComponentResources": [
               "{Workspaces}"
             ],
@@ -586,7 +588,8 @@
               ]
             },
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": "{\"counter\":\"Total Bytes Received\",\"object\":\"Network\"}"
           },
           {
             "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
@@ -669,7 +672,7 @@
             "name": "Counter4",
             "type": 2,
             "isRequired": true,
-            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
+            "query": "// {Workspaces}\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
             "crossComponentResources": [
               "{Workspaces}"
             ],
@@ -678,7 +681,8 @@
               "additionalResourceOptions": []
             },
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": "{\"counter\":\"Total Bytes Transmitted\",\"object\":\"Network\"}"
           },
           {
             "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
@@ -957,7 +961,7 @@
             "name": "Counter5",
             "type": 2,
             "isRequired": true,
-            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
+            "query": "// {Workspaces}\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
             "crossComponentResources": [
               "{Workspaces}"
             ],
@@ -968,7 +972,8 @@
               ]
             },
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": "{\"counter\":\"Disk Reads/sec\",\"object\":\"Logical Disk\"}"
           },
           {
             "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
@@ -1051,7 +1056,7 @@
             "name": "Counter6",
             "type": 2,
             "isRequired": true,
-            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
+            "query": "// {Workspaces}\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
             "crossComponentResources": [
               "{Workspaces}"
             ],
@@ -1062,7 +1067,8 @@
               ]
             },
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": "{\"counter\":\"Disk Read Bytes/sec\",\"object\":\"Logical Disk\"}"
           },
           {
             "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
@@ -1145,7 +1151,7 @@
             "name": "Counter7",
             "type": 2,
             "isRequired": true,
-            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
+            "query": "// {Workspaces}\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
             "crossComponentResources": [
               "{Workspaces}"
             ],
@@ -1156,7 +1162,8 @@
               ]
             },
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": "{\"counter\":\"Disk Writes/sec\",\"object\":\"Logical Disk\"}"
           },
           {
             "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
@@ -1239,7 +1246,7 @@
             "name": "Counter8",
             "type": 2,
             "isRequired": true,
-            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
+            "query": "// {Workspaces}\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
             "crossComponentResources": [
               "{Workspaces}"
             ],
@@ -1250,7 +1257,8 @@
               ]
             },
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": "{\"counter\":\"Disk Write Bytes/sec\",\"object\":\"Logical Disk\"}"
           },
           {
             "id": "6a7306ea-247f-46ca-abca-501911f9e9d3",
@@ -1529,7 +1537,7 @@
             "name": "Counter9",
             "type": 2,
             "isRequired": true,
-            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
+            "query": "// {Workspaces}\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
             "crossComponentResources": [
               "{Workspaces}"
             ],
@@ -1540,7 +1548,8 @@
               ]
             },
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": "{\"counter\":\"% IO Wait Time\",\"object\":\"Processor\"}"
           },
           {
             "id": "f3137f3e-9ff1-4a7f-b503-5b2b87431713",
@@ -1623,7 +1632,7 @@
             "name": "Counter10",
             "type": 2,
             "isRequired": true,
-            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
+            "query": "// {Workspaces}\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
             "crossComponentResources": [
               "{Workspaces}"
             ],
@@ -1634,7 +1643,8 @@
               ]
             },
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": "{\"counter\":\"% Idle Time\",\"object\":\"Processor\"}"
           },
           {
             "id": "6a7306ea-247f-46ca-abca-501911f9e9dd",
@@ -1717,7 +1727,7 @@
             "name": "Counter11",
             "type": 2,
             "isRequired": true,
-            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
+            "query": "// {Workspaces}\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
             "crossComponentResources": [
               "{Workspaces}"
             ],
@@ -1728,7 +1738,8 @@
               ]
             },
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": "{\"counter\":\"% Interrupt Time\",\"object\":\"Processor\"}"
           },
           {
             "id": "6a7306ea-247f-46ca-abca-501911f9e9dd",
@@ -1811,7 +1822,7 @@
             "name": "Counter12",
             "type": 2,
             "isRequired": true,
-            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
+            "query": "// {Workspaces}\r\nPerf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by CounterName, ObjectName, CounterText = CounterName\r\n| order by ObjectName asc, CounterText asc\r\n| project Counter = pack('counter', CounterName, 'object', ObjectName), CounterText, group = ObjectName",
             "crossComponentResources": [
               "{Workspaces}"
             ],
@@ -1822,7 +1833,8 @@
               ]
             },
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": "{\"counter\":\"% User Time\",\"object\":\"Processor\"}"
           },
           {
             "id": "6a7306ea-247f-46ca-abca-501911f9e9dd",
