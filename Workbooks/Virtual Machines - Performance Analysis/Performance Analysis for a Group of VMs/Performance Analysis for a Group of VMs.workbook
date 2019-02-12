@@ -252,7 +252,9 @@
             "quote": "",
             "delimiter": ",",
             "value": [
-              "Average"
+              "Average",
+              "P95th",
+              "Max"
             ],
             "isHiddenWhenLocked": false,
             "typeSettings": {
