@@ -59,7 +59,7 @@
             "name": "Computer",
             "type": 2,
             "isRequired": true,
-            "query": "// {Workspace}\r\nVMConnection\r\n| distinct Computer",
+            "query": "// {Workspace:label}\r\nVMConnection\r\n| distinct Computer",
             "crossComponentResources": [
               "{Workspace}"
             ],
