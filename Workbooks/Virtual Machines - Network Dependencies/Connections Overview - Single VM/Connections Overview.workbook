@@ -100,9 +100,7 @@
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [
-          "{Computer}"
-        ],
+        "crossComponentResources": [],
         "parameters": [
           {
             "id": "addcec31-b7ac-4715-a78d-9b803f86af8a",
@@ -276,6 +274,7 @@
             "version": "KqlParameterItem/1.0",
             "name": "TableFilter",
             "type": 2,
+            "description": "Filter table based on presence of malicious connections, at least one link failing, or high response time (>1s)",
             "isRequired": false,
             "multiSelect": true,
             "quote": "",
@@ -568,7 +567,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "{FinalQuery:value}",
+        "query": "// {Computer} {Test} {EmptyOrOnboard} {TimeRange} {Direction} {ComputerFilter} {Hierarchy} {TableFilter} {ServiceMapComputers} {MaliciousIpData} {ComputerData} {RemoteIpDataInbound} {ProcessName} {RemoteIpData} {SourcePortData} {DestinationPortData} {QueryProject} {Computer_Process_IP_Port} {Computer_Process_IP} {Computer_Process} {Computer_Query} {FinalQuery}\r\n{FinalQuery:value}",
         "showQuery": false,
         "size": 0,
         "aggregation": 0,

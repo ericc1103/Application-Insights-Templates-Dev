@@ -298,6 +298,7 @@
             "version": "KqlParameterItem/1.0",
             "name": "TableFilter",
             "type": 2,
+            "description": "Filter table based on presence of malicious connections, at least one link failing, or high response time (>1s)",
             "isRequired": false,
             "multiSelect": true,
             "quote": "",
@@ -590,7 +591,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "{FinalQuery:value}",
+        "query": "// {Workspace} {Test} {EmptyOrOnboard} {TimeRange} {Direction} {ComputerNameContains} {Computers} {ComputerFilter} {Hierarchy} {TableFilter} {ServiceMapComputers} {MaliciousIpData} {ComputerData} {RemoteIpDataInbound} {ProcessName} {RemoteIpData} {SourcePortData} {DestinationPortData} {QueryProject} {Computer_Process_IP_Port} {Computer_Process_IP} {Computer_Process} {Computer} {FinalQuery}\r\n{FinalQuery:value}",
         "showQuery": false,
         "size": 0,
         "aggregation": 0,
