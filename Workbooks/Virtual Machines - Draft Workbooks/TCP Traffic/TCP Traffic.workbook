@@ -170,6 +170,7 @@
         "showAnnotations": false,
         "exportFieldName": "Computer",
         "exportParameterName": "Computer",
+        "exportDefaultValue": "🔵 Overall",
         "showAnalytics": false,
         "timeContext": {
           "durationMs": 86400000,
