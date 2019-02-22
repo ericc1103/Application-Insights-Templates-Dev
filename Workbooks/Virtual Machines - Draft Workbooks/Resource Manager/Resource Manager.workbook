@@ -1,0 +1,445 @@
+{
+  "version": "Notebook/1.0",
+  "isLocked": true,
+  "items": [
+    {
+      "type": 1,
+      "content": {
+        "json": "# Resource Monitor"
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [
+          "{Workspace}"
+        ],
+        "parameters": [
+          {
+            "id": "2781694c-ace8-4cc0-b861-26f56a957d0d",
+            "version": "KqlParameterItem/1.0",
+            "name": "Workspace",
+            "type": 5,
+            "isRequired": true,
+            "value": "value::1",
+            "isHiddenWhenLocked": true,
+            "typeSettings": {
+              "resourceTypeFilter": {
+                "microsoft.operationalinsights/workspaces": true
+              },
+              "additionalResourceOptions": [
+                "value::1"
+              ]
+            },
+            "timeContextFromParameter": null
+          },
+          {
+            "id": "150bdd2a-8e6e-44ac-b5d0-f3fcf96dc3b9",
+            "version": "KqlParameterItem/1.0",
+            "name": "TimeRange",
+            "type": 4,
+            "isRequired": true,
+            "value": {
+              "durationMs": 86400000,
+              "createdTime": "2019-02-21T21:55:19.829Z",
+              "isInitialTime": false,
+              "grain": 1,
+              "useDashboardTimeRange": false
+            },
+            "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "selectableValues": [
+                {
+                  "durationMs": 300000,
+                  "createdTime": "2019-02-21T21:55:19.829Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 900000,
+                  "createdTime": "2019-02-21T21:55:19.829Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 1800000,
+                  "createdTime": "2019-02-21T21:55:19.829Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 3600000,
+                  "createdTime": "2019-02-21T21:55:19.829Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 14400000,
+                  "createdTime": "2019-02-21T21:55:19.829Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 43200000,
+                  "createdTime": "2019-02-21T21:55:19.829Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 86400000,
+                  "createdTime": "2019-02-21T21:55:19.829Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 172800000,
+                  "createdTime": "2019-02-21T21:55:19.829Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 259200000,
+                  "createdTime": "2019-02-21T21:55:19.830Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 604800000,
+                  "createdTime": "2019-02-21T21:55:19.830Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 1209600000,
+                  "createdTime": "2019-02-21T21:55:19.830Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 2592000000,
+                  "createdTime": "2019-02-21T21:55:19.830Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 5184000000,
+                  "createdTime": "2019-02-21T21:55:19.830Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 7776000000,
+                  "createdTime": "2019-02-21T21:55:19.830Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                }
+              ],
+              "allowCustom": true
+            },
+            "timeContextFromParameter": null
+          },
+          {
+            "id": "93e85e8c-6c21-4c4d-a0d9-5ee94465b5cc",
+            "version": "KqlParameterItem/1.0",
+            "name": "ComputerNameContains",
+            "type": 1,
+            "isRequired": false,
+            "isHiddenWhenLocked": false,
+            "timeContextFromParameter": null
+          },
+          {
+            "id": "4eb8116a-ccd0-4973-a555-8ac5780fa652",
+            "version": "KqlParameterItem/1.0",
+            "name": "Computers",
+            "type": 2,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| where Computer contains '{ComputerNameContains}'\r\n| distinct Computer",
+            "crossComponentResources": [
+              "{Workspace}"
+            ],
+            "value": [
+              "value::all"
+            ],
+            "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "additionalResourceOptions": [
+                "value::all"
+              ],
+              "selectAllValue": "*"
+            },
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          },
+          {
+            "id": "86d652c1-935f-43cd-aa81-dcd59b4c03de",
+            "version": "KqlParameterItem/1.0",
+            "name": "ComputerFilter",
+            "type": 1,
+            "isRequired": true,
+            "query": "let computerFilter = iff('*' in ({Computers}), \"| where Computer contains '{ComputerNameContains}'\", \"| where Computer in ({Computers})\");\r\nprint(computerFilter)",
+            "crossComponentResources": [
+              "{Workspace}"
+            ],
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          }
+        ],
+        "style": "pills",
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## CPU"
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let computers = Perf\r\n{ComputerFilter}\r\n| where TimeGenerated {TimeRange}\r\n| where ObjectName == 'Process' and CounterName == '% Processor Time'\r\n| summarize CPU=avg(CounterValue) by Name=Computer\r\n| project CPU, Name=strcat('💻 ', Name), Key=Name, ParentKey='';\r\nPerf\r\n{ComputerFilter}\r\n| where TimeGenerated {TimeRange}\r\n| where ObjectName == 'Process' and CounterName == '% Processor Time'\r\n| summarize CPU=avg(CounterValue) by Name=strcat('🎫 ', InstanceName), ParentKey=Computer, Key=InstanceName\r\n| union computers\r\n| order by Name asc",
+        "showQuery": false,
+        "size": 0,
+        "aggregation": 0,
+        "showAnnotations": false,
+        "showAnalytics": false,
+        "timeContextFromParameter": null,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "crossComponentResources": [
+          "{Workspace}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "CPU",
+              "formatter": 8,
+              "formatOptions": {
+                "min": 0,
+                "palette": "blue",
+                "showIcon": true
+              },
+              "numberFormat": {
+                "unit": 1,
+                "options": {
+                  "style": "decimal"
+                }
+              }
+            }
+          ],
+          "rowLimit": 10000,
+          "hierarchySettings": {
+            "idColumn": "Key",
+            "parentColumn": "ParentKey",
+            "treeType": 0,
+            "expanderColumn": "Name"
+          }
+        }
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## Disk\r\n⚠ *Only Windows VMs are shown*"
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let disk = Perf\r\n{ComputerFilter}\r\n| where TimeGenerated {TimeRange};\r\nlet readc = disk\r\n| where ObjectName == 'Process' and CounterName == 'IO Read Bytes/sec'\r\n| summarize Read=avg(CounterValue) by Computer;\r\nlet readp = disk\r\n| where ObjectName == 'Process' and CounterName == 'IO Read Bytes/sec'\r\n| summarize Read=avg(CounterValue) by Computer, InstanceName;\r\nlet writec = disk\r\n| where ObjectName == 'Process' and CounterName == 'IO Write Bytes/sec'\r\n| summarize Write=avg(CounterValue) by Computer;\r\nlet writep = disk\r\n| where ObjectName == 'Process' and CounterName == 'IO Write Bytes/sec'\r\n| summarize Write=avg(CounterValue) by Computer, InstanceName;\r\nlet comp = readc\r\n| join writec on Computer\r\n| project Name=strcat('💻 ', Computer), Key=Computer, Read, Write, ParentKey='';\r\nlet proc = readp\r\n| join writep on Computer, InstanceName\r\n| project Name=strcat('🎫 ', InstanceName), ParentKey=Computer, Read, Write, Key=strcat(Computer, '-', InstanceName);\r\ncomp\r\n| union proc",
+        "showQuery": false,
+        "size": 0,
+        "aggregation": 0,
+        "showAnnotations": false,
+        "showAnalytics": false,
+        "timeContextFromParameter": null,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "crossComponentResources": [
+          "{Workspace}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "Key",
+              "formatter": 5,
+              "formatOptions": {
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "Read",
+              "formatter": 8,
+              "formatOptions": {
+                "min": 0,
+                "palette": "green",
+                "showIcon": true
+              },
+              "numberFormat": {
+                "unit": 11,
+                "options": {
+                  "style": "decimal"
+                }
+              }
+            },
+            {
+              "columnMatch": "Write",
+              "formatter": 8,
+              "formatOptions": {
+                "min": 0,
+                "palette": "orange",
+                "showIcon": true
+              },
+              "numberFormat": {
+                "unit": 11,
+                "options": {
+                  "style": "decimal"
+                }
+              }
+            },
+            {
+              "columnMatch": "ParentKey",
+              "formatter": 5,
+              "formatOptions": {
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "Transfer",
+              "formatter": 8,
+              "formatOptions": {
+                "min": 0,
+                "palette": "blue",
+                "showIcon": true
+              },
+              "numberFormat": {
+                "unit": 11,
+                "options": {
+                  "style": "decimal"
+                }
+              }
+            }
+          ],
+          "rowLimit": 10000,
+          "hierarchySettings": {
+            "idColumn": "Key",
+            "parentColumn": "ParentKey",
+            "treeType": 0,
+            "expanderColumn": "Name",
+            "expandTopLevel": false
+          }
+        }
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## Network\r\n⚠ *Only Windows VMs are shown*"
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let network = Perf {ComputerFilter} | where ObjectName == 'Network Adapter';\r\nlet rx = network | where CounterName == 'Bytes Received/sec';\r\nlet rxc = rx | summarize RX=avg(CounterValue) by Computer;\r\nlet rxp = rx | summarize RX=avg(CounterValue) by Computer, InstanceName;\r\nlet tx = network | where CounterName == 'Bytes Sent/sec';\r\nlet txc = tx | summarize TX=avg(CounterValue) by Computer;\r\nlet txp = tx | summarize TX=avg(CounterValue) by Computer, InstanceName;\r\nlet comp = rxc | join txc on Computer | project Name=strcat('💻 ', Computer), RX, TX, Key=Computer, ParentKey='';\r\nlet proc = rxp | join txp on Computer, InstanceName | project Name=strcat('🎫 ', InstanceName), RX, TX, Key=strcat(Computer, '-', InstanceName), ParentKey=Computer;\r\ncomp\r\n| union proc",
+        "showQuery": false,
+        "size": 0,
+        "aggregation": 0,
+        "showAnnotations": false,
+        "showAnalytics": false,
+        "timeContextFromParameter": null,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "RX",
+              "formatter": 8,
+              "formatOptions": {
+                "min": 0,
+                "palette": "green",
+                "showIcon": true
+              },
+              "numberFormat": {
+                "unit": 11,
+                "options": {
+                  "style": "decimal"
+                }
+              }
+            },
+            {
+              "columnMatch": "TX",
+              "formatter": 8,
+              "formatOptions": {
+                "min": 0,
+                "palette": "orange",
+                "showIcon": true
+              },
+              "numberFormat": {
+                "unit": 11,
+                "options": {
+                  "style": "decimal"
+                }
+              }
+            },
+            {
+              "columnMatch": "Key",
+              "formatter": 5,
+              "formatOptions": {
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "ParentKey",
+              "formatter": 5,
+              "formatOptions": {
+                "showIcon": true
+              }
+            }
+          ],
+          "hierarchySettings": {
+            "idColumn": "Key",
+            "parentColumn": "ParentKey",
+            "treeType": 0,
+            "expanderColumn": "Name"
+          }
+        }
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## Memory\r\n\r\nTBD"
+      },
+      "conditionalVisibility": null
+    }
+  ],
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
