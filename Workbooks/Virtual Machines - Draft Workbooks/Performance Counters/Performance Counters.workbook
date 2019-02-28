@@ -14,9 +14,7 @@
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [
-          "{Workspaces}"
-        ],
+        "crossComponentResources": [],
         "parameters": [
           {
             "id": "e41c2177-932a-4c58-ba24-03ef070eb197",
@@ -160,12 +158,26 @@
             }
           },
           {
+            "id": "1a0a93cf-0406-40d1-80e1-572b1a8d640e",
+            "version": "KqlParameterItem/1.0",
+            "name": "TimeGrain",
+            "type": 2,
+            "isRequired": true,
+            "value": "15m",
+            "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
+            "jsonData": "[\r\n    {\r\n        \"label\": \"1 minute\",\r\n        \"value\": \"1m\"\r\n    },\r\n    {\r\n        \"label\": \"5 minutes\",\r\n        \"value\": \"5m\"\r\n    },\r\n    {\r\n        \"label\": \"15 minutes\",\r\n        \"value\": \"15m\"\r\n    },\r\n    {\r\n        \"label\": \"30 minutes\",\r\n        \"value\": \"30m\"\r\n    },\r\n    {\r\n        \"label\": \"1 hour\",\r\n        \"value\": \"1h\"\r\n    }\r\n]",
+            "timeContextFromParameter": null
+          },
+          {
             "id": "112823d7-bf58-4604-a299-78ccc5899516",
             "version": "KqlParameterItem/1.0",
             "name": "LineChartQuerySnippet",
             "type": 1,
             "isRequired": false,
-            "query": "print(\"bin(TimeGenerated, {TimeRange:grain}), ResourceName | render linechart\")",
+            "query": "print(\"bin(TimeGenerated, {TimeGrain}), ResourceName | render linechart\")",
             "crossComponentResources": [
               "{Workspaces}"
             ],
@@ -322,7 +334,9 @@
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [],
+        "crossComponentResources": [
+          "{Workspaces}"
+        ],
         "parameters": [
           {
             "id": "aa2368fc-ad30-4608-b96a-72abf7b1e1af",
