@@ -10,24 +10,6 @@
         "crossComponentResources": [],
         "parameters": [
           {
-            "id": "a224b02c-2e4b-4e6a-8dfd-9533186c9590",
-            "version": "KqlParameterItem/1.0",
-            "name": "Workspace",
-            "type": 5,
-            "isRequired": true,
-            "value": "value::1",
-            "isHiddenWhenLocked": true,
-            "typeSettings": {
-              "resourceTypeFilter": {
-                "microsoft.operationalinsights/workspaces": true
-              },
-              "additionalResourceOptions": [
-                "value::1"
-              ]
-            },
-            "timeContextFromParameter": null
-          },
-          {
             "id": "e8ba1160-d550-4e89-9014-c95a83b011d0",
             "version": "KqlParameterItem/1.0",
             "name": "TimeRange",
@@ -174,16 +156,13 @@
         "timeContext": {
           "durationMs": 86400000,
           "endTime": null,
-          "createdTime": "2019-02-28T22:33:43.149Z",
+          "createdTime": "2019-02-28T22:59:40.518Z",
           "isInitialTime": false,
           "grain": 1,
           "useDashboardTimeRange": false
         },
         "timeContextFromParameter": null,
         "resourceType": "microsoft.operationalinsights/workspaces",
-        "crossComponentResources": [
-          "{Workspace}"
-        ],
         "gridSettings": {
           "formatters": [
             {
@@ -242,9 +221,7 @@
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [
-          "{Workspace}"
-        ],
+        "crossComponentResources": [],
         "parameters": [
           {
             "id": "ac3dc2cc-de39-4fe9-ba0c-bc722f953ffa",
@@ -253,9 +230,6 @@
             "type": 1,
             "isRequired": false,
             "query": "print iff('{Computer}' == '🔵 Overall', '*', '{Computer}')",
-            "crossComponentResources": [
-              "{Workspace}"
-            ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
@@ -270,7 +244,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "VMConnection\n| where TimeGenerated {TimeRange}\n| where Computer in (\"{ComputerName}\") or '*' in (\"{ComputerName}\") \n| summarize Established = sum(LinksEstablished), Failed = sum(LinksFailed) by Computer, bin(TimeGenerated, 1h)",
+        "query": "VMConnection\n| where TimeGenerated {TimeRange}\n| where Computer in (\"{ComputerName}\") or '*' in (\"{ComputerName}\") \n| summarize Established = sum(LinksEstablished), Failed = sum(LinksFailed) by bin(TimeGenerated, {TimeRange:grain})",
         "showQuery": false,
         "size": 0,
         "aggregation": 0,
@@ -279,17 +253,14 @@
         "timeContext": {
           "durationMs": 86400000,
           "endTime": null,
-          "createdTime": "2019-02-28T22:33:43.169Z",
+          "createdTime": "2019-02-28T22:59:40.562Z",
           "isInitialTime": false,
           "grain": 1,
           "useDashboardTimeRange": false
         },
         "timeContextFromParameter": null,
         "resourceType": "microsoft.operationalinsights/workspaces",
-        "crossComponentResources": [
-          "{Workspace}"
-        ],
-        "visualization": "linechart"
+        "visualization": "timechart"
       },
       "conditionalVisibility": null,
       "customWidth": "50"
@@ -298,17 +269,14 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "VMConnection\r\n| where TimeGenerated {TimeRange}\r\n| where Computer in (\"{ComputerName}\") or '*' in (\"{ComputerName}\") \r\n| summarize Established = sum(LinksEstablished), Failed = sum(LinksFailed) by Computer, bin(TimeGenerated, 1h)\r\n| project TimeGenerated, PercentFailed = (todouble(Failed)/todouble(Failed+Established))*100.0",
+        "query": "VMConnection\r\n| where TimeGenerated {TimeRange}\r\n| where Computer in (\"{ComputerName}\") or '*' in (\"{ComputerName}\") \r\n| summarize Established = sum(LinksEstablished), Failed = sum(LinksFailed) by bin(TimeGenerated, {TimeRange:grain})\r\n| project TimeGenerated, PercentFailed = (todouble(Failed)/todouble(Failed+Established))*100",
         "showQuery": false,
         "size": 0,
-        "aggregation": 0,
+        "aggregation": 3,
         "showAnnotations": false,
         "showAnalytics": false,
         "timeContextFromParameter": null,
         "resourceType": "microsoft.operationalinsights/workspaces",
-        "crossComponentResources": [
-          "{Workspace}"
-        ],
         "visualization": "timechart"
       },
       "conditionalVisibility": null,
