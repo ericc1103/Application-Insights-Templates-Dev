@@ -3,13 +3,6 @@
   "isLocked": true,
   "items": [
     {
-      "type": 1,
-      "content": {
-        "json": "## TCP Traffic"
-      },
-      "conditionalVisibility": null
-    },
-    {
       "type": 9,
       "content": {
         "version": "KqlParameterItem/1.0",
@@ -17,7 +10,7 @@
         "crossComponentResources": [],
         "parameters": [
           {
-            "id": "a05ed6ee-c611-43b3-adb0-e714689773cc",
+            "id": "a224b02c-2e4b-4e6a-8dfd-9533186c9590",
             "version": "KqlParameterItem/1.0",
             "name": "Workspace",
             "type": 5,
@@ -35,14 +28,14 @@
             "timeContextFromParameter": null
           },
           {
-            "id": "54487088-d367-4762-a1e9-e9b926d604d9",
+            "id": "e8ba1160-d550-4e89-9014-c95a83b011d0",
             "version": "KqlParameterItem/1.0",
             "name": "TimeRange",
             "type": 4,
             "isRequired": true,
             "value": {
               "durationMs": 86400000,
-              "createdTime": "2019-02-13T19:44:46.822Z",
+              "createdTime": "2019-02-14T18:49:25.654Z",
               "isInitialTime": false,
               "grain": 1,
               "useDashboardTimeRange": false
@@ -52,104 +45,110 @@
               "selectableValues": [
                 {
                   "durationMs": 300000,
-                  "createdTime": "2019-02-13T19:44:46.821Z",
+                  "createdTime": "2019-02-14T18:49:25.654Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 900000,
-                  "createdTime": "2019-02-13T19:44:46.821Z",
+                  "createdTime": "2019-02-14T18:49:25.654Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 1800000,
-                  "createdTime": "2019-02-13T19:44:46.822Z",
+                  "createdTime": "2019-02-14T18:49:25.654Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 3600000,
-                  "createdTime": "2019-02-13T19:44:46.822Z",
+                  "createdTime": "2019-02-14T18:49:25.654Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 14400000,
-                  "createdTime": "2019-02-13T19:44:46.822Z",
+                  "createdTime": "2019-02-14T18:49:25.654Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 43200000,
-                  "createdTime": "2019-02-13T19:44:46.822Z",
+                  "createdTime": "2019-02-14T18:49:25.654Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 86400000,
-                  "createdTime": "2019-02-13T19:44:46.822Z",
+                  "createdTime": "2019-02-14T18:49:25.654Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 172800000,
-                  "createdTime": "2019-02-13T19:44:46.822Z",
+                  "createdTime": "2019-02-14T18:49:25.654Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 259200000,
-                  "createdTime": "2019-02-13T19:44:46.822Z",
+                  "createdTime": "2019-02-14T18:49:25.654Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 604800000,
-                  "createdTime": "2019-02-13T19:44:46.822Z",
+                  "createdTime": "2019-02-14T18:49:25.654Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 1209600000,
-                  "createdTime": "2019-02-13T19:44:46.822Z",
+                  "createdTime": "2019-02-14T18:49:25.655Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 2419200000,
+                  "createdTime": "2019-02-14T18:49:25.655Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 2592000000,
-                  "createdTime": "2019-02-13T19:44:46.822Z",
+                  "createdTime": "2019-02-14T18:49:25.655Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 5184000000,
-                  "createdTime": "2019-02-13T19:44:46.822Z",
+                  "createdTime": "2019-02-14T18:49:25.655Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 },
                 {
                   "durationMs": 7776000000,
-                  "createdTime": "2019-02-13T19:44:46.822Z",
+                  "createdTime": "2019-02-14T18:49:25.655Z",
                   "isInitialTime": false,
                   "grain": 1,
                   "useDashboardTimeRange": false
                 }
-              ],
-              "allowCustom": false
+              ]
             },
             "timeContextFromParameter": null
           }
@@ -163,7 +162,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "let overallData = VMConnection\n| where TimeGenerated {TimeRange}\n| summarize Sent = sum(BytesSent), Received = sum(BytesReceived)\n| extend Total = todouble(Sent)+todouble(Received)\n| extend Computer = '🔵 Overall', Type = '1';\nVMConnection\n| where TimeGenerated {TimeRange}\n| summarize Sent = sum(BytesSent), Received = sum(BytesReceived) by Computer\n| extend Total = todouble(Sent)+todouble(Received), Type = '2'\n| union overallData\n| order by Type asc, Total desc\n| project-away Type",
+        "query": "let overallData = VMConnection\n| where TimeGenerated {TimeRange}\n| summarize Established = sum(LinksEstablished), Failed = sum(LinksFailed)\n| extend PercentFailed = (todouble(Failed)/todouble(Failed+Established))*100.0\n| extend Computer = '🔵 Overall', Type = '1';\nVMConnection\n| where TimeGenerated {TimeRange}\n| summarize Established = sum(LinksEstablished), Failed = sum(LinksFailed) by Computer\n| extend PercentFailed = (todouble(Failed)/todouble(Failed+Established))*100.0, Type = '2'\n| union overallData\n| order by Type asc, PercentFailed desc\n| project-away Type",
         "showQuery": false,
         "size": 1,
         "aggregation": 0,
@@ -175,7 +174,7 @@
         "timeContext": {
           "durationMs": 86400000,
           "endTime": null,
-          "createdTime": "2019-02-21T17:09:30.837Z",
+          "createdTime": "2019-02-28T22:33:43.149Z",
           "isInitialTime": false,
           "grain": 1,
           "useDashboardTimeRange": false
@@ -188,47 +187,48 @@
         "gridSettings": {
           "formatters": [
             {
-              "columnMatch": "Sent",
-              "formatter": 4,
-              "formatOptions": {
-                "palette": "orange",
-                "showIcon": true
-              },
-              "numberFormat": {
-                "unit": 2,
-                "options": {
-                  "style": "decimal",
-                  "useGrouping": true
-                }
-              }
-            },
-            {
-              "columnMatch": "Received",
-              "formatter": 4,
-              "formatOptions": {
-                "palette": "green",
-                "showIcon": true
-              },
-              "numberFormat": {
-                "unit": 2,
-                "options": {
-                  "style": "decimal",
-                  "useGrouping": true
-                }
-              }
-            },
-            {
-              "columnMatch": "Total",
+              "columnMatch": "Established",
               "formatter": 4,
               "formatOptions": {
                 "palette": "blue",
                 "showIcon": true
               },
               "numberFormat": {
-                "unit": 2,
+                "unit": 17,
                 "options": {
                   "style": "decimal",
                   "useGrouping": true
+                }
+              }
+            },
+            {
+              "columnMatch": "Failed",
+              "formatter": 4,
+              "formatOptions": {
+                "palette": "purple",
+                "showIcon": true
+              },
+              "numberFormat": {
+                "unit": 17,
+                "options": {
+                  "style": "decimal",
+                  "useGrouping": true
+                }
+              }
+            },
+            {
+              "columnMatch": "PercentFailed",
+              "formatter": 4,
+              "formatOptions": {
+                "palette": "lightBlue",
+                "showIcon": true
+              },
+              "numberFormat": {
+                "unit": 1,
+                "options": {
+                  "style": "decimal",
+                  "minimumFractionDigits": 2,
+                  "maximumFractionDigits": 2
                 }
               }
             }
@@ -247,25 +247,16 @@
         ],
         "parameters": [
           {
-            "id": "29398687-fa75-4afa-806c-89a376bd0c21",
+            "id": "ac3dc2cc-de39-4fe9-ba0c-bc722f953ffa",
             "version": "KqlParameterItem/1.0",
             "name": "ComputerName",
             "type": 1,
-            "description": "Select a computer to filter the graph",
             "isRequired": false,
             "query": "print iff('{Computer}' == '🔵 Overall', '*', '{Computer}')",
             "crossComponentResources": [
               "{Workspace}"
             ],
             "isHiddenWhenLocked": true,
-            "timeContext": {
-              "durationMs": 86400000,
-              "endTime": null,
-              "createdTime": "2019-02-21T17:12:03.092Z",
-              "isInitialTime": false,
-              "grain": 1,
-              "useDashboardTimeRange": false
-            },
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
           }
@@ -279,7 +270,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "VMConnection\n| where TimeGenerated {TimeRange}\n| where Computer in (\"{ComputerName}\") or '*' in (\"{ComputerName}\") \n| summarize Sent = sum(BytesSent), Received = sum(BytesReceived) by Computer, bin(TimeGenerated, {TimeRange:grain})\n| extend Total = todouble(Sent)+todouble(Received)\n| order by Total desc\n",
+        "query": "VMConnection\n| where TimeGenerated {TimeRange}\n| where Computer in (\"{ComputerName}\") or '*' in (\"{ComputerName}\") \n| summarize Established = sum(LinksEstablished), Failed = sum(LinksFailed) by Computer, bin(TimeGenerated, 1h)",
         "showQuery": false,
         "size": 0,
         "aggregation": 0,
@@ -288,7 +279,7 @@
         "timeContext": {
           "durationMs": 86400000,
           "endTime": null,
-          "createdTime": "2019-02-21T17:09:30.899Z",
+          "createdTime": "2019-02-28T22:33:43.169Z",
           "isInitialTime": false,
           "grain": 1,
           "useDashboardTimeRange": false
@@ -300,7 +291,28 @@
         ],
         "visualization": "linechart"
       },
-      "conditionalVisibility": null
+      "conditionalVisibility": null,
+      "customWidth": "50"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "VMConnection\r\n| where TimeGenerated {TimeRange}\r\n| where Computer in (\"{ComputerName}\") or '*' in (\"{ComputerName}\") \r\n| summarize Established = sum(LinksEstablished), Failed = sum(LinksFailed) by Computer, bin(TimeGenerated, 1h)\r\n| project TimeGenerated, PercentFailed = (todouble(Failed)/todouble(Failed+Established))*100.0",
+        "showQuery": false,
+        "size": 0,
+        "aggregation": 0,
+        "showAnnotations": false,
+        "showAnalytics": false,
+        "timeContextFromParameter": null,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "crossComponentResources": [
+          "{Workspace}"
+        ],
+        "visualization": "timechart"
+      },
+      "conditionalVisibility": null,
+      "customWidth": "50"
     }
   ],
   "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
