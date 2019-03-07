@@ -19,6 +19,24 @@
             "isHiddenWhenLocked": false,
             "timeContextFromParameter": null,
             "resourceType": "microsoft.operationalinsights/workspaces"
+          },
+          {
+            "id": "241d3f2c-058d-454c-8a42-d0ef2b1c9ec9",
+            "version": "KqlParameterItem/1.0",
+            "name": "WorkspaceID",
+            "type": 5,
+            "isRequired": true,
+            "query": "where type == \"microsoft.operationalinsights/workspaces\"\r\n| project id\r\n",
+            "crossComponentResources": [
+              "value::all"
+            ],
+            "value": "",
+            "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.resourcegraph/resources"
           }
         ],
         "style": "pills",
