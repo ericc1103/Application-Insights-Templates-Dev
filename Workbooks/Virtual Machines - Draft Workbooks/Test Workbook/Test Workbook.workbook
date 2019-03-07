@@ -10,17 +10,6 @@
         "crossComponentResources": [],
         "parameters": [
           {
-            "id": "81283458-53bf-46b8-a428-6fb1189df736",
-            "version": "KqlParameterItem/1.0",
-            "name": "Resource",
-            "type": 1,
-            "isRequired": true,
-            "query": "VMConnection\r\n| take 1",
-            "isHiddenWhenLocked": false,
-            "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
-          },
-          {
             "id": "241d3f2c-058d-454c-8a42-d0ef2b1c9ec9",
             "version": "KqlParameterItem/1.0",
             "name": "WorkspaceID",
