@@ -14,7 +14,7 @@
         "version": "KqlParameterItem/1.0",
         "query": "",
         "crossComponentResources": [
-          "value::selected"
+          "{Subscriptions}"
         ],
         "parameters": [
           {
@@ -92,12 +92,17 @@
             "crossComponentResources": [
               "value::selected"
             ],
-            "value": [],
+            "value": [
+              "value::all"
+            ],
             "isHiddenWhenLocked": false,
             "typeSettings": {
-              "additionalResourceOptions": []
+              "additionalResourceOptions": [
+                "value::all"
+              ]
             },
             "timeContextFromParameter": null,
+            "queryType": 1,
             "resourceType": "microsoft.resourcegraph/resources"
           },
           {
@@ -109,7 +114,7 @@
             "multiSelect": true,
             "quote": "'",
             "delimiter": ",",
-            "query": "where type =~ 'microsoft.operationalinsights/workspaces'\r\n| project label = resourceGroup, value = resourceGroup, selected = iff(todynamic('{DefaultSelection}').rg == resourceGroup, true, false)",
+            "query": "where type =~ 'microsoft.operationalinsights/workspaces'\r\n| distinct resourceGroup\r\n| project label = resourceGroup, value = resourceGroup, selected = iff(todynamic('{Selection}').rg == resourceGroup, true, false)",
             "crossComponentResources": [
               "{Subscriptions}"
             ],
@@ -121,6 +126,7 @@
               "additionalResourceOptions": []
             },
             "timeContextFromParameter": null,
+            "queryType": 1,
             "resourceType": "microsoft.resourcegraph/resources"
           },
           {
@@ -132,12 +138,9 @@
             "multiSelect": true,
             "quote": "'",
             "delimiter": ",",
-            "query": "where type =~ 'microsoft.operationalinsights/workspaces'\r\n| summarize by id, name\r\n| project id, selected = iff(id == todynamic('{DefaultSelection}').ws, true, false), group = todynamic('{DefaultSelection}').rg",
+            "query": "where type =~ 'microsoft.operationalinsights/workspaces'\r\n| summarize by id, name\r\n| project id, selected = iff(id == todynamic('{Selection}').ws, true, false), group = todynamic('{Selection}').rg",
             "crossComponentResources": [
               "{Subscriptions}"
-            ],
-            "value": [
-              "/subscriptions/f9cf50ed-d814-4b95-b76c-c709845f84c9/resourceGroups/mms-eus/providers/Microsoft.OperationalInsights/workspaces/AdmDemo"
             ],
             "isHiddenWhenLocked": false,
             "typeSettings": {
@@ -147,6 +150,7 @@
               "additionalResourceOptions": []
             },
             "timeContextFromParameter": null,
+            "queryType": 1,
             "resourceType": "microsoft.resourcegraph/resources"
           },
           {
@@ -273,7 +277,7 @@
     {
       "type": 1,
       "content": {
-        "json": "{DefaultWorkspace:value}\r\n\r\n---"
+        "json": "---"
       },
       "conditionalVisibility": null
     },
@@ -289,7 +293,9 @@
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [],
+        "crossComponentResources": [
+          "{Workspaces}"
+        ],
         "parameters": [
           {
             "id": "aa2368fc-ad30-4608-b96a-72abf7b1e1af",
@@ -302,13 +308,14 @@
             "crossComponentResources": [
               "{Workspaces}"
             ],
+            "value": "{\"counter\":\"% Processor Time\",\"object\":\"Processor\"}",
             "isHiddenWhenLocked": false,
             "typeSettings": {
               "additionalResourceOptions": []
             },
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "value": "{\"counter\":\"% Processor Time\",\"object\":\"Processor\"}"
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
           },
           {
             "id": "974d5ac2-4fc5-48e7-a8f7-16fc9dddc4ac",
@@ -322,6 +329,7 @@
             ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
+            "queryType": 0,
             "resourceType": "microsoft.operationalinsights/workspaces"
           },
           {
@@ -331,10 +339,13 @@
             "type": 1,
             "isRequired": false,
             "query": "let counter = dynamic({Counter});\r\nprint tostring(counter.object == 'Network Adapter')",
+            "crossComponentResources": [
+              "{Workspaces}"
+            ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "value": null
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
           },
           {
             "id": "3b23aa7a-2afd-40ba-a710-0e2cc73c764b",
@@ -343,10 +354,13 @@
             "type": 1,
             "isRequired": false,
             "query": "let metric = dynamic({Counter});\r\nprint(iff(metric.counter == 'Bytes Received/sec', 'Received', 'Sent'))",
+            "crossComponentResources": [
+              "{Workspaces}"
+            ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "value": null
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
           },
           {
             "id": "9ad8858d-8ef3-4144-94b1-66a8bf9fa9c9",
@@ -358,16 +372,11 @@
             "multiSelect": true,
             "quote": "",
             "delimiter": ",",
-            "value": [
-              "Average",
-              "P95th",
-              "Max"
-            ],
             "isHiddenWhenLocked": false,
             "typeSettings": {
               "additionalResourceOptions": []
             },
-            "jsonData": "[\r\n    { \"value\":\"Average\", \"label\":\"Average\" },\r\n    { \"value\":\"P5th\", \"label\":\"P5th\"},\r\n    { \"value\":\"P10th\", \"label\":\"P10th\"},\r\n    { \"value\":\"P50th\", \"label\":\"P50th\"},\r\n    { \"value\":\"P80th\", \"label\":\"P80th\"},\r\n    { \"value\":\"P90th\", \"label\":\"P90th\"},\r\n    { \"value\":\"P95th\", \"label\":\"P95th\"},\r\n    { \"value\":\"Min\", \"label\":\"Min\"},\r\n    { \"value\":\"Max\", \"label\":\"Max\"}    \r\n]",
+            "jsonData": "[\r\n    { \"value\":\"Average\", \"label\":\"Average\", \"selected\": true },\r\n    { \"value\":\"P5th\", \"label\":\"P5th\", \"selected\": false },\r\n    { \"value\":\"P10th\", \"label\":\"P10th\", \"selected\": false },\r\n    { \"value\":\"P50th\", \"label\":\"P50th\", \"selected\": false },\r\n    { \"value\":\"P80th\", \"label\":\"P80th\", \"selected\": false },\r\n    { \"value\":\"P90th\", \"label\":\"P90th\", \"selected\": false },\r\n    { \"value\":\"P95th\", \"label\":\"P95th\", \"selected\": true },\r\n    { \"value\":\"Min\", \"label\":\"Min\", \"selected\": false },\r\n    { \"value\":\"Max\", \"label\":\"Max\", \"selected\": true }\r\n]",
             "timeContextFromParameter": null
           },
           {
@@ -377,12 +386,11 @@
             "type": 2,
             "description": "Select a percentile to display in the Trend column in the table below",
             "isRequired": true,
-            "value": "Average = round(avg(CounterValue), 2)",
             "isHiddenWhenLocked": false,
             "typeSettings": {
               "additionalResourceOptions": []
             },
-            "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\"},\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\"},\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\"},\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\"},\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\"},\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\"},\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\"}\r\n]",
+            "jsonData": "[\r\n    { \"value\":\"Average = round(avg(CounterValue), 2)\", \"label\":\"Average\", \"selected\": true },\r\n    { \"value\":\"P5th = round(percentile(CounterValue, 5), 2)\", \"label\":\"P5th\", \"selected\": false },\r\n    { \"value\":\"P10th = round(percentile(CounterValue, 10), 2)\", \"label\":\"P10th\", \"selected\": false },\r\n    { \"value\":\"P50th = round(percentile(CounterValue, 50), 2)\", \"label\":\"P50th\", \"selected\": false },\r\n    { \"value\":\"P80th = round(percentile(CounterValue, 80), 2)\", \"label\":\"P80th\", \"selected\": false },\r\n    { \"value\":\"P90th = round(percentile(CounterValue, 90), 2)\", \"label\":\"P90th\", \"selected\": false },\r\n    { \"value\":\"P95th = round(percentile(CounterValue, 95), 2)\", \"label\":\"P95th\", \"selected\": false }\r\n]",
             "timeContextFromParameter": null
           },
           {
@@ -397,6 +405,7 @@
             ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
+            "queryType": 0,
             "resourceType": "microsoft.operationalinsights/workspaces"
           },
           {
@@ -411,6 +420,7 @@
             ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
+            "queryType": 0,
             "resourceType": "microsoft.operationalinsights/workspaces"
           },
           {
@@ -425,8 +435,8 @@
             ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "value": null
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
           },
           {
             "id": "6e392933-2f72-45a6-889b-90351f9130db",
@@ -440,8 +450,8 @@
             ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "value": null
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
           }
         ],
         "style": "above",
@@ -681,6 +691,9 @@
         "timeContextFromParameter": null,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
+        "crossComponentResources": [
+          "{Workspaces}"
+        ],
         "visualization": "table",
         "gridSettings": {
           "formatters": [
@@ -869,45 +882,6 @@
       }
     },
     {
-      "type": 9,
-      "content": {
-        "version": "KqlParameterItem/1.0",
-        "query": "",
-        "crossComponentResources": [
-          "{Workspaces}"
-        ],
-        "parameters": [
-          {
-            "id": "fe57c085-e029-4b37-9cd3-34c39c8734da",
-            "version": "KqlParameterItem/1.0",
-            "name": "Workspaces",
-            "type": 5,
-            "isRequired": true,
-            "multiSelect": true,
-            "quote": "'",
-            "delimiter": ",",
-            "value": [
-              "value::1"
-            ],
-            "isHiddenWhenLocked": true,
-            "typeSettings": {
-              "resourceTypeFilter": {
-                "microsoft.operationalinsights/workspaces": true
-              },
-              "additionalResourceOptions": [
-                "value::1"
-              ]
-            },
-            "timeContextFromParameter": null
-          }
-        ],
-        "style": "above",
-        "queryType": 0,
-        "resourceType": "microsoft.operationalinsights/workspaces"
-      },
-      "conditionalVisibility": null
-    },
-    {
       "type": 1,
       "content": {
         "json": "---\r\n## Top 10 Machines"
@@ -926,7 +900,9 @@
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [],
+        "crossComponentResources": [
+          "{Workspaces}"
+        ],
         "parameters": [
           {
             "id": "92358ae0-d5e1-494b-b65b-6d904f1325c5",
@@ -949,10 +925,13 @@
             "type": 1,
             "isRequired": false,
             "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{Aggregate}' contains 'P5th'  or '{Aggregate}' contains 'P10th', 'asc', 'desc')",
+            "crossComponentResources": [
+              "{Workspaces}"
+            ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "value": null
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
           }
         ],
         "style": "above",
@@ -1014,7 +993,9 @@
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [],
+        "crossComponentResources": [
+          "{Workspaces}"
+        ],
         "parameters": [
           {
             "id": "333837c2-d5a4-4173-9aad-3db1dca17e2a",
@@ -1037,10 +1018,13 @@
             "type": 1,
             "isRequired": false,
             "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{Aggregate}' contains 'P5th'  or '{Aggregate}' contains 'P10th', 'asc', 'desc')",
+            "crossComponentResources": [
+              "{Workspaces}"
+            ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "value": null
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
           }
         ],
         "style": "above",
@@ -1102,7 +1086,9 @@
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [],
+        "crossComponentResources": [
+          "{Workspaces}"
+        ],
         "parameters": [
           {
             "id": "360da4c1-97fa-4b15-a008-33a6110d0acd",
@@ -1125,10 +1111,13 @@
             "type": 1,
             "isRequired": false,
             "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{Aggregate}' contains 'P5th'  or '{Aggregate}' contains 'P10th', 'asc', 'desc')",
+            "crossComponentResources": [
+              "{Workspaces}"
+            ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "value": null
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
           }
         ],
         "style": "above",
@@ -1190,7 +1179,9 @@
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [],
+        "crossComponentResources": [
+          "{Workspaces}"
+        ],
         "parameters": [
           {
             "id": "6772b281-d17d-4293-a227-1b2ed67f399e",
@@ -1213,10 +1204,13 @@
             "type": 1,
             "isRequired": false,
             "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{Aggregate}' contains 'P5th'  or '{Aggregate}' contains 'P10th', 'asc', 'desc')",
+            "crossComponentResources": [
+              "{Workspaces}"
+            ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "value": null
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
           }
         ],
         "style": "above",
@@ -1278,7 +1272,9 @@
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [],
+        "crossComponentResources": [
+          "{Workspaces}"
+        ],
         "parameters": [
           {
             "id": "5d6afbec-79f6-4cd1-b3a1-361503478304",
@@ -1301,10 +1297,13 @@
             "type": 1,
             "isRequired": false,
             "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{Aggregate}' contains 'P5th'  or '{Aggregate}' contains 'P10th', 'asc', 'desc')",
+            "crossComponentResources": [
+              "{Workspaces}"
+            ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces",
-            "value": null
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
           }
         ],
         "style": "above",
