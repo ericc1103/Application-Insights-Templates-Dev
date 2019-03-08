@@ -14,7 +14,7 @@
         "version": "KqlParameterItem/1.0",
         "query": "",
         "crossComponentResources": [
-          "{DefaultWorkspace}"
+          "value::selected"
         ],
         "parameters": [
           {
@@ -40,7 +40,7 @@
             "version": "KqlParameterItem/1.0",
             "name": "ContextSelection",
             "type": 1,
-            "isRequired": true,
+            "isRequired": false,
             "query": "// where id =~ \"{DefaultWorkspace:value}\"\r\nwhere strcat(\"'\", id, \"'\") =~ \"{DefaultWorkspace:value}\"\r\n| project value = tostring(pack('sub', subscriptionId, 'rg', resourceGroup, 'ws', id))",
             "crossComponentResources": [
               "value::selected"
@@ -69,15 +69,15 @@
             "version": "KqlParameterItem/1.0",
             "name": "Selection",
             "type": 1,
-            "isRequired": true,
-            "query": "print iff('{ContextSelection}' != '', '{ContextSelection}', '{RandomSelection}')",
+            "isRequired": false,
+            "query": "take 1\r\n| project iff('{ContextSelection}' != '', '{ContextSelection}', '{RandomSelection}')",
             "crossComponentResources": [
-              "{DefaultWorkspace}"
+              "value::selected"
             ],
             "isHiddenWhenLocked": false,
             "timeContextFromParameter": null,
-            "queryType": 0,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "queryType": 1,
+            "resourceType": "microsoft.resourcegraph/resources"
           },
           {
             "id": "1db5ee15-fe52-458b-91d1-7ee39d8c2cd3",
@@ -265,8 +265,8 @@
           }
         ],
         "style": "above",
-        "queryType": 0,
-        "resourceType": "microsoft.operationalinsights/workspaces"
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources"
       },
       "conditionalVisibility": null
     },
@@ -333,7 +333,8 @@
             "query": "let counter = dynamic({Counter});\r\nprint tostring(counter.object == 'Network Adapter')",
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": null
           },
           {
             "id": "3b23aa7a-2afd-40ba-a710-0e2cc73c764b",
@@ -344,7 +345,8 @@
             "query": "let metric = dynamic({Counter});\r\nprint(iff(metric.counter == 'Bytes Received/sec', 'Received', 'Sent'))",
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": null
           },
           {
             "id": "9ad8858d-8ef3-4144-94b1-66a8bf9fa9c9",
@@ -423,7 +425,8 @@
             ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": null
           },
           {
             "id": "6e392933-2f72-45a6-889b-90351f9130db",
@@ -437,7 +440,8 @@
             ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": null
           }
         ],
         "style": "above",
@@ -947,7 +951,8 @@
             "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{Aggregate}' contains 'P5th'  or '{Aggregate}' contains 'P10th', 'asc', 'desc')",
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": null
           }
         ],
         "style": "above",
@@ -1034,7 +1039,8 @@
             "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{Aggregate}' contains 'P5th'  or '{Aggregate}' contains 'P10th', 'asc', 'desc')",
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": null
           }
         ],
         "style": "above",
@@ -1121,7 +1127,8 @@
             "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{Aggregate}' contains 'P5th'  or '{Aggregate}' contains 'P10th', 'asc', 'desc')",
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": null
           }
         ],
         "style": "above",
@@ -1208,7 +1215,8 @@
             "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{Aggregate}' contains 'P5th'  or '{Aggregate}' contains 'P10th', 'asc', 'desc')",
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": null
           }
         ],
         "style": "above",
@@ -1295,7 +1303,8 @@
             "query": "range Steps from 1 to 1 step 1\r\n| project value = iff('{Aggregate}' contains 'P5th'  or '{Aggregate}' contains 'P10th', 'asc', 'desc')",
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": null
           }
         ],
         "style": "above",
