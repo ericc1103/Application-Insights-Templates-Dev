@@ -1,6 +1,5 @@
 {
   "version": "Notebook/1.0",
-  "isLocked": true,
   "items": [
     {
       "type": 1,
@@ -14,8 +13,142 @@
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [],
+        "crossComponentResources": [
+          "{DefaultWorkspace}"
+        ],
         "parameters": [
+          {
+            "id": "9a47d27d-cf78-4ebe-8a79-f67a97a1bf81",
+            "version": "KqlParameterItem/1.0",
+            "name": "DefaultWorkspace",
+            "type": 5,
+            "isRequired": true,
+            "value": "value::1",
+            "isHiddenWhenLocked": true,
+            "typeSettings": {
+              "resourceTypeFilter": {
+                "microsoft.operationalinsights/workspaces": true
+              },
+              "additionalResourceOptions": [
+                "value::1"
+              ]
+            },
+            "timeContextFromParameter": null
+          },
+          {
+            "id": "d23121ef-03ad-44fb-8974-365e40c62a4e",
+            "version": "KqlParameterItem/1.0",
+            "name": "ContextSelection",
+            "type": 1,
+            "isRequired": true,
+            "query": "// where id =~ \"{DefaultWorkspace:value}\"\r\nwhere strcat(\"'\", id, \"'\") =~ \"{DefaultWorkspace:value}\"\r\n| project value = tostring(pack('sub', subscriptionId, 'rg', resourceGroup, 'ws', id))",
+            "crossComponentResources": [
+              "value::selected"
+            ],
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "queryType": 1,
+            "resourceType": "microsoft.resourcegraph/resources"
+          },
+          {
+            "id": "bbbc300a-6f91-4b2b-b4b5-842b4bf8577a",
+            "version": "KqlParameterItem/1.0",
+            "name": "RandomSelection",
+            "type": 1,
+            "isRequired": true,
+            "query": "where type =~ 'microsoft.operationalinsights/workspaces'\r\n| take 1\r\n| project value = tostring(pack('sub', subscriptionId, 'rg', resourceGroup, 'ws', id))",
+            "crossComponentResources": [
+              "value::selected"
+            ],
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.resourcegraph/resources"
+          },
+          {
+            "id": "89e98098-1633-45b5-9a7b-4abed13ec7d1",
+            "version": "KqlParameterItem/1.0",
+            "name": "Selection",
+            "type": 1,
+            "isRequired": true,
+            "query": "print iff('{ContextSelection}' != '', '{ContextSelection}', '{RandomSelection}')",
+            "crossComponentResources": [
+              "{DefaultWorkspace}"
+            ],
+            "isHiddenWhenLocked": false,
+            "timeContextFromParameter": null,
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          },
+          {
+            "id": "1db5ee15-fe52-458b-91d1-7ee39d8c2cd3",
+            "version": "KqlParameterItem/1.0",
+            "name": "Subscriptions",
+            "type": 6,
+            "isRequired": false,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "query": "summarize by subscriptionId\r\n| project strcat('/subscriptions/', subscriptionId), selected = iff(subscriptionId == todynamic('{RandomSelection}').sub, true, false)",
+            "crossComponentResources": [
+              "value::selected"
+            ],
+            "value": [],
+            "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.resourcegraph/resources"
+          },
+          {
+            "id": "7392adfc-c395-4cad-b2bd-6836c4b11b9f",
+            "version": "KqlParameterItem/1.0",
+            "name": "ResourceGroup",
+            "type": 2,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "query": "where type =~ 'microsoft.operationalinsights/workspaces'\r\n| project label = resourceGroup, value = resourceGroup, selected = iff(todynamic('{DefaultSelection}').rg == resourceGroup, true, false)",
+            "crossComponentResources": [
+              "{Subscriptions}"
+            ],
+            "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "resourceTypeFilter": {
+                "microsoft.resources/resourcegroups": true
+              },
+              "additionalResourceOptions": []
+            },
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.resourcegraph/resources"
+          },
+          {
+            "id": "9732eff8-fb57-4cbd-8ade-5ae746f33760",
+            "version": "KqlParameterItem/1.0",
+            "name": "Workspaces",
+            "type": 5,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "query": "where type =~ 'microsoft.operationalinsights/workspaces'\r\n| summarize by id, name\r\n| project id, selected = iff(id == todynamic('{DefaultSelection}').ws, true, false), group = todynamic('{DefaultSelection}').rg",
+            "crossComponentResources": [
+              "{Subscriptions}"
+            ],
+            "value": [
+              "/subscriptions/f9cf50ed-d814-4b95-b76c-c709845f84c9/resourceGroups/mms-eus/providers/Microsoft.OperationalInsights/workspaces/AdmDemo"
+            ],
+            "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "resourceTypeFilter": {
+                "microsoft.operationalinsights/workspaces": true
+              },
+              "additionalResourceOptions": []
+            },
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.resourcegraph/resources"
+          },
           {
             "id": "5f8cce4b-9c4c-47da-8683-7e5ccc9faed3",
             "version": "KqlParameterItem/1.0",
@@ -23,11 +156,7 @@
             "type": 4,
             "isRequired": false,
             "value": {
-              "durationMs": 14400000,
-              "createdTime": "2018-10-04T22:01:18.374Z",
-              "isInitialTime": false,
-              "grain": 1,
-              "useDashboardTimeRange": false
+              "durationMs": 14400000
             },
             "isHiddenWhenLocked": false,
             "typeSettings": {
@@ -136,6 +265,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null
@@ -143,7 +273,7 @@
     {
       "type": 1,
       "content": {
-        "json": "---"
+        "json": "{DefaultWorkspace:value}\r\n\r\n---"
       },
       "conditionalVisibility": null
     },
@@ -159,33 +289,8 @@
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [
-          "{Workspaces}"
-        ],
+        "crossComponentResources": [],
         "parameters": [
-          {
-            "id": "e41c2177-932a-4c58-ba24-03ef070eb197",
-            "version": "KqlParameterItem/1.0",
-            "name": "Workspaces",
-            "type": 5,
-            "isRequired": true,
-            "multiSelect": true,
-            "quote": "'",
-            "delimiter": ",",
-            "value": [
-              "value::1"
-            ],
-            "isHiddenWhenLocked": true,
-            "typeSettings": {
-              "resourceTypeFilter": {
-                "microsoft.operationalinsights/workspaces": true
-              },
-              "additionalResourceOptions": [
-                "value::1"
-              ]
-            },
-            "timeContextFromParameter": null
-          },
           {
             "id": "aa2368fc-ad30-4608-b96a-72abf7b1e1af",
             "version": "KqlParameterItem/1.0",
@@ -336,6 +441,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null
@@ -351,6 +457,7 @@
         "showAnnotations": false,
         "showAnalytics": false,
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -568,6 +675,7 @@
         "showAnnotations": false,
         "showAnalytics": false,
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "visualization": "table",
         "gridSettings": {
@@ -790,6 +898,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null
@@ -842,6 +951,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null
@@ -857,6 +967,7 @@
         "showAnnotations": true,
         "showAnalytics": false,
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -927,6 +1038,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null
@@ -942,6 +1054,7 @@
         "showAnnotations": true,
         "showAnalytics": false,
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -1012,6 +1125,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null
@@ -1027,6 +1141,7 @@
         "showAnnotations": true,
         "showAnalytics": false,
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -1097,6 +1212,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null
@@ -1112,6 +1228,7 @@
         "showAnnotations": true,
         "showAnalytics": false,
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -1182,6 +1299,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null
@@ -1197,6 +1315,7 @@
         "showAnnotations": true,
         "showAnalytics": false,
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
