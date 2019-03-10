@@ -2,23 +2,16 @@
   "version": "Notebook/1.0",
   "items": [
     {
-      "type": 1,
-      "content": {
-        "json": "# Performance Analysis\n"
-      },
-      "conditionalVisibility": null
-    },
-    {
       "type": 9,
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
         "crossComponentResources": [
-          "{Subscriptions}"
+          "value::selected"
         ],
         "parameters": [
           {
-            "id": "9a47d27d-cf78-4ebe-8a79-f67a97a1bf81",
+            "id": "688dc7cb-bea3-41ae-ae94-32d22e09568c",
             "version": "KqlParameterItem/1.0",
             "name": "DefaultWorkspace",
             "type": 5,
@@ -36,12 +29,58 @@
             "timeContextFromParameter": null
           },
           {
+            "id": "c11b5651-cf86-4865-b23d-9ecc4f16b712",
+            "version": "KqlParameterItem/1.0",
+            "name": "ContextFree",
+            "type": 1,
+            "isRequired": false,
+            "query": "take 1\r\n| project \"{DefaultWorkspace}\"",
+            "crossComponentResources": [
+              "value::selected"
+            ],
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "queryType": 1,
+            "resourceType": "microsoft.resourcegraph/resources"
+          }
+        ],
+        "style": "above",
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources"
+      },
+      "conditionalVisibility": {
+        "parameterName": "_",
+        "comparison": "isEqualTo",
+        "value": "_"
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "# Performance Analysis"
+      },
+      "conditionalVisibility": {
+        "parameterName": "ContextFree",
+        "comparison": "isEqualTo",
+        "value": "value::1"
+      }
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [
+          "{Workspaces}"
+        ],
+        "parameters": [
+          {
             "id": "d23121ef-03ad-44fb-8974-365e40c62a4e",
             "version": "KqlParameterItem/1.0",
             "name": "ContextSelection",
             "type": 1,
             "isRequired": false,
-            "query": "// where id =~ \"{DefaultWorkspace:value}\"\r\nwhere strcat(\"'\", id, \"'\") =~ \"{DefaultWorkspace:value}\"\r\n| project value = tostring(pack('sub', subscriptionId, 'rg', resourceGroup, 'ws', id))",
+            "query": "// {DefaultWorkspace}\r\nwhere strcat(\"'\", id, \"'\") =~ \"{DefaultWorkspace:value}\"\r\n| project value = tostring(pack('sub', subscriptionId, 'rg', resourceGroup, 'ws', id))",
             "crossComponentResources": [
               "value::selected"
             ],
@@ -62,6 +101,7 @@
             ],
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
+            "queryType": 1,
             "resourceType": "microsoft.resourcegraph/resources"
           },
           {
@@ -70,11 +110,11 @@
             "name": "Selection",
             "type": 1,
             "isRequired": false,
-            "query": "take 1\r\n| project iff('{ContextSelection}' != '', '{ContextSelection}', '{RandomSelection}')",
+            "query": "// {ContextSelection} {RandomSelection}\r\ntake 1\r\n| project iff('{ContextSelection}' != '', '{ContextSelection}', '{RandomSelection}')",
             "crossComponentResources": [
               "value::selected"
             ],
-            "isHiddenWhenLocked": false,
+            "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
             "queryType": 1,
             "resourceType": "microsoft.resourcegraph/resources"
@@ -106,30 +146,6 @@
             "resourceType": "microsoft.resourcegraph/resources"
           },
           {
-            "id": "7392adfc-c395-4cad-b2bd-6836c4b11b9f",
-            "version": "KqlParameterItem/1.0",
-            "name": "ResourceGroup",
-            "type": 2,
-            "isRequired": true,
-            "multiSelect": true,
-            "quote": "'",
-            "delimiter": ",",
-            "query": "// {Selection}\r\nwhere type =~ 'microsoft.operationalinsights/workspaces'\r\n| distinct resourceGroup\r\n| project label = resourceGroup, value = resourceGroup, selected = iff(todynamic('{Selection}').rg == resourceGroup, true, false)",
-            "crossComponentResources": [
-              "{Subscriptions}"
-            ],
-            "isHiddenWhenLocked": false,
-            "typeSettings": {
-              "resourceTypeFilter": {
-                "microsoft.resources/resourcegroups": true
-              },
-              "additionalResourceOptions": []
-            },
-            "timeContextFromParameter": null,
-            "queryType": 1,
-            "resourceType": "microsoft.resourcegraph/resources"
-          },
-          {
             "id": "9732eff8-fb57-4cbd-8ade-5ae746f33760",
             "version": "KqlParameterItem/1.0",
             "name": "Workspaces",
@@ -138,7 +154,7 @@
             "multiSelect": true,
             "quote": "'",
             "delimiter": ",",
-            "query": "// {Selection}\r\nwhere type =~ 'microsoft.operationalinsights/workspaces'\r\n| summarize by id, name\r\n| project id, selected = iff(id == todynamic('{Selection}').ws, true, false), group = todynamic('{Selection}').rg",
+            "query": "// {DefaultWorkspace} {ContextSelection} {RandomSelection} {Selection}\r\nwhere type =~ 'microsoft.operationalinsights/workspaces'\r\n| summarize by id, name\r\n| project id, selected = iff(id == todynamic('{Selection}').ws, true, false)",
             "crossComponentResources": [
               "{Subscriptions}"
             ],
@@ -266,13 +282,39 @@
               ],
               "allowCustom": true
             }
+          },
+          {
+            "id": "d6de19ff-cde4-41c2-9fba-b441312ea5c9",
+            "version": "KqlParameterItem/1.0",
+            "name": "Test",
+            "type": 1,
+            "isRequired": false,
+            "query": "// {Workspaces}\r\nVMConnection\r\n| take 1",
+            "crossComponentResources": [
+              "{Workspaces}"
+            ],
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
           }
         ],
         "style": "above",
-        "queryType": 1,
-        "resourceType": "microsoft.resourcegraph/resources"
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "⚠ This workbook requires [Azure Monitor for VMs (preview)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview) enabled in order to show accurate and complete information of your VMs"
+      },
+      "conditionalVisibility": {
+        "parameterName": "Test",
+        "comparison": "isEqualTo",
+        "value": null
+      }
     },
     {
       "type": 1,
@@ -308,7 +350,6 @@
             "crossComponentResources": [
               "{Workspaces}"
             ],
-            "value": "{\"counter\":\"% Processor Time\",\"object\":\"Processor\"}",
             "isHiddenWhenLocked": false,
             "typeSettings": {
               "additionalResourceOptions": []
@@ -464,7 +505,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "{StandardQuery}",
+        "query": "// {DefaultWorkspace} {ContextSelection} {RandomSelection} {Selection} {Subscriptions} {Workspaces} {Test}\r\n{StandardQuery}",
         "showQuery": false,
         "size": 0,
         "aggregation": 0,
@@ -950,6 +991,7 @@
         "aggregation": 3,
         "showAnnotations": true,
         "showAnalytics": false,
+        "noDataMessage": "There is no data for this particular counter, please enable the counter or onboard machines to this workspace",
         "timeContextFromParameter": null,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
@@ -1043,6 +1085,7 @@
         "aggregation": 3,
         "showAnnotations": true,
         "showAnalytics": false,
+        "noDataMessage": "There is no data for this particular counter, please enable the counter or onboard machines to this workspace",
         "timeContextFromParameter": null,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
@@ -1136,6 +1179,7 @@
         "aggregation": 0,
         "showAnnotations": true,
         "showAnalytics": false,
+        "noDataMessage": "There is no data for this particular counter, please enable the counter or onboard machines to this workspace",
         "timeContextFromParameter": null,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
@@ -1229,6 +1273,7 @@
         "aggregation": 0,
         "showAnnotations": true,
         "showAnalytics": false,
+        "noDataMessage": "There is no data for this particular counter, please enable the counter or onboard machines to this workspace",
         "timeContextFromParameter": null,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
@@ -1322,6 +1367,7 @@
         "aggregation": 3,
         "showAnnotations": true,
         "showAnalytics": false,
+        "noDataMessage": "There is no data for this particular counter, please enable the counter or onboard machines to this workspace",
         "timeContextFromParameter": null,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
