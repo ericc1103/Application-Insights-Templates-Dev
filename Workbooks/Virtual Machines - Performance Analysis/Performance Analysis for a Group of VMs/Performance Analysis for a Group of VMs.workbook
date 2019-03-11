@@ -308,7 +308,7 @@
     {
       "type": 1,
       "content": {
-        "json": "⚠ This workbook requires [Azure Monitor for VMs (preview)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview) enabled in order to show accurate and complete information for your VMs"
+        "json": "⚠ This workbook requires [Azure Monitor for VMs (preview)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview) enabled in order to show accurate and complete information for your VMs. Follow the link to onboard machines or select a different workspace."
       },
       "conditionalVisibility": {
         "parameterName": "Test",
@@ -538,12 +538,12 @@
     {
       "type": 1,
       "content": {
-        "json": "⚠ This workbook requires [Service Map](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/service-map) enabled in order to show data"
+        "json": "⚠ This workbook requires [Service Map](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/service-map) enabled in order to show data. Follow the link to onboard machines or select a different workspace."
       },
       "conditionalVisibility": {
-        "parameterName": "ShowTable",
+        "parameterName": "Test",
         "comparison": "isEqualTo",
-        "value": "False"
+        "value": ""
       }
     },
     {
@@ -556,6 +556,7 @@
         "aggregation": 0,
         "showAnnotations": false,
         "showAnalytics": false,
+        "noDataMessage": "There is no data for this counter, either enable the counter or onboard machines to this workspace",
         "timeContextFromParameter": null,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
@@ -774,6 +775,7 @@
         "aggregation": 0,
         "showAnnotations": false,
         "showAnalytics": false,
+        "noDataMessage": "There is no data for this counter, either enable the counter or onboard machines to this workspace",
         "timeContextFromParameter": null,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
@@ -1036,7 +1038,7 @@
         "aggregation": 3,
         "showAnnotations": true,
         "showAnalytics": false,
-        "noDataMessage": "There is no data for this particular counter, please enable the counter or onboard machines to this workspace",
+        "noDataMessage": "There is no data for this counter, either enable the counter or onboard machines to this workspace",
         "timeContextFromParameter": null,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
@@ -1130,7 +1132,7 @@
         "aggregation": 3,
         "showAnnotations": true,
         "showAnalytics": false,
-        "noDataMessage": "There is no data for this particular counter, please enable the counter or onboard machines to this workspace",
+        "noDataMessage": "There is no data for this counter, either enable the counter or onboard machines to this workspace",
         "timeContextFromParameter": null,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
@@ -1224,7 +1226,7 @@
         "aggregation": 0,
         "showAnnotations": true,
         "showAnalytics": false,
-        "noDataMessage": "There is no data for this particular counter, please enable the counter or onboard machines to this workspace",
+        "noDataMessage": "There is no data for this counter, either enable the counter or onboard machines to this workspace",
         "timeContextFromParameter": null,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
@@ -1318,7 +1320,7 @@
         "aggregation": 0,
         "showAnnotations": true,
         "showAnalytics": false,
-        "noDataMessage": "There is no data for this particular counter, please enable the counter or onboard machines to this workspace",
+        "noDataMessage": "There is no data for this counter, either enable the counter or onboard machines to this workspace",
         "timeContextFromParameter": null,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
@@ -1412,7 +1414,7 @@
         "aggregation": 3,
         "showAnnotations": true,
         "showAnalytics": false,
-        "noDataMessage": "There is no data for this particular counter, please enable the counter or onboard machines to this workspace",
+        "noDataMessage": "There is no data for this counter, either enable the counter or onboard machines to this workspace",
         "timeContextFromParameter": null,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
