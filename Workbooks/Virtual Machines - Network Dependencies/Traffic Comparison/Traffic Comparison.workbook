@@ -1,6 +1,5 @@
 {
   "version": "Notebook/1.0",
-  "isLocked": true,
   "items": [
     {
       "type": 9,
@@ -29,6 +28,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": {
@@ -36,13 +36,6 @@
         "comparison": "isNotEqualTo",
         "value": null
       }
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "<h1 style=\"margin-bottom:0;padding-bottom:0;\">Traffic Comparison</h1><h2 style=\"margin-top:0;padding-top:0;color:#777;font-weight:normal;font-size:1rem;\" title=\"{Workspace:value}\">{Workspace:label}</h2>"
-      },
-      "conditionalVisibility": null
     },
     {
       "type": 9,
@@ -75,6 +68,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null
@@ -174,6 +168,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null,
@@ -267,6 +262,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null,
@@ -283,6 +279,7 @@
         "showAnnotations": false,
         "showAnalytics": true,
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspace}"
@@ -302,6 +299,7 @@
         "showAnnotations": false,
         "showAnalytics": true,
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspace}"
@@ -322,6 +320,7 @@
         "exportParameterName": "ProcessA",
         "showAnalytics": true,
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspace}"
@@ -333,7 +332,8 @@
               "formatter": 8,
               "formatOptions": {
                 "min": 0,
-                "palette": "orange"
+                "palette": "blue",
+                "showIcon": true
               },
               "numberFormat": {
                 "unit": 2,
@@ -346,7 +346,8 @@
               "columnMatch": "BytesReceived",
               "formatter": 8,
               "formatOptions": {
-                "palette": "green"
+                "palette": "purple",
+                "showIcon": true
               },
               "numberFormat": {
                 "unit": 2,
@@ -373,6 +374,7 @@
         "exportParameterName": "ProcessB",
         "showAnalytics": true,
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspace}"
@@ -383,7 +385,8 @@
               "columnMatch": "BytesSent",
               "formatter": 8,
               "formatOptions": {
-                "palette": "orange"
+                "palette": "blue",
+                "showIcon": true
               },
               "numberFormat": {
                 "unit": 2,
@@ -396,7 +399,8 @@
               "columnMatch": "BytesReceived",
               "formatter": 8,
               "formatOptions": {
-                "palette": "green"
+                "palette": "purple",
+                "showIcon": true
               },
               "numberFormat": {
                 "unit": 2,

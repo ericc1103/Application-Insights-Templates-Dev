@@ -4,7 +4,7 @@
     {
       "type": 1,
       "content": {
-        "json": "# Virtual Machine Events, Connections and Activities\n\n💡 You will need to install [MMA Agent](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/agent-windows) on your Windows machine in order to view _Unexpected VM Reboots_ or _VM Crashes_ from the `Events` table"
+        "json": "💡 You will need to install [MMA Agent](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/agent-windows) on your Windows machine in order to view _Unexpected VM Reboots_ or _VM Crashes_ from the `Events` table"
       },
       "conditionalVisibility": null
     },

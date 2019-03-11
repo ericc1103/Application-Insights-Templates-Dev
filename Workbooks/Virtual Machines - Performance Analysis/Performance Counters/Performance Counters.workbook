@@ -1,14 +1,6 @@
 {
   "version": "Notebook/1.0",
-  "isLocked": true,
   "items": [
-    {
-      "type": 1,
-      "content": {
-        "json": "<h1 style=\"margin-bottom:0;\">Performance Counters</h1><h2 style=\"margin-top:0;color:#777;font-weight:normal;\">Top N Machines</h2>\r\n<hr style=\"height:3px;\" />"
-      },
-      "conditionalVisibility": null
-    },
     {
       "type": 9,
       "content": {
@@ -46,11 +38,7 @@
             "type": 4,
             "isRequired": false,
             "value": {
-              "durationMs": 14400000,
-              "createdTime": "2018-10-04T22:01:18.374Z",
-              "isInitialTime": false,
-              "grain": 1,
-              "useDashboardTimeRange": false
+              "durationMs": 14400000
             },
             "isHiddenWhenLocked": false,
             "typeSettings": {
@@ -318,6 +306,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null
@@ -486,6 +475,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": {
@@ -591,6 +581,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": {
@@ -698,6 +689,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": {
@@ -803,6 +795,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": {
@@ -856,6 +849,7 @@
         "showAnalytics": false,
         "noDataMessage": "No computers are emitting data for this performance counter.",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -897,6 +891,7 @@
         "showAnalytics": false,
         "noDataMessage": "No computers are emitting data for this performance counter.",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -938,6 +933,7 @@
         "showAnalytics": false,
         "noDataMessage": "No computers are emitting data for this performance counter.",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -979,6 +975,7 @@
         "showAnalytics": false,
         "noDataMessage": "No computers are emitting data for this performance counter.",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -1106,6 +1103,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": {
@@ -1213,6 +1211,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": {
@@ -1320,6 +1319,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": {
@@ -1427,6 +1427,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": {
@@ -1480,6 +1481,7 @@
         "showAnalytics": false,
         "noDataMessage": "No computers are emitting data for this performance counter.",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -1521,6 +1523,7 @@
         "showAnalytics": false,
         "noDataMessage": "No computers are emitting data for this performance counter.",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -1562,6 +1565,7 @@
         "showAnalytics": false,
         "noDataMessage": "No computers are emitting data for this performance counter.",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -1603,6 +1607,7 @@
         "showAnalytics": false,
         "noDataMessage": "No computers are emitting data for this performance counter.",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -1730,6 +1735,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": {
@@ -1837,6 +1843,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": {
@@ -1944,6 +1951,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": {
@@ -2051,6 +2059,7 @@
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": {
@@ -2104,6 +2113,7 @@
         "showAnalytics": false,
         "noDataMessage": "No computers are emitting data for this performance counter.",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -2145,6 +2155,7 @@
         "showAnalytics": false,
         "noDataMessage": "No computers are emitting data for this performance counter.",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -2186,6 +2197,7 @@
         "showAnalytics": false,
         "noDataMessage": "No computers are emitting data for this performance counter.",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
@@ -2227,6 +2239,7 @@
         "showAnalytics": false,
         "noDataMessage": "No computers are emitting data for this performance counter.",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspaces}"
