@@ -308,7 +308,7 @@
     {
       "type": 1,
       "content": {
-        "json": "⚠ This workbook requires [Azure Monitor for VMs (preview)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview) enabled in order to show accurate and complete information of your VMs"
+        "json": "⚠ This workbook requires [Azure Monitor for VMs (preview)](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/vminsights-overview) enabled in order to show accurate and complete information for your VMs"
       },
       "conditionalVisibility": {
         "parameterName": "Test",
@@ -493,13 +493,58 @@
             "timeContextFromParameter": null,
             "queryType": 0,
             "resourceType": "microsoft.operationalinsights/workspaces"
+          },
+          {
+            "id": "69c79551-68b9-4c84-bf57-202540482a02",
+            "version": "KqlParameterItem/1.0",
+            "name": "ShowTable",
+            "type": 1,
+            "isRequired": false,
+            "query": "print iff(\"{Test:value}\" == \"\", \"False\", iff(\"{IsNetworkCounter:value}\" == \"False\", \"True\", \"False\"))",
+            "crossComponentResources": [
+              "{Workspaces}"
+            ],
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          },
+          {
+            "id": "6b664a24-d9a3-47b0-9d94-9cada9ddb8ce",
+            "version": "KqlParameterItem/1.0",
+            "name": "ShowNetworkTable",
+            "type": 1,
+            "isRequired": false,
+            "query": "print iff(\"{Test:value}\" == \"\", \"False\", \"{IsNetworkCounter:value}\")",
+            "crossComponentResources": [
+              "{Workspaces}"
+            ],
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
           }
         ],
         "style": "above",
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
-      "conditionalVisibility": null
+      "conditionalVisibility": {
+        "parameterName": "Test",
+        "comparison": "isNotEqualTo",
+        "value": null
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "⚠ This workbook requires [Service Map](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/service-map) enabled in order to show data"
+      },
+      "conditionalVisibility": {
+        "parameterName": "ShowTable",
+        "comparison": "isEqualTo",
+        "value": "False"
+      }
     },
     {
       "type": 3,
@@ -703,8 +748,8 @@
         }
       },
       "conditionalVisibility": {
-        "parameterName": "IsNetworkCounter",
-        "comparison": "isNotEqualTo",
+        "parameterName": "ShowTable",
+        "comparison": "isEqualTo",
         "value": "True"
       }
     },
@@ -714,7 +759,7 @@
         "json": "#### ℹ `Total Bytes {NetworkDirection}` counters are also being utilized to display the network table. The delta of `Total Bytes {NetworkDirection}` over a time period is being calculated to match up with the `Bytes {NetworkDirection}/sec` counter to display an accurate representation of network activity over all machines"
       },
       "conditionalVisibility": {
-        "parameterName": "IsNetworkCounter",
+        "parameterName": "ShowNetworkTable",
         "comparison": "isEqualTo",
         "value": "True"
       }
@@ -917,7 +962,7 @@
         }
       },
       "conditionalVisibility": {
-        "parameterName": "IsNetworkCounter",
+        "parameterName": "ShowNetworkTable",
         "comparison": "isEqualTo",
         "value": "True"
       }
