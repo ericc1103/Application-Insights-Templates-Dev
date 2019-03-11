@@ -1,0 +1,354 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 1,
+      "content": {
+        "json": "# Performance of Virtual Machines\n---"
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [],
+        "parameters": [
+          {
+            "id": "92324c36-8896-4518-b29c-95f8c4bb4454",
+            "version": "KqlParameterItem/1.0",
+            "name": "TimeRange",
+            "type": 4,
+            "description": null,
+            "isRequired": true,
+            "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "selectableValues": [
+                {
+                  "durationMs": 300000,
+                  "createdTime": "2018-06-01T19:51:26.737Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 900000,
+                  "createdTime": "2018-06-01T19:51:26.737Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 1800000,
+                  "createdTime": "2018-06-01T19:51:26.737Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 3600000,
+                  "createdTime": "2018-06-01T19:51:26.738Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 14400000,
+                  "createdTime": "2018-06-01T19:51:26.738Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 43200000,
+                  "createdTime": "2018-06-01T19:51:26.738Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 86400000,
+                  "createdTime": "2018-06-01T19:51:26.738Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 172800000,
+                  "createdTime": "2018-06-01T19:51:26.738Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 259200000,
+                  "createdTime": "2018-06-01T19:51:26.738Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 604800000,
+                  "createdTime": "2018-06-01T19:51:26.738Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 1209600000,
+                  "createdTime": "2018-06-01T19:51:26.738Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 2419200000,
+                  "createdTime": "2018-06-01T19:51:26.738Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 2592000000,
+                  "createdTime": "2018-06-01T19:51:26.738Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 5184000000,
+                  "createdTime": "2018-06-01T19:51:26.739Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                },
+                {
+                  "durationMs": 7776000000,
+                  "createdTime": "2018-06-01T19:51:26.739Z",
+                  "isInitialTime": false,
+                  "grain": 1,
+                  "useDashboardTimeRange": false
+                }
+              ],
+              "allowCustom": null
+            },
+            "value": {
+              "durationMs": 14400000
+            }
+          },
+          {
+            "id": "1b57c47f-24a9-4b1c-a613-55e3f94f673c",
+            "version": "KqlParameterItem/1.0",
+            "name": "Resource",
+            "type": 5,
+            "isRequired": true,
+            "value": "value::1",
+            "isHiddenWhenLocked": false,
+            "typeSettings": {
+              "resourceTypeFilter": {
+                "microsoft.operationalinsights/workspaces": true
+              },
+              "additionalResourceOptions": []
+            }
+          },
+          {
+            "id": "92324c36-8896-4518-b29c-95f8c4bb4454",
+            "version": "KqlParameterItem/1.0",
+            "name": "CounterName",
+            "type": 2,
+            "isRequired": true,
+            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by ObjectName, CounterName\r\n| project Value = CounterName, Display = CounterName, group = ObjectName",
+            "crossComponentResources": [
+              "{Resource}"
+            ],
+            "value": "% Processor Time",
+            "isHiddenWhenLocked": false,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          },
+          {
+            "id": "850836c7-0096-4a24-91e9-71bdf94320ac",
+            "version": "KqlParameterItem/1.0",
+            "name": "Computers",
+            "type": 2,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| summarize by Computer\r\n| project Value = Computer, Display = Computer, IsDefault = false\r\n| order by Display asc\r\n| union (datatable(Value:string, Display:string, IsDefault:boolean)['*', 'All', true])\r\n",
+            "crossComponentResources": [
+              "{Resource}"
+            ],
+            "isHiddenWhenLocked": false,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          },
+          {
+            "id": "1a0ae992-a83b-4976-98af-dd0cfc18a7d5",
+            "version": "KqlParameterItem/1.0",
+            "name": "Aggregation",
+            "type": 2,
+            "isRequired": true,
+            "query": "datatable(x:string, y:string)[\r\n'5', 'P5th',\r\n'10', 'P10th',\r\n'50', 'Median',\r\n'80', 'P80th',\r\n'95', 'P95th',\r\n'99', 'P99th',\r\n]",
+            "crossComponentResources": [
+              "{Resource}"
+            ],
+            "value": "95",
+            "isHiddenWhenLocked": false,
+            "timeContextFromParameter": null,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          },
+          {
+            "id": "dfe1baa8-3bfe-4593-b51e-8779e0fc313a",
+            "version": "KqlParameterItem/1.0",
+            "name": "Order",
+            "type": 1,
+            "isRequired": true,
+            "query": "range i from 1 to 1 step 1\r\n| extend Counter = '{CounterName}'\r\n| project Order = iff(Counter contains \"Available\" or Counter contains \"Free\", 'asc', 'desc')\r\n",
+            "crossComponentResources": [
+              "{Resource}"
+            ],
+            "isHiddenWhenLocked": true,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          },
+          {
+            "id": "ab22c33e-413c-4710-be56-2c78807540f3",
+            "version": "KqlParameterItem/1.0",
+            "name": "SelectedComputer",
+            "type": 1,
+            "isRequired": false,
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null
+          }
+        ],
+        "style": "pills",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## Summary"
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let data = Perf\n| where TimeGenerated {TimeRange}\n| where CounterName == '{CounterName}'\n| where Computer in ({Computers}) or '*' in ({Computers});\ndata\n| summarize Metric = percentile(CounterValue, {Aggregation}) by Computer\n| extend Metric = round(Metric, 2)\n| join kind=inner (data\n| make-series Trend = percentile(CounterValue, {Aggregation}) default = 0 on TimeGenerated in range({TimeRange:start}, now(), {TimeRange:grain}) by Computer | project-away TimeGenerated) on Computer\n| project-away Computer1\n| order by Metric {Order}\n",
+        "showQuery": false,
+        "size": 3,
+        "aggregation": 0,
+        "showAnnotations": false,
+        "exportFieldName": "Computer",
+        "exportParameterName": "SelectedComputer",
+        "showAnalytics": false,
+        "timeContextFromParameter": null,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "crossComponentResources": [
+          "{Resource}"
+        ],
+        "visualization": "tiles",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "Median|p80|p95|p99",
+              "formatter": 8,
+              "formatOptions": {
+                "min": 0,
+                "max": null,
+                "palette": "red"
+              }
+            },
+            {
+              "columnMatch": "Trend",
+              "formatter": 10,
+              "formatOptions": {
+                "min": 0,
+                "max": null,
+                "palette": "green"
+              }
+            },
+            {
+              "columnMatch": "CompId",
+              "formatter": 5,
+              "formatOptions": {}
+            }
+          ],
+          "filter": true
+        },
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "Computer",
+            "formatter": 1,
+            "formatOptions": {}
+          },
+          "subtitleContent": {
+            "columnMatch": "Computer",
+            "formatter": 7,
+            "formatOptions": {
+              "linkTarget": "Resource"
+            }
+          },
+          "leftContent": {
+            "columnMatch": "Metric",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "greenRed"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "style": "decimal",
+                "maximumFractionDigits": 2,
+                "maximumSignificantDigits": 3
+              }
+            }
+          },
+          "secondaryContent": {
+            "columnMatch": "Trend",
+            "formatter": 10,
+            "formatOptions": {
+              "palette": "greenRed"
+            }
+          },
+          "showBorder": true
+        }
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## {CounterName} of {SelectedComputer} (P{Aggregation}th)"
+      },
+      "conditionalVisibility": null
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "Perf\r\n| where TimeGenerated {TimeRange}\r\n| where CounterName == '{CounterName}'\r\n| where Computer in ({Computers}) or '*' in ({Computers})\r\n| where Computer == \"{SelectedComputer}\" or \"{SelectedComputer}\" in ('', 'Overall')\r\n| make-series Trend = percentile(CounterValue, {Aggregation}) default = 0 on TimeGenerated in range({TimeRange:start}, now(), {TimeRange:grain})\r\n| mvexpand TimeGenerated, Trend\r\n| project Time = todatetime(TimeGenerated), [\"p{Aggregation}\"] = toreal(Trend)\r\n",
+        "showQuery": false,
+        "size": 0,
+        "aggregation": 3,
+        "showAnnotations": false,
+        "showAnalytics": false,
+        "color": "green",
+        "timeContextFromParameter": null,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "crossComponentResources": [
+          "{Resource}"
+        ],
+        "visualization": "areachart"
+      },
+      "conditionalVisibility": null
+    }
+  ],
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}

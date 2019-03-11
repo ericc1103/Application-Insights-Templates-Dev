@@ -1,6 +1,5 @@
 {
   "version": "Notebook/1.0",
-  "isLocked": true,
   "items": [
     {
       "type": 1,
@@ -41,11 +40,7 @@
             "type": 4,
             "isRequired": true,
             "value": {
-              "durationMs": 3600000,
-              "createdTime": "2019-02-15T22:54:29.432Z",
-              "isInitialTime": false,
-              "grain": 1,
-              "useDashboardTimeRange": false
+              "durationMs": 3600000
             },
             "isHiddenWhenLocked": false,
             "typeSettings": {
@@ -214,7 +209,8 @@
             "query": "SecurityDetection\r\n| where AlertSeverity == 'High' or AlertSeverity == 'Medium' or AlertSeverity == 'Low'\r\n| summarize count()",
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": null
           },
           {
             "id": "9ae7bc66-1535-4727-b846-48d62e6ab7f6",
@@ -225,7 +221,8 @@
             "query": "union SecurityEvent, LinuxAuditLog, ProtectionStatus, SecurityBaselineSummary, SecurityDetection, CommonSecurityLog\r\n| where isnotempty(Computer)\r\n| summarize by Computer\r\n| summarize count()",
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": null
           },
           {
             "id": "92eb52e0-055c-4263-b0e1-98c37e16e499",
@@ -236,10 +233,12 @@
             "query": "SecurityEvent\r\n| where EventID == 4624 and AccountType == 'User'\r\n| extend LowerAccount=tolower(Account)\r\n| summarize Logons = count() by LowerAccount\r\n| summarize count()",
             "isHiddenWhenLocked": true,
             "timeContextFromParameter": null,
-            "resourceType": "microsoft.operationalinsights/workspaces"
+            "resourceType": "microsoft.operationalinsights/workspaces",
+            "value": null
           }
         ],
         "style": "above",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null
@@ -263,8 +262,9 @@
         "showAnalytics": true,
         "noDataMessage": "No malicious communications have been detected",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
-        "visualization": "piechart"
+        "visualization": "barchart"
       },
       "conditionalVisibility": null,
       "customWidth": "33"
@@ -283,6 +283,7 @@
         "showAnalytics": true,
         "noDataMessage": "No malicious traffic detected",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspace}"
@@ -324,6 +325,7 @@
         "showAnalytics": true,
         "noDataMessage": "No threats found",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "gridSettings": {
           "formatters": [
@@ -460,6 +462,7 @@
           }
         ],
         "style": "pills",
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces"
       },
       "conditionalVisibility": null
@@ -482,6 +485,7 @@
         "showAnnotations": false,
         "showAnalytics": false,
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspace}"
@@ -501,13 +505,14 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "VMConnection\r\n{QueryMaliciousIp}\r\n{QueryCountryFilter}\r\n| where TimeGenerated {TimeRange}\r\n| summarize Data=sum(BytesReceived + BytesSent ), Sent=sum(BytesSent), Received=sum(BytesReceived) by Computer\r\n| project Computer=strcat('💻 ', Computer), Data, Sent, Received\r\n| sort by Data desc",
+        "query": "VMConnection\r\n{QueryMaliciousIp}\r\n{QueryCountryFilter}\r\n| where TimeGenerated {TimeRange}\r\n| summarize Data=sum(BytesReceived + BytesSent ), Sent=sum(BytesSent), Received=sum(BytesReceived) by Computer\r\n| project Computer=strcat('💻 ', Computer), Data, Received, Sent\r\n| sort by Data desc",
         "showQuery": false,
         "size": 0,
         "aggregation": 0,
         "showAnnotations": false,
         "showAnalytics": false,
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspace}"
@@ -583,6 +588,7 @@
         "showAnalytics": true,
         "noDataMessage": "No destination traffic found",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "crossComponentResources": [
           "{Workspace}"
@@ -659,6 +665,42 @@
       "conditionalVisibility": null
     },
     {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "query": "",
+        "crossComponentResources": [
+          "{Workspace}"
+        ],
+        "parameters": [
+          {
+            "id": "237850e7-685d-43a2-b43c-f0f1d5e4c2df",
+            "version": "KqlParameterItem/1.0",
+            "name": "SecurityDetectionTest",
+            "type": 1,
+            "isRequired": false,
+            "query": "SecurityDetection\r\n| take 1",
+            "crossComponentResources": [
+              "{Workspace}"
+            ],
+            "value": null,
+            "isHiddenWhenLocked": true,
+            "timeContextFromParameter": null,
+            "queryType": 0,
+            "resourceType": "microsoft.operationalinsights/workspaces"
+          }
+        ],
+        "style": "pills",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "conditionalVisibility": {
+        "parameterName": "_",
+        "comparison": "isEqualTo",
+        "value": "_"
+      }
+    },
+    {
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
@@ -670,10 +712,26 @@
         "showAnalytics": true,
         "noDataMessage": "No security detections found",
         "timeContextFromParameter": null,
+        "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "visualization": "categoricalbar"
       },
-      "conditionalVisibility": null
+      "conditionalVisibility": {
+        "parameterName": "SecurityDetectionTest",
+        "comparison": "isNotEqualTo",
+        "value": null
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "⚠ `SecurityDetection` was not detected in this workspace. Please either onboard Security Detection or wait until data has been populated."
+      },
+      "conditionalVisibility": {
+        "parameterName": "SecurityDetectionTest",
+        "comparison": "isEqualTo",
+        "value": null
+      }
     }
   ],
   "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
