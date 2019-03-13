@@ -1,0 +1,13 @@
+{
+    "categories": [{
+        "key": "azureMonitorVirtualMachines",
+        "settings": {
+          "en-us": {
+            "name": "Virtual Machines in Azure Monitor",
+            "description": "Analyze monitoring data from your VMs",
+            "order": 100
+          }
+        }
+      }
+    ]
+  }
