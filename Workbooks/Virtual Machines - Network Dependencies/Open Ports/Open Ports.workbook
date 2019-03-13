@@ -7,7 +7,7 @@
         "version": "KqlParameterItem/1.0",
         "query": "",
         "crossComponentResources": [
-          "{Subscriptions}"
+          "value::all"
         ],
         "parameters": [
           {
@@ -231,7 +231,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "VMBoundPort\n| where TimeGenerated {TimeRange}\n| where Ip != \"127.0.0.1\"\n| summarize by Computer, Port, Protocol\n| summarize OpenPorts=count() by Computer\n| project Computer, [\"Count of Open Ports\"] = OpenPorts\n| order by [\"Count of Open Ports\"] desc",
+        "query": "// {DefaultWorkspace} {ContextSelection} {Subscriptions} {Workspaces} {TimeRange}\nVMBoundPort\n| where TimeGenerated {TimeRange}\n| where Ip != \"127.0.0.1\"\n| summarize by Computer, Port, Protocol\n| summarize OpenPorts=count() by Computer\n| project Computer, [\"Count of Open Ports\"] = OpenPorts\n| order by [\"Count of Open Ports\"] desc",
         "showQuery": false,
         "size": 1,
         "aggregation": 0,
@@ -310,7 +310,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "VMBoundPort\n| where TimeGenerated >= ago(24hr)\n| where Computer == '{ComputerName}'\n| distinct Port, ProcessName\n| project [\"Port Number\"] = Port, [\"Process Name\"] = ProcessName",
+        "query": "// {DefaultWorkspace} {ContextSelection} {Subscriptions} {Workspaces} {TimeRange}\nVMBoundPort\n| where TimeGenerated >= ago(24hr)\n| where Computer == '{ComputerName}'\n| distinct Port, ProcessName\n| project [\"Port Number\"] = Port, [\"Process Name\"] = ProcessName",
         "showQuery": false,
         "size": 0,
         "aggregation": 0,
