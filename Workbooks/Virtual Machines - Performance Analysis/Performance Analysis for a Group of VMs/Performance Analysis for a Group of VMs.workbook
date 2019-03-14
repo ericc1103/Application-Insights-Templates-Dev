@@ -71,7 +71,7 @@
         "version": "KqlParameterItem/1.0",
         "query": "",
         "crossComponentResources": [
-          "{Workspaces}"
+          "value::selected"
         ],
         "parameters": [
           {
@@ -300,8 +300,8 @@
           }
         ],
         "style": "above",
-        "queryType": 0,
-        "resourceType": "microsoft.operationalinsights/workspaces"
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources"
       },
       "conditionalVisibility": null
     },
