@@ -6,9 +6,7 @@
       "content": {
         "version": "KqlParameterItem/1.0",
         "query": "",
-        "crossComponentResources": [
-          "value::selected"
-        ],
+        "crossComponentResources": [],
         "parameters": [
           {
             "id": "688dc7cb-bea3-41ae-ae94-32d22e09568c",
@@ -42,11 +40,31 @@
             "timeContextFromParameter": null,
             "queryType": 1,
             "resourceType": "microsoft.resourcegraph/resources"
+          },
+          {
+            "id": "bae68fda-eda5-406c-8850-b0637f861668",
+            "version": "KqlParameterItem/1.0",
+            "name": "DefaultSubscriptions",
+            "type": 6,
+            "isRequired": false,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "value": [
+              "value::all"
+            ],
+            "isHiddenWhenLocked": true,
+            "typeSettings": {
+              "additionalResourceOptions": [
+                "value::all"
+              ],
+              "includeAll": false
+            },
+            "timeContextFromParameter": null
           }
         ],
         "style": "above",
-        "queryType": 1,
-        "resourceType": "microsoft.resourcegraph/resources"
+        "queryType": 0
       },
       "conditionalVisibility": {
         "parameterName": "_",
@@ -71,7 +89,7 @@
         "version": "KqlParameterItem/1.0",
         "query": "",
         "crossComponentResources": [
-          "value::selected"
+          "value::all"
         ],
         "parameters": [
           {
@@ -128,11 +146,8 @@
             "multiSelect": true,
             "quote": "'",
             "delimiter": ",",
-            "query": "summarize by subscriptionId\r\n| project strcat('/subscriptions/', subscriptionId)",
+            "query": "// {DefaultWorkspace} {DefaultSubscriptions}\r\nsummarize by subscriptionId\r\n| project strcat('/subscriptions/', subscriptionId), selected = iff(todynamic('{DefaultSubscriptions}') contains subscriptionId, true, false)",
             "crossComponentResources": [
-              "value::selected"
-            ],
-            "value": [
               "value::all"
             ],
             "isHiddenWhenLocked": false,
