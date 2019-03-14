@@ -128,7 +128,7 @@
             "multiSelect": true,
             "quote": "'",
             "delimiter": ",",
-            "query": "summarize by subscriptionId\r\n| project strcat('/subscriptions/', subscriptionId), selected = iff(subscriptionId == todynamic('{Selection}').sub, true, false)",
+            "query": "summarize by subscriptionId\r\n| project strcat('/subscriptions/', subscriptionId)",
             "crossComponentResources": [
               "value::selected"
             ],
