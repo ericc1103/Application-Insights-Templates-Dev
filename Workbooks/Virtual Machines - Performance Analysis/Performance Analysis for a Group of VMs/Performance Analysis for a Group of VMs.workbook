@@ -128,12 +128,9 @@
             "multiSelect": true,
             "quote": "'",
             "delimiter": ",",
-            "query": "summarize by subscriptionId\r\n| project strcat('/subscriptions/', subscriptionId), selected = iff(subscriptionId == todynamic('{Selection}').sub, true, false)",
+            "query": "// {DefaultWorkspace} {ContextFree} {ContextSelection} {RandomSelection} {Selection}\r\nsummarize by subscriptionId\r\n| project strcat('/subscriptions/', subscriptionId), selected = iff(subscriptionId == todynamic('{Selection}').sub, true, false)",
             "crossComponentResources": [
               "value::selected"
-            ],
-            "value": [
-              "value::all"
             ],
             "isHiddenWhenLocked": false,
             "typeSettings": {
@@ -154,7 +151,7 @@
             "multiSelect": true,
             "quote": "'",
             "delimiter": ",",
-            "query": "// {DefaultWorkspace} {ContextSelection} {RandomSelection} {Selection}\r\nwhere type =~ 'microsoft.operationalinsights/workspaces'\r\n| summarize by id, name\r\n| project id, selected = iff(id == todynamic('{Selection}').ws, true, false)",
+            "query": "// {DefaultWorkspace} {ContextSelection} {RandomSelection} {Selection} {Subscriptions}\r\nwhere type =~ 'microsoft.operationalinsights/workspaces'\r\n| summarize by id, name\r\n| project id, selected = iff(id == todynamic('{Selection}').ws, true, false)",
             "crossComponentResources": [
               "{Subscriptions}"
             ],
@@ -289,7 +286,7 @@
             "name": "Test",
             "type": 1,
             "isRequired": false,
-            "query": "// {Workspaces}\r\nVMConnection\r\n| take 1",
+            "query": "// {DefaultWorkspace} {ContextFree} {ContextSelection} {RandomSelection} {Selection} {Subscriptions} {Workspaces}\r\nVMConnection\r\n| take 1",
             "crossComponentResources": [
               "{Workspaces}"
             ],
