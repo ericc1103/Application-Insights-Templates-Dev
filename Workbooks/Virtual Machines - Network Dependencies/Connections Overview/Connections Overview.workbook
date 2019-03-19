@@ -257,10 +257,7 @@
               "{Workspace}"
             ],
             "isHiddenWhenLocked": true,
-            "timeContext": {
-              "durationMs": 0
-            },
-            "timeContextFromParameter": "TimeRange",
+            "timeContextFromParameter": null,
             "queryType": 0,
             "resourceType": "microsoft.operationalinsights/workspaces"
           },
