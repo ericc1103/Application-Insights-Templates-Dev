@@ -285,7 +285,7 @@
             "name": "Test",
             "type": 1,
             "isRequired": false,
-            "query": "// {DefaultWorkspace} {ContextFree} {ContextSelection} {RandomSelection} {Selection} {Subscriptions} {Workspaces}\r\nVMConnection\r\n| take 1",
+            "query": "// {DefaultWorkspace} {ContextFree} {ContextSelection} {RandomSelection} {Selection} {Subscriptions} {Workspaces}\r\nPerf\r\n| take 1",
             "crossComponentResources": [
               "{Workspaces}"
             ],
