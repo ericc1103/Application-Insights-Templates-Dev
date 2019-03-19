@@ -549,7 +549,7 @@
     {
       "type": 1,
       "content": {
-        "json": "There are no performance counters, either enable the counter or onboard machines to this workspace."
+        "json": "There are no performance counters, either onboard machines to this workspace or enable performance counters."
       },
       "conditionalVisibility": {
         "parameterName": "CounterTest",
