@@ -6,12 +6,14 @@
         {
             "type": "workbook",
             "resourceType": "microsoft.insights/components",
-            "order": 100
+            "order": 100,
+            "priority": 1
         },
         {
             "type": "usage",
             "resourceType": "microsoft.insights/components",
-            "order": 100
+            "order": 100,
+            "priority": 1
         }
     ]
 }
