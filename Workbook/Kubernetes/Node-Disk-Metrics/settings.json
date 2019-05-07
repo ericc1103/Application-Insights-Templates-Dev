@@ -2,5 +2,5 @@
     "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
     "name":"Disk Metrics",
     "author": "Microsoft",
-    "galleries": []
+    "galleries": ["Microsoft.ContainerService/managedClusters"]
 }
