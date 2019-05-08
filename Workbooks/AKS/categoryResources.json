@@ -2,6 +2,6 @@
   "en-us": {
     "name": "Node Disk Metrics",
     "description": "Explore the disk metrics of the nodes in your AKS cluster",
-    "order": 1
+    "order": 100
   }
 }
