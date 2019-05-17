@@ -1,0 +1,7 @@
+{
+  "en-us": {
+    "name": "Node",
+    "description": "Workbooks related to Nodes in AKS",
+    "order": 100
+  }
+}
