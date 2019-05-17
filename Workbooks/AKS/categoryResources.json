@@ -1,11 +1,7 @@
 {
   "en-us": {
-    "name": "Node Disk Metrics",
-    "description": "Explore the disk metrics of the nodes in your AKS cluster",
+    "name": "AKS",
+    "description": "Workbooks related to AKS",
     "order": 100
-  }, {
-    "name": "Kubelet",
-    "description": "Explore kubelet metrics for your AKS cluster",
-    "order": 200
   }
 }
