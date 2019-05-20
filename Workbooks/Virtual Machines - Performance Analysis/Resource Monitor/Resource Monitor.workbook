@@ -2,6 +2,14 @@
   "version": "Notebook/1.0",
   "items": [
     {
+      "type": 1,
+      "content": {
+        "json": "💠 Only the first query is turned on, turn on `RunQuery` on the other metrics to run the respective query."
+      },
+      "conditionalVisibility": null,
+      "name": "text - 17"
+    },
+    {
       "type": 9,
       "content": {
         "version": "KqlParameterItem/1.0",
@@ -234,7 +242,7 @@
             "name": "RunQuery",
             "type": 2,
             "isRequired": true,
-            "value": "0",
+            "value": "1",
             "isHiddenWhenLocked": false,
             "typeSettings": {
               "additionalResourceOptions": []
@@ -409,6 +417,7 @@
         }
       },
       "conditionalVisibility": null,
+      "showPin": true,
       "name": "query - 2"
     },
     {
@@ -480,6 +489,7 @@
         "version": "KqlItem/1.0",
         "query": "let disk = Perf | where \"{RunQuery:value}\" == \"1\" | where ObjectName == 'Process' {ComputerFilter} and InstanceName != '_Total' and InstanceName != 'Idle' | where TimeGenerated {TimeRange};\r\nlet readc = disk | where CounterName == 'IO Read Bytes/sec' | summarize ReadBytes=sum(CounterValue) by Computer;\r\nlet readp = disk | where CounterName == 'IO Read Bytes/sec' | summarize ReadBytes=avg(CounterValue) by Computer, InstanceName;\r\nlet writec = disk | where CounterName == 'IO Write Bytes/sec' | summarize WriteBytes=sum(CounterValue) by Computer;\r\nlet writep = disk | where CounterName == 'IO Write Bytes/sec' | summarize WriteBytes=avg(CounterValue) by Computer, InstanceName;\r\nlet ropsc = disk | where CounterName == 'IO Read Operations/sec' | summarize ReadOps=sum(CounterValue) by Computer;\r\nlet ropsp = disk | where CounterName == 'IO Read Operations/sec' | summarize ReadOps=avg(CounterValue) by Computer, InstanceName;\r\nlet wopsc = disk | where CounterName == 'IO Write Operations/sec' | summarize WriteOps=sum(CounterValue) by Computer;\r\nlet wopsp = disk | where CounterName == 'IO Write Operations/sec' | summarize WriteOps=avg(CounterValue) by Computer, InstanceName;\r\nlet comp = readc | join kind=leftouter writec on Computer | join kind=leftouter ropsc on Computer | join kind=leftouter wopsc on Computer | project Name=strcat('💻 ', Computer), Key=Computer, ReadBytes, WriteBytes, TotalBytes = ReadBytes + WriteBytes, ReadOps, WriteOps, TotalOps = ReadOps + WriteOps, ParentKey='';\r\nlet proc = readp | join kind=leftouter writep on Computer, InstanceName | join kind=leftouter ropsp on Computer, InstanceName | join kind=leftouter wopsp on Computer, InstanceName | project Name=strcat('🎫 ', InstanceName), ParentKey=Computer, ReadBytes, WriteBytes, TotalBytes = ReadBytes + WriteBytes, ReadOps, WriteOps, TotalOps = ReadOps + WriteOps, Key=strcat(Computer, '-', InstanceName);\r\ncomp\r\n| union proc\r\n| order by TotalBytes desc, TotalOps desc",
         "size": 0,
+        "showAnalytics": true,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "gridSettings": {
@@ -600,6 +610,7 @@
         }
       },
       "conditionalVisibility": null,
+      "showPin": true,
       "name": "query - 5"
     },
     {
@@ -671,6 +682,7 @@
         "version": "KqlItem/1.0",
         "query": "let network = VMConnection {ComputerFilter} | where \"{RunQuery:value}\" == \"1\" | where TimeGenerated {TimeRange};\r\nlet rxc = network | summarize RX=avg(BytesReceived) by Computer;\r\nlet rxp = network | summarize RX=avg(BytesReceived) by Computer, ProcessName;\r\nlet txc = network | summarize TX=avg(BytesSent) by Computer;\r\nlet txp = network | summarize TX=avg(BytesSent) by Computer, ProcessName;\r\nlet tlc = network | summarize Total=avg(BytesReceived) + avg(BytesSent) by Computer;\r\nlet tlp = network | summarize Total=avg(BytesReceived) + avg(BytesSent) by Computer, ProcessName;\r\nlet comp = rxc | join hint.shufflekey=Computer txc on Computer | join tlc on Computer | project Name=strcat('💻 ', Computer), RX, TX, Total, Key=Computer, ParentKey='';\r\nlet proc = rxp | join hint.shufflekey=Computer txp on Computer, ProcessName | join tlp on Computer, ProcessName | project Name=strcat('🎫 ', ProcessName), RX, TX, Total, Key=strcat(Computer, '-', ProcessName), ParentKey=Computer;\r\ncomp\r\n| union proc\r\n| order by Total desc",
         "size": 0,
+        "showAnalytics": true,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "gridSettings": {
@@ -744,6 +756,7 @@
         }
       },
       "conditionalVisibility": null,
+      "showPin": true,
       "name": "query - 8"
     },
     {
@@ -815,6 +828,7 @@
         "version": "KqlItem/1.0",
         "query": "let mem = Perf {ComputerFilter} | where \"{RunQuery:value}\" == \"1\" | where TimeGenerated {TimeRange} | where ObjectName == 'Process' and CounterName == 'Private Bytes' or CounterName == 'Used Memory' and InstanceName != '_Total' and InstanceName != 'Idle';\r\nlet memc = mem | summarize Memory=sum(CounterValue) by Computer;\r\nlet memp = mem | summarize Memory=avg(CounterValue) by Computer, InstanceName;\r\nlet comp = memc | project Name=strcat('💻 ', Computer), Key=Computer, Memory;\r\nlet proc = memp | project Name=strcat('🎫 ', InstanceName), Key=strcat(Computer, '-', InstanceName), ParentKey=Computer, Memory;\r\ncomp\r\n| union proc\r\n| order by Memory desc",
         "size": 0,
+        "showAnalytics": true,
         "queryType": 0,
         "resourceType": "microsoft.operationalinsights/workspaces",
         "gridSettings": {
@@ -859,6 +873,7 @@
         }
       },
       "conditionalVisibility": null,
+      "showPin": true,
       "name": "query - 11"
     }
   ],
