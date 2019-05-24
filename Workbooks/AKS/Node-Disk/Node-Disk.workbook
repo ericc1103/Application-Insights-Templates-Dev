@@ -11,7 +11,7 @@
           {
             "id": "08bdcd8f-68e6-42c1-b82a-7302463d8901",
             "version": "KqlParameterItem/1.0",
-            "name": "TimeRange",
+            "name": "timeRange",
             "type": 4,
             "description": "The time range in which you are looking for data",
             "isRequired": true,
@@ -64,7 +64,12 @@
                 }
               ],
               "allowCustom": true
-            }
+            },
+            "value": {
+              "durationMs": 21600000,
+              "endTime": "2019-05-24T23:28:15.575Z"
+            },
+            "label": "Time Range"
           }
         ],
         "style": "pills",
