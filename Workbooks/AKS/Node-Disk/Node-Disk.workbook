@@ -66,8 +66,7 @@
               "allowCustom": true
             },
             "value": {
-              "durationMs": 21600000,
-              "endTime": "2019-05-24T23:28:15.575Z"
+              "durationMs": 21600000
             },
             "label": "Time Range"
           }
@@ -81,7 +80,7 @@
     {
       "type": 1,
       "content": {
-        "json": "Used Disk Percentage by Node and Disk"
+        "json": "<h3>Used Disk Percentage by Node and Disk</h3>"
       },
       "name": "text - 5"
     },
@@ -91,10 +90,21 @@
         "version": "KqlItem/1.0",
         "query": "InsightsMetrics\r\n| where TimeGenerated  >= ago(7d)\r\n| where Name =~ 'used_percent'\r\n| extend Tags = todynamic(Tags)\r\n| extend Device = tostring(Tags.device)\r\n| extend NodeDisk = strcat(Computer, '/', Device)\r\n| summarize max(Val) by NodeDisk, Timestamp = bin(TimeGenerated, 30m)    \r\n| render timechart",
         "size": 0,
+        "timeContext": {
+          "durationMs": 0
+        },
+        "timeContextFromParameter": "timeRange",
         "queryType": 0,
         "resourceType": "microsoft.containerservice/managedclusters"
       },
       "name": "query - 7"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "<h3>Free Gigabytes by Node and Device</h3>"
+      },
+      "name": "text - 5"
     },
     {
       "type": 9,
@@ -124,123 +134,19 @@
       "name": "parameters - 6"
     },
     {
-      "type": 1,
-      "content": {
-        "json": "Free Gigabytes by Node and Disk"
-      },
-      "name": "text - 8"
-    },
-    {
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
         "query": "InsightsMetrics\r\n| where TimeGenerated >= ago(1d)\r\n| where Name =~ 'free'\r\n| extend Val = Val/{Units}\r\n| extend Tags = todynamic(Tags)\r\n| extend Device = tostring(Tags.device)\r\n| extend NodeDisk = strcat(Computer, '/', Device)\r\n| summarize max(Val) by NodeDisk, Timestamp = bin(TimeGenerated, 30m)\r\n| render timechart",
         "size": 0,
-        "queryType": 0,
-        "resourceType": "microsoft.containerservice/managedclusters"
-      },
-      "name": "query - 9"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "<h2>All Disk Metrics by Computer, Device, and Path</h2>"
-      },
-      "name": "text - 3"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "InsightsMetrics\r\n| where Origin =~ 'container.azm.ms/telegraf'            \r\n| extend Tags = todynamic(Tags)\r\n| extend ClusterId = Tags['container.azm.ms/clusterId']\r\n| where Namespace =~ 'disk'            \r\n| project TimeGenerated, Computer = tostring(Tags.hostName), Device = tostring(Tags.device), Path = tostring(Tags.path), DiskMetricName = Name, DiskMetricValue = Val\r\n| where (DiskMetricName == 'used') or (DiskMetricName == 'free') or (DiskMetricName == 'used_percent')\r\n| summarize arg_max(TimeGenerated, *) by Computer, Device, Path, DiskMetricName\r\n",
-        "size": 2,
         "timeContext": {
-          "durationMs": 86400000
+          "durationMs": 0
         },
+        "timeContextFromParameter": "timeRange",
         "queryType": 0,
         "resourceType": "microsoft.containerservice/managedclusters"
       },
-      "name": "query - 0"
-    },
-    {
-      "type": 1,
-      "content": {
-        "json": "<h2>Disk Metrics Piechart by Node, Device, and Path</h2>"
-      },
-      "name": "text - 5"
-    },
-    {
-      "type": 9,
-      "content": {
-        "version": "KqlParameterItem/1.0",
-        "query": "",
-        "crossComponentResources": [],
-        "parameters": [
-          {
-            "id": "3a674f30-6a9a-4be1-90d1-cf163b376fd5",
-            "version": "KqlParameterItem/1.0",
-            "name": "Computer",
-            "type": 2,
-            "description": "Filter disk metrics by computer name",
-            "isRequired": true,
-            "query": "InsightsMetrics\r\n| extend Tags = todynamic(Tags)\r\n| project Computer = tostring(Tags.hostName)\r\n| distinct Computer\r\n\r\n\r\n",
-            "value": "aks-agentpool-74663261-0",
-            "typeSettings": {
-              "additionalResourceOptions": []
-            },
-            "queryType": 0,
-            "resourceType": "microsoft.containerservice/managedclusters"
-          },
-          {
-            "id": "9dbf42c0-6e2d-42a7-85a7-3f7b2c1a20a5",
-            "version": "KqlParameterItem/1.0",
-            "name": "Device",
-            "type": 2,
-            "description": "Filter disk metrics by device",
-            "isRequired": true,
-            "query": "InsightsMetrics\r\n| extend Tags = todynamic(Tags)\r\n| project Computer = tostring(Tags.hostName), Device = tostring(Tags.device)\r\n| where Computer =~ \"{Computer}\"\r\n| distinct Device",
-            "value": "sda1",
-            "typeSettings": {
-              "additionalResourceOptions": []
-            },
-            "queryType": 0,
-            "resourceType": "microsoft.containerservice/managedclusters"
-          },
-          {
-            "id": "2ff5d1ef-ca6f-43f4-87d3-390dce6a4153",
-            "version": "KqlParameterItem/1.0",
-            "name": "Path",
-            "type": 2,
-            "description": "Filter disk metrics by mount path",
-            "isRequired": true,
-            "query": "InsightsMetrics\r\n| extend Tags = todynamic(Tags)\r\n| project Computer = tostring(Tags.hostName), Device = tostring(Tags.device), Path = tostring(Tags.path)\r\n| where Computer =~ \"{Computer}\"\r\n| where Device =~ \"{Device}\"\r\n| distinct Path",
-            "value": "/",
-            "typeSettings": {
-              "additionalResourceOptions": []
-            },
-            "queryType": 0,
-            "resourceType": "microsoft.containerservice/managedclusters"
-          }
-        ],
-        "style": "pills",
-        "queryType": 0,
-        "resourceType": "microsoft.containerservice/managedclusters"
-      },
-      "name": "parameters - 5"
-    },
-    {
-      "type": 3,
-      "content": {
-        "version": "KqlItem/1.0",
-        "query": "InsightsMetrics\r\n| where Origin =~ 'container.azm.ms/telegraf'            \r\n| extend Tags = todynamic(Tags)         \r\n| where Namespace =~ 'disk'            \r\n| project TimeGenerated, Computer = tostring(Tags.hostName), Device = tostring(Tags.device), Path = tostring(Tags.path), DiskMetricName = Name, DiskMetricValue = Val/{Units}\r\n| where Computer =~ \"{Computer}\"\r\n| where Device =~ \"{Device}\"\r\n| where Path =~ \"{Path}\"\r\n| where (DiskMetricName == 'used') or (DiskMetricName == 'free') \r\n| summarize arg_max(TimeGenerated, *) by Computer, Device, Path, DiskMetricName\r\n| project DiskMetricName, DiskMetricValue\r\n| render piechart\r\n\r\n",
-        "size": 0,
-        "timeContext": {
-          "durationMs": 86400000
-        },
-        "queryType": 0,
-        "resourceType": "microsoft.containerservice/managedclusters"
-      },
-      "name": "query - 2"
+      "name": "query - 4"
     }
   ],
   "fallbackResourceIds": [
