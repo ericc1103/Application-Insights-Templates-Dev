@@ -66,9 +66,23 @@
               "allowCustom": true
             },
             "value": {
-              "durationMs": 21600000
+              "durationMs": 604800000
             },
             "label": "Time Range"
+          },
+          {
+            "id": "8367fd34-d0d4-43ca-bb28-61004fd64afd",
+            "version": "KqlParameterItem/1.0",
+            "name": "timeBin",
+            "label": "Time Bin",
+            "type": 2,
+            "description": "The size of the bin used to aggregated your data",
+            "isRequired": true,
+            "value": "30m",
+            "typeSettings": {
+              "additionalResourceOptions": []
+            },
+            "jsonData": "[\r\n    { \"label\": \"1 hour\", \"value\": \"1h\" },\r\n    { \"label\": \"30 minutes\", \"value\": \"30m\" }\r\n]"
           }
         ],
         "style": "pills",
@@ -88,7 +102,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "InsightsMetrics\r\n| where TimeGenerated  >= ago(7d)\r\n| where Name =~ 'used_percent'\r\n| extend Tags = todynamic(Tags)\r\n| extend Device = tostring(Tags.device)\r\n| extend NodeDisk = strcat(Computer, '/', Device)\r\n| summarize max(Val) by NodeDisk, Timestamp = bin(TimeGenerated, 30m)    \r\n| render timechart",
+        "query": "InsightsMetrics\r\n| where TimeGenerated  >= ago(7d)\r\n| where Name =~ 'used_percent'\r\n| extend Tags = todynamic(Tags)\r\n| extend Device = tostring(Tags.device)\r\n| extend NodeDisk = strcat(Computer, '/', Device)\r\n| summarize max(Val) by NodeDisk, Timestamp = bin(TimeGenerated, {timeBin})    \r\n| render timechart",
         "size": 0,
         "timeContext": {
           "durationMs": 0
@@ -137,7 +151,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "InsightsMetrics\r\n| where TimeGenerated >= ago(1d)\r\n| where Name =~ 'free'\r\n| extend Val = Val/{Units}\r\n| extend Tags = todynamic(Tags)\r\n| extend Device = tostring(Tags.device)\r\n| extend NodeDisk = strcat(Computer, '/', Device)\r\n| summarize max(Val) by NodeDisk, Timestamp = bin(TimeGenerated, 30m)\r\n| render timechart",
+        "query": "InsightsMetrics\r\n| where TimeGenerated >= ago(1d)\r\n| where Name =~ 'free'\r\n| extend Val = Val/{Units}\r\n| extend Tags = todynamic(Tags)\r\n| extend Device = tostring(Tags.device)\r\n| extend NodeDisk = strcat(Computer, '/', Device)\r\n| summarize max(Val) by NodeDisk, Timestamp = bin(TimeGenerated, {timeBin})\r\n| render timechart",
         "size": 0,
         "timeContext": {
           "durationMs": 0
