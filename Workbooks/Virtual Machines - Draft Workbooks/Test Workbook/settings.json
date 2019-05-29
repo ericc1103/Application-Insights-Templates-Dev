@@ -5,6 +5,6 @@
     "isPreview": true,
     "galleries": [
         { "type": "performance-vm", "resourceType": "microsoft.operationalinsights/workspaces", "order": 200 },
-        { "type": "performance-vm", "resourceType": "Azure Monitor", "categoryKey": "azureMonitorVirtualMachines", "order": 100 }
+        { "type": "workbook", "resourceType": "Azure Monitor", "categoryKey": "azureMonitorVirtualMachines", "order": 100 }
     ]
 }
