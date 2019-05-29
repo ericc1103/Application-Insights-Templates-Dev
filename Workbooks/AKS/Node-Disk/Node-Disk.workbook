@@ -78,7 +78,7 @@
             "type": 1,
             "description": "Determines the bin used for aggregation in the queries below",
             "isRequired": true,
-            "query": "let idealNumberofDataPoints = 100;\r\nlet scratchPaper = datatable(GranularityOptions: long) [5, 15, 30, 60, 360, 720, 1440];\r\nscratchPaper\r\n| extend DataPointCount = ({durationMs}/(1000*60))/GranularityOptions\r\n| extend Distance = idealNumberofDataPoints - DataPointCount\r\n| summarize arg_min(Distance, *)\r\n| project GranularityOptions;",
+            "query": "let durationMs = datetime_diff('millisecond',{timeRange:end},{timeRange:start});\r\nlet idealNumberofDataPoints = 100;\r\nlet scratchPaper = datatable(GranularityOptions: long) [5, 15, 30, 60, 360, 720, 1440];\r\nscratchPaper\r\n| extend DataPointCount = (durationMs/(1000*60))/GranularityOptions\r\n| extend Distance = idealNumberofDataPoints - DataPointCount\r\n| summarize arg_min(Distance, *)\r\n| project GranularityOptions;",
             "queryType": 0,
             "resourceType": "microsoft.containerservice/managedclusters"
           }
