@@ -76,7 +76,7 @@
             "name": "bin",
             "label": "Bin",
             "type": 1,
-            "description": "Determines the bin used for aggregation in the queries below",
+            "description": "The interval in minutes used to bin data in teh queries below",
             "isRequired": true,
             "query": "let durationMs = datetime_diff('millisecond',{timeRange:end},{timeRange:start});\r\nlet idealNumberofDataPoints = 100;\r\nlet scratchPaper = datatable(GranularityOptions: long) [5, 15, 30, 60, 360, 720, 1440];\r\nscratchPaper\r\n| extend DataPointCount = (durationMs/(1000*60))/GranularityOptions\r\n| extend Distance = idealNumberofDataPoints - DataPointCount\r\n| summarize arg_min(Distance, *)\r\n| project GranularityOptions;",
             "queryType": 0,
@@ -102,6 +102,7 @@
         "version": "KqlItem/1.0",
         "query": "InsightsMetrics\r\n| where Name == 'used_percent'\r\n| where Namespace == 'disk'\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| extend Tags = todynamic(Tags)\r\n| extend Device = tostring(Tags.device)\r\n| extend NodeDisk = strcat(Computer, '/', Device)\r\n| summarize max(Val) by NodeDisk, Timestamp = bin(TimeGenerated, {bin}m)    \r\n| render timechart",
         "size": 0,
+        "aggregation": 2,
         "timeContext": {
           "durationMs": 0
         },
@@ -152,6 +153,7 @@
         "version": "KqlItem/1.0",
         "query": "InsightsMetrics\r\n| where Name == 'free'\r\n| where Namespace == 'disk'\r\n| where Origin == 'container.azm.ms/telegraf'\r\n| extend Val = Val/{units}\r\n| extend Tags = todynamic(Tags)\r\n| extend Device = tostring(Tags.device)\r\n| extend NodeDisk = strcat(Computer, '/', Device)\r\n| summarize min(Val) by NodeDisk, Timestamp = bin(TimeGenerated, {bin}m)\r\n| render timechart",
         "size": 0,
+        "aggregation": 1,
         "timeContext": {
           "durationMs": 0
         },
