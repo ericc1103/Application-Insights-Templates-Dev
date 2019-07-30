@@ -1,4 +1,5 @@
-# Azure Monitor Workbook Templates
+# Azure Monitor Workbook Templates [![Build Status](https://travis-ci.org/microsoft/Application-Insights-Workbooks.svg?branch=master)](https://travis-ci.org/microsoft/Application-Insights-Workbooks)
+
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a 
@@ -10,7 +11,7 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 ## What is this repository for?
-This repository contains the templates shown in the workbook galleries of [Azure Monitor Workbooks](https://docs.microsoft.com/azure/application-insights/app-insights-usage-workbooks). Templates added to this repository will show up in the Workbooks for all users of Azure Monitor. By contributing templates, you can help others solve interesting problems using the workbooks you've found helpful on your own team.
+This repository contains the templates shown in the workbook galleries of [Azure Monitor Workbooks](https://docs.microsoft.com/azure/application-insights/app-insights-usage-workbooks). Templates added to this repository will show up in the various Workbook Galleries for users of Azure Monitor Workbooks. By contributing templates, you can help others solve interesting problems using the workbooks you've found helpful on your own team.
 
 ## Azure Monitor Workbooks
 
@@ -39,6 +40,6 @@ Use these links to learn more about workbooks:
 ![Image of a sample workbook](Documentation/Images/WorkbookExample.png)
 
 ## How to contribute?
-The template contribution process is as simple creating a PR against this repo. The  templates need to be in a specific format that is documented here: [Contributing](Documentation/Contributing.md). 
+The template contribution process is as simple creating a PR against this repo. The templates need to be in a specific format that is documented here: [Contributing](Documentation/Contributing.md). 
 
 Note that templates in this repo will show up for all users of Azure who open the specified gallery. For this reason, the templates gallery is curated by Microsoft. If the submitted template is useful to the community and it does not place undue stress on the underlying infrastructure, it will be accepted to be part of the gallery.

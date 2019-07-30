@@ -1,8 +1,0 @@
-{
-    "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/settings.json",
-    "name":"예외",
-    "author": "Microsoft",
-    "galleries": [{ "type": "tsg", "resourceType": "microsoft.insights/components", "order": 300 }, 
-        { "virtualCategoryKey": "virtualCategoryKey-Test234", "type": "tsg", "resourceType": "microsoft.insights/components", "order": 499 }
-    ]
-}

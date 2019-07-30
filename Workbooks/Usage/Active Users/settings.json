@@ -11,7 +11,7 @@
         {
             "type": "usage",
             "resourceType": "microsoft.insights/components",
-            "order": 101
+            "order": 100
         }
     ]
 }
