@@ -34,7 +34,7 @@
               ],
               "selectAllValue": "ComplianceState ne '9A09757A-6676-43A7-A0F1-F749A406142C'"
             },
-            "jsonData": "[\r\n    { \"value\": \"ComplianceState eq 'Compliant'\", \"label\": \"Compliant\" },\r\n    { \"value\": \"ComplianceState eq 'Noncompliant'\", \"label\": \"Noncompliant\" }\r\n]"
+            "jsonData": "[\r\n    { \"label\": \"Compliant\", \"value\": \"ComplianceState eq 'Compliant'\" },\r\n    { \"label\": \"Conflict\", \"value\": \"ComplianceState eq 'Conflict'\" },\r\n    { \"label\": \"Error\", \"value\": \"ComplianceState eq 'Error'\" },\r\n    { \"label\": \"In grace period\", \"value\": \"ComplianceState eq 'InGracePeriod'\" },\r\n    { \"label\": \"Managed by ConfigMgr\", \"value\": \"ComplianceState eq 'ConfigManager'\" },\r\n    { \"label\": \"Not compliant\", \"value\": \"ComplianceState eq 'Noncompliant'\" },\r\n    { \"label\": \"Not evaluated\", \"value\": \"ComplianceState eq 'Unknown'\" }\r\n]\r\n"
           },
           {
             "id": "93093429-1870-4771-bdab-54b91308bcee",
@@ -46,15 +46,7 @@
             "quote": "",
             "delimiter": " or ",
             "value": [
-              "DeviceType eq 'WinMO6' or DeviceType eq 'Nokia' or DeviceType eq 'Mac' or DeviceType eq 'Blackberry' or DeviceType eq 'Palm' or DeviceType eq 'Unknown'",
-              "DeviceType eq 'WindowsPhone'",
-              "DeviceType eq 'HoloLens'",
-              "DeviceType eq 'Desktop' or DeviceType eq 'Windows' or DeviceType eq 'WinEmbedded' or DeviceType eq 'SurfaceHub'",
-              "DeviceType eq 'MacMDM'",
-              "DeviceType eq 'IPhone' or DeviceType eq 'IPad' or DeviceType eq 'IPod'",
-              "DeviceType eq 'AndroidForWork'",
-              "DeviceType eq 'AndroidEnterprise'",
-              "DeviceType eq 'Android'"
+              "value::all"
             ],
             "typeSettings": {
               "additionalResourceOptions": [
@@ -70,7 +62,7 @@
             "name": "GraphVersion",
             "type": 1,
             "isRequired": true,
-            "value": "test_intune_onedf",
+            "value": "test_intune_sh",
             "isHiddenWhenLocked": true
           }
         ],
